@@ -1,0 +1,3104 @@
+
+
+
+               //.net core -orm-entity framework core
+
+ //Bölüm 4 Entity sınıflarının oluşturulması
+
+
+// using System;
+// using System.ComponentModel.DataAnnotations;
+
+// namespace consoleapp2
+// {
+//     public class Product//her tablınun primary key olmalı
+//     {
+//         //primary key(id,<type_name>Id)
+//         public int Id { get; set; }//böyle tanımlarsak veya ProductId diye  otomatik olarak birincil anahtar secilir ama
+//         //eğer UrunId gibi bişey yazarsak entity framework bunu anlamaz bir üst satıra [Key] EKLEMEK GEREKİR
+
+//         [MaxLength(100)]//maxlength veya requiredden sonra ctrl nokta bas yukarıya ekle
+//         [Required]//zorunlu
+//         public string Name { get; set; }//varchar max olarak tanımlanır direk ama üsütünde sınırlayabiliriz
+
+//         public decimal Price { get; set; }
+   
+//     }
+
+
+//     public class Category
+//     {
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//     }
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+            
+//         }
+//     }
+// }
+ 
+
+
+
+
+  //Bölüm 5 Context sınıflarının oluşturulması
+
+
+// using System;
+// using System.ComponentModel.DataAnnotations;
+// using Microsoft.EntityFrameworkCore;
+
+// namespace consoleapp3
+// {
+
+//     public class ShopContext:DbContext //dbcontext den sonra ctrl nokta yap.shop ismini biz verdik context zorunlu yani shopcontext olmalı
+//     //bunun içine kullanmak istediğimiz entity sınıflarını ekliyoruz
+//     {
+//         public DbSet<Product> Products {get;set;}//prop
+//         public DbSet<Category> Categories { get; set; }//prop
+
+//          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//         {
+//             optionsBuilder.UseSqlite("Data source=shop.db");//adı shop olan eklicez
+                
+//         }
+
+
+//     }
+//     public class Product
+//     {
+        
+//         public int Id { get; set; }
+
+//         [MaxLength(100)]
+//         [Required]//zorunlu
+//         public string Name { get; set; }
+//         public decimal Price { get; set; }
+   
+//     }
+
+
+//     public class Category
+//     {
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//     }
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+            
+//         }
+//     }
+// }
+ 
+
+
+
+ 
+// //  //Bölüm 7 Veri tabanına kayıt ekleme
+
+
+// using System;
+// using System.Collections.Generic;
+// using System.ComponentModel.DataAnnotations;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Logging;
+
+// namespace consoleapp3
+// {
+
+//     public class ShopContext: DbContext 
+//     {
+//         public DbSet<Product> Products {get;set;}//prop
+//         public DbSet<Category> Categories { get; set; }//prop
+
+//         //oluşturdugumuz sql sorgusunun link karsılıgını görmek için bunu yaparız yapmasakta olur
+//         public static readonly ILoggerFactory MyLoggerFactory //ıloggerfactory den sonra ctrl nokta yap
+//             = LoggerFactory.Create(builder => { builder.AddConsole();});
+
+//          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//         {
+//             optionsBuilder
+//             .UseLoggerFactory(MyLoggerFactory)//bunuda buraya eklemeliyiz link sorgusu görmek için
+//             .UseSqlite("Data source=shop.db");
+                
+//         }
+
+
+//     }
+//     public class Product
+//     {
+        
+//         public int Id { get; set; }
+
+//         [MaxLength(100)]
+//         [Required]//zorunlu
+//         public string Name { get; set; }
+//         public decimal Price { get; set; }
+   
+//     }
+
+
+//     public class Category
+//     {
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//     }
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             AddProducts();//bir ürün eklemek için bu metodu çağırdık
+            
+       
+
+//         }
+
+//         static void AddProducts()//birden çok ürün eklemek için metot tanımladık.
+//         {
+//                  using(var db =new ShopContext())
+//             {
+//                 var products=new List<Product>//ctrl nokta yap
+//                 {
+//                     new Product {Name="Samsung S5",Price=2000},
+//                     new Product {Name="Samsung S6",Price=3000},
+//                     new Product {Name="Samsung S7",Price=4000},
+//                     new Product {Name="Samsung S8",Price=5000},
+//                     new Product {Name="Samsung S9",Price=6000}
+
+//                 };
+//                 // foreach (var p in products)//hepsini böylede ekleyebiliriz ama kısayolu var
+//                 // {
+//                 //      db.Products.Add(p);
+                    
+//                 // }
+//                 db.Products.AddRange(products);//kolay,kısa yolu
+
+//                 db.SaveChanges();
+//                 Console.WriteLine("veriler eklendi");
+
+//                 //bu aşamada 
+//             }
+            
+
+//         }
+
+//         //  static void AddProduct()//tek bir ürün eklemek için  metot tanımladık.ama iki metot birden acık olunca zaman asımına ugrama hatası veriyor
+//         // {
+//         //          using(var db =new ShopContext())
+//         //     {
+//         //         var p= new Product { Name="Samsung S10",Price=8000};
+            
+               
+//         //         db.Products.Add(p);//kolay,kısa yolu
+
+//         //         db.SaveChanges();
+//         //         Console.WriteLine("veriler eklendi");
+
+                 
+//         //     }
+            
+
+//         // }
+
+
+        
+//     }
+// }
+
+
+
+
+
+//  //Bölüm 8 Veri tabanından kayıt seçme
+
+
+// using System;
+// using System.Collections.Generic;
+// using System.ComponentModel.DataAnnotations;
+// using System.Linq;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Logging;
+
+// namespace consoleapp3
+// {
+
+//     public class ShopContext: DbContext 
+//     {
+//         public DbSet<Product> Products {get;set;}//prop
+//         public DbSet<Category> Categories { get; set; }//prop
+
+//         //oluşturdugumuz sql sorgusunun link karsılıgını görmek için bunu yaparız yapmasakta olur
+//         public static readonly ILoggerFactory MyLoggerFactory //ıloggerfactory den sonra ctrl nokta yap
+//             = LoggerFactory.Create(builder => { builder.AddConsole();});
+
+//          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//         {
+//             optionsBuilder
+//             .UseLoggerFactory(MyLoggerFactory)//bunuda buraya eklemeliyiz link sorgusu görmek için
+//             .UseSqlite("Data source=shop.db");
+                
+//         }
+
+
+//     }
+//     public class Product
+//     {
+        
+//         public int Id { get; set; }
+
+//         [MaxLength(100)]
+//         [Required]//zorunlu
+//         public string Name { get; set; }
+//         public decimal Price { get; set; }
+   
+//     }
+
+
+//     public class Category
+//     {
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//     }
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//           //  GetAllProducts();
+//            // GetProductById(1);
+//            GetProductByName("samsung");
+            
+//         }
+//          static void GetProductByName(string name) //name ye göre ürün almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var products=context
+//                 .Products
+//                 .Where(p=>p.Name.ToLower().Contains(name.ToLower()))//filtreleme yapar.girilen name ile eşlesen name yi bulur//burdaki p ler Products ın kısaltılması
+//                 .Select(p=>new { p.Name, p.Price})//sadece isim ve fiyat gelsin
+//                 .ToList();//birden çok sonuc ondan ToLİST OLUR FirstOrDefault YERİNE
+                
+//             foreach (var p in products)//birden cok sonuc olabilir ondan for each kullanırız
+//                 {
+//                     Console.WriteLine($"name:{p.Name} price: {p.Price}");
+//                 }
+              
+
+//             }
+//         }
+
+   
+
+//          static void GetProductById(int id) //id ye göre ürün almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var result=context
+//                 .Products
+//                 .Where(p=>p.Id==id)//filtreleme yapar.girilen id ile eşlesen id yi bulur//burdaki p ler Products ın kısaltılması
+//                 .Select(p=>new { p.Name, p.Price})//sadece isim ve fiyat gelsin
+//                 .FirstOrDefault();//tek bir değer gelicek ondan bunu kullanıyoruz tolist yerine
+
+                
+//             //tek bir id geliceği için foreach e gerek yok.
+//              Console.WriteLine($"name:{result.Name} price: {result.Price}");
+              
+
+//             }
+//         }
+
+//         static void GetAllProducts()//ürünleri almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var products=context
+//                 .Products
+//                 .Select(p=>new { p.Name, p.Price})//.sadece name ve fiyat alanları bize gelir(yani kolon secimi yapmak için kullanırız bunu)
+//                 .ToList();//tolistte ctrl+nokta yap
+               
+//                 foreach (var p in products)
+//                 {
+//                     Console.WriteLine($"name:{p.Name} price: {p.Price}");
+//                 }
+
+//             }
+//         }
+
+//         static void AddProducts()//birden çok ürün eklemek için metot tanımladık.
+//         {
+//                  using(var db =new ShopContext())
+//             {
+//                 var products=new List<Product>//ctrl nokta yap
+//                 {
+//                     new Product {Name="Samsung S5",Price=2000},
+//                     new Product {Name="Samsung S6",Price=3000},
+//                     new Product {Name="Samsung S7",Price=4000},
+//                     new Product {Name="Samsung S8",Price=5000},
+//                     new Product {Name="Samsung S9",Price=6000}
+
+//                 };
+//                 // foreach (var p in products)//hepsini böylede ekleyebiliriz ama kısayolu var
+//                 // {
+//                 //      db.Products.Add(p);
+                    
+//                 // }
+//                 db.Products.AddRange(products);//kolay,kısa yolu
+
+//                 db.SaveChanges();
+//                 Console.WriteLine("veriler eklendi");
+
+//                 //bu aşamada 
+//             }
+            
+
+//         }
+
+//         //  static void AddProduct()//tek bir ürün eklemek için  metot tanımladık.ama iki metot birden acık olunca zaman asımına ugrama hatası veriyor
+//         // {
+//         //          using(var db =new ShopContext())
+//         //     {
+//         //         var p= new Product { Name="Samsung S10",Price=8000};
+            
+               
+//         //         db.Products.Add(p);//kolay,kısa yolu
+
+//         //         db.SaveChanges();
+//         //         Console.WriteLine("veriler eklendi");
+
+                 
+//         //     }
+            
+
+//         // }
+
+
+        
+//     }
+// }
+
+
+
+
+
+
+// //Bölüm 9 Veri tabanında kayıt güncelleme
+
+
+// using System;
+// using System.Collections.Generic;
+// using System.ComponentModel.DataAnnotations;
+// using System.Linq;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Logging;
+
+// namespace consoleapp3
+// {
+
+//     public class ShopContext: DbContext 
+//     {
+//         public DbSet<Product> Products {get;set;}//prop
+//         public DbSet<Category> Categories { get; set; }//prop
+
+//         //oluşturdugumuz sql sorgusunun link karsılıgını görmek için bunu yaparız yapmasakta olur
+//         public static readonly ILoggerFactory MyLoggerFactory //ıloggerfactory den sonra ctrl nokta yap
+//             = LoggerFactory.Create(builder => { builder.AddConsole();});
+
+//          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//         {
+//             optionsBuilder
+//             .UseLoggerFactory(MyLoggerFactory)//bunuda buraya eklemeliyiz link sorgusu görmek için
+//             .UseSqlite("Data source=shop.db");
+                
+//         }
+
+
+//     }
+//     public class Product
+//     {
+        
+//         public int Id { get; set; }
+
+//         [MaxLength(100)]
+//         [Required]//zorunlu
+//         public string Name { get; set; }
+//         public decimal Price { get; set; }
+   
+//     }
+
+
+//     public class Category
+//     {
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//     }
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//           UpdateProduct();
+            
+//         }
+
+//         static void UpdateProduct()// veri güncellemek için metot 
+//         {
+             
+
+//             // //2. YOL SELECT SORGUSU OLMADAN UPDATE YAPMA YOLU
+//             //  using (var db=new ShopContext())//SELECT SORGUSU YAPMADAN update YAPMA YOLU
+//             //  {
+//             //      var entity =new Product(){Id=1};
+//             //      db.Products.Attach(entity);//attach metoduyla takip işlemi yapılıyo direk
+//             //      entity.Price=2000;
+//             //      db.SaveChanges();
+
+//             //  }
+//                          //1. YOL SELECT VE UPDATE SORGUSU BİR ARADA OLAN YOL
+//             using (var db=new ShopContext())
+//             {//Products ın içinden  Id si 1 olan seçilir ve ve orada ürün varsa güncellemesi yapılır ve kaydedilir
+//                 var p=db
+//                 .Products
+//                 //.AsNoTracking()//bunu eklersek p takibi bırakılır güncelleme olmaz
+//                 .Where(i=>i.Id==1)//PRODUCTS içinde İD Sİ 1 olan ı alır
+//                 .FirstOrDefault(); //TEK BİR KAYIT GELİCEK ONDAN BUNU KULLANDIK
+//                 if(p!=null)//p değeri boş değilse yani id si 1 olan ürün carsa diyoruz burda
+//                 {
+//                     p.Price =2000;
+//                     db.SaveChanges();
+//                     Console.WriteLine("güncelleme yapıldı.");
+  
+//                 }
+
+
+//             }
+
+//         }
+//          static void GetProductByName(string name) //name ye göre ürün almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var products=context
+//                 .Products
+//                 .Where(p=>p.Name.ToLower().Contains(name.ToLower()))//filtreleme yapar.girilen name ile eşlesen name yi bulur//burdaki p ler Products ın kısaltılması
+//                 .Select(p=>new { p.Name, p.Price})//sadece isim ve fiyat gelsin
+//                 .ToList();//birden çok sonuc ondan ToLİST OLUR FirstOrDefault YERİNE
+                
+//             foreach (var p in products)//birden cok sonuc olabilir ondan for each kullanırız
+//                 {
+//                     Console.WriteLine($"name:{p.Name} price: {p.Price}");
+//                 }
+              
+
+//             }
+//         }
+
+   
+
+//          static void GetProductById(int id) //id ye göre ürün almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var result=context
+//                 .Products
+//                 .Where(p=>p.Id==id)//filtreleme yapar.girilen id ile eşlesen id yi bulur//burdaki p ler Products ın kısaltılması
+//                 .Select(p=>new { p.Name, p.Price})//sadece isim ve fiyat gelsin
+//                 .FirstOrDefault();//tek bir değer gelicek ondan bunu kullanıyoruz tolist yerine
+
+                
+//             //tek bir id geliceği için foreach e gerek yok.
+//              Console.WriteLine($"name:{result.Name} price: {result.Price}");
+              
+
+//             }
+//         }
+
+//         static void GetAllProducts()//ürünleri almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var products=context
+//                 .Products
+//                 .Select(p=>new { p.Name, p.Price})//.sadece name ve fiyat alanları bize gelir(yani kolon secimi yapmak için kullanırız bunu)
+//                 .ToList();//tolistte ctrl+nokta yap
+               
+//                 foreach (var p in products)
+//                 {
+//                     Console.WriteLine($"name:{p.Name} price: {p.Price}");
+//                 }
+
+//             }
+//         }
+
+//         static void AddProducts()//birden çok ürün eklemek için metot tanımladık.
+//         {
+//                  using(var db =new ShopContext())
+//             {
+//                 var products=new List<Product>//ctrl nokta yap
+//                 {
+//                     new Product {Name="Samsung S5",Price=2000},
+//                     new Product {Name="Samsung S6",Price=3000},
+//                     new Product {Name="Samsung S7",Price=4000},
+//                     new Product {Name="Samsung S8",Price=5000},
+//                     new Product {Name="Samsung S9",Price=6000}
+
+//                 };
+//                 // foreach (var p in products)//hepsini böylede ekleyebiliriz ama kısayolu var
+//                 // {
+//                 //      db.Products.Add(p);
+                    
+//                 // }
+//                 db.Products.AddRange(products);//kolay,kısa yolu
+
+//                 db.SaveChanges();
+//                 Console.WriteLine("veriler eklendi");
+
+//                 //bu aşamada 
+//             }
+            
+
+//         }
+
+//         //  static void AddProduct()//tek bir ürün eklemek için  metot tanımladık.ama iki metot birden acık olunca zaman asımına ugrama hatası veriyor
+//         // {
+//         //          using(var db =new ShopContext())
+//         //     {
+//         //         var p= new Product { Name="Samsung S10",Price=8000};
+            
+               
+//         //         db.Products.Add(p);//kolay,kısa yolu
+
+//         //         db.SaveChanges();
+//         //         Console.WriteLine("veriler eklendi");
+
+                 
+//         //     }
+            
+
+//         // }
+
+
+        
+//     }
+// }
+
+
+
+
+
+//Bölüm 10 Veri tanınıdan kayıt silme
+
+
+// using System;
+// using System.Collections.Generic;
+// using System.ComponentModel.DataAnnotations;
+// using System.Linq;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Logging;
+
+// namespace consoleapp3
+// {
+
+//     public class ShopContext: DbContext 
+//     {
+//         public DbSet<Product> Products {get;set;}//prop
+//         public DbSet<Category> Categories { get; set; }//prop
+
+//         //oluşturdugumuz sql sorgusunun link karsılıgını görmek için bunu yaparız yapmasakta olur
+//         public static readonly ILoggerFactory MyLoggerFactory //ıloggerfactory den sonra ctrl nokta yap
+//             = LoggerFactory.Create(builder => { builder.AddConsole();});
+
+//          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//         {
+//             optionsBuilder
+//             .UseLoggerFactory(MyLoggerFactory)//bunuda buraya eklemeliyiz link sorgusu görmek için
+//             .UseSqlite("Data source=shop.db");
+                
+//         }
+
+
+//     }
+//     public class Product
+//     {
+        
+//         public int Id { get; set; }
+
+//         [MaxLength(100)]
+//         [Required]//zorunlu
+//         public string Name { get; set; }
+//         public decimal Price { get; set; }
+   
+//     }
+
+
+//     public class Category
+//     {
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//     }
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//          DeleteProduct(2);
+            
+//         }
+
+//         static void DeleteProduct(int id)
+//         {
+//             //1 .yol select olmadan
+//             //  using (var db=new ShopContext())
+//             //  {
+//             //      var p=new Product(){Id=2};
+//             //      db.Entry(p).State=EntityState.Deleted;
+//             //      db.SaveChanges();
+//             //  }
+
+//             //2.yol select sorgusu ile silme
+//             using (var db=new ShopContext())
+//             {
+//                 var p=db
+//                 .Products
+//                 .Where(i=>i.Id==id)
+//                 .FirstOrDefault();
+//                 if (p!=null)
+//                 {
+//                     db.Products.Remove(p);
+//                     db.SaveChanges();
+//                     Console.WriteLine("silindi");
+                    
+//                 }
+
+                
+//             }
+//         }
+
+//         static void UpdateProduct()// veri güncellemek için metot 
+//         {
+             
+
+//             // //2. YOL SELECT SORGUSU OLMADAN UPDATE YAPMA YOLU
+//             //  using (var db=new ShopContext())//SELECT SORGUSU YAPMADAN update YAPMA YOLU
+//             //  {
+//             //      var entity =new Product(){Id=1};
+//             //      db.Products.Attach(entity);//attach metoduyla takip işlemi yapılıyo direk
+//             //      entity.Price=2000;
+//             //      db.SaveChanges();
+
+//             //  }
+//                          //1. YOL SELECT VE UPDATE SORGUSU BİR ARADA OLAN YOL
+//             using (var db=new ShopContext())
+//             {//Products ın içinden  Id si 1 olan seçilir ve ve orada ürün varsa güncellemesi yapılır ve kaydedilir
+//                 var p=db
+//                 .Products
+//                 //.AsNoTracking()//bunu eklersek p takibi bırakılır güncelleme olmaz
+//                 .Where(i=>i.Id==1)//PRODUCTS içinde İD Sİ 1 olan ı alır
+//                 .FirstOrDefault(); //TEK BİR KAYIT GELİCEK ONDAN BUNU KULLANDIK
+//                 if(p!=null)//p değeri boş değilse yani id si 1 olan ürün carsa diyoruz burda
+//                 {
+//                     p.Price =2000;
+//                     db.SaveChanges();
+//                     Console.WriteLine("güncelleme yapıldı.");
+  
+//                 }
+
+
+//             }
+
+//         }
+//          static void GetProductByName(string name) //name ye göre ürün almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var products=context
+//                 .Products
+//                 .Where(p=>p.Name.ToLower().Contains(name.ToLower()))//filtreleme yapar.girilen name ile eşlesen name yi bulur//burdaki p ler Products ın kısaltılması
+//                 .Select(p=>new { p.Name, p.Price})//sadece isim ve fiyat gelsin
+//                 .ToList();//birden çok sonuc ondan ToLİST OLUR FirstOrDefault YERİNE
+                
+//             foreach (var p in products)//birden cok sonuc olabilir ondan for each kullanırız
+//                 {
+//                     Console.WriteLine($"name:{p.Name} price: {p.Price}");
+//                 }
+              
+
+//             }
+//         }
+
+   
+
+//          static void GetProductById(int id) //id ye göre ürün almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var result=context
+//                 .Products
+//                 .Where(p=>p.Id==id)//filtreleme yapar.girilen id ile eşlesen id yi bulur//burdaki p ler Products ın kısaltılması
+//                 .Select(p=>new { p.Name, p.Price})//sadece isim ve fiyat gelsin
+//                 .FirstOrDefault();//tek bir değer gelicek ondan bunu kullanıyoruz tolist yerine
+
+                
+//             //tek bir id geliceği için foreach e gerek yok.
+//              Console.WriteLine($"name:{result.Name} price: {result.Price}");
+              
+
+//             }
+//         }
+
+//         static void GetAllProducts()//ürünleri almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var products=context
+//                 .Products
+//                 .Select(p=>new { p.Name, p.Price})//.sadece name ve fiyat alanları bize gelir(yani kolon secimi yapmak için kullanırız bunu)
+//                 .ToList();//tolistte ctrl+nokta yap
+               
+//                 foreach (var p in products)
+//                 {
+//                     Console.WriteLine($"name:{p.Name} price: {p.Price}");
+//                 }
+
+//             }
+//         }
+
+//         static void AddProducts()//birden çok ürün eklemek için metot tanımladık.
+//         {
+//                  using(var db =new ShopContext())
+//             {
+//                 var products=new List<Product>//ctrl nokta yap
+//                 {
+//                     new Product {Name="Samsung S5",Price=2000},
+//                     new Product {Name="Samsung S6",Price=3000},
+//                     new Product {Name="Samsung S7",Price=4000},
+//                     new Product {Name="Samsung S8",Price=5000},
+//                     new Product {Name="Samsung S9",Price=6000}
+
+//                 };
+//                 // foreach (var p in products)//hepsini böylede ekleyebiliriz ama kısayolu var
+//                 // {
+//                 //      db.Products.Add(p);
+                    
+//                 // }
+//                 db.Products.AddRange(products);//kolay,kısa yolu
+
+//                 db.SaveChanges();
+//                 Console.WriteLine("veriler eklendi");
+
+//                 //bu aşamada 
+//             }
+            
+
+//         }
+
+//         //  static void AddProduct()//tek bir ürün eklemek için  metot tanımladık.ama iki metot birden acık olunca zaman asımına ugrama hatası veriyor
+//         // {
+//         //          using(var db =new ShopContext())
+//         //     {
+//         //         var p= new Product { Name="Samsung S10",Price=8000};
+            
+               
+//         //         db.Products.Add(p);//kolay,kısa yolu
+
+//         //         db.SaveChanges();
+//         //         Console.WriteLine("veriler eklendi");
+
+                 
+//         //     }
+            
+
+//         // }
+
+
+        
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+ //Bölüm 11 FARKLI PROVİDER KULLANIMI-SQL SERVER
+
+
+// using System;
+// using System.Collections.Generic;
+// using System.ComponentModel.DataAnnotations;
+// using System.Linq;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Logging;
+
+// namespace consoleapp3
+// {
+
+//     public class ShopContext: DbContext 
+//     {
+//         public DbSet<Product> Products {get;set;}//prop
+//         public DbSet<Category> Categories { get; set; }//prop
+
+//         //oluşturdugumuz sql sorgusunun link karsılıgını görmek için bunu yaparız yapmasakta olur
+//         public static readonly ILoggerFactory MyLoggerFactory //ıloggerfactory den sonra ctrl nokta yap
+//             = LoggerFactory.Create(builder => { builder.AddConsole();});
+
+//          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//         {
+//             optionsBuilder
+//             .UseLoggerFactory(MyLoggerFactory)//bunuda buraya eklemeliyiz link sorgusu görmek için
+//             //.UseSqlite("Data source=shop.db");
+//             .UseSqlServer(@"Data Source=DESKTOP-ANBQKEB\SQLEXPRESS01;Initial Catalog=ShopDb3;Integrated Security=SSPI;");
+                
+//         }
+
+
+//     }
+//     public class Product
+//     {
+        
+//         public int Id { get; set; }
+
+//         [MaxLength(100)]
+//         [Required]//zorunlu
+//         public string Name { get; set; }
+//         public decimal Price { get; set; }
+   
+//     }
+
+
+//     public class Category
+//     {
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//     }
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             AddProducts();
+//         }
+
+//         static void DeleteProduct(int id)
+//         {
+//             // //2. YOL select sorgusu olmadan silme yolu
+//             //  using (var db=new ShopContext())
+//             //  {
+//             //      var p=new Product(){Id=2};
+//             //      //db.Products.Remove(p);
+//             //      db.Entry(p).State=EntityState.Deleted;
+//             //      db.SaveChanges();
+//             //  }
+
+//                    //1. YOL select sorgusu ile silme
+//             using (var db=new ShopContext())
+//             {
+//                 var p=db
+//                 .Products
+//                 .Where(i=>i.Id==id)
+//                 .FirstOrDefault();
+//                 if(p!=null)
+//                 {
+//                   db.Products.Remove(p);
+//                   db.SaveChanges();
+//                   Console.WriteLine("veri silindi");
+
+//                 }
+//             }
+
+      
+
+//         }
+
+//         static void UpdateProduct()// veri güncellemek için metot 
+//         {
+             
+
+//             // //2. YOL SELECT SORGUSU OLMADAN UPDATE YAPMA YOLU
+//             //  using (var db=new ShopContext())//SELECT SORGUSU YAPMADAN update YAPMA YOLU
+//             //  {
+//             //      var entity =new Product(){Id=1};
+//             //      db.Products.Attach(entity);//attach metoduyla takip işlemi yapılıyo direk
+//             //      entity.Price=2000;
+//             //      db.SaveChanges();
+
+//             //  }
+//                          //1. YOL SELECT VE UPDATE SORGUSU BİR ARADA OLAN YOL
+//             using (var db=new ShopContext())
+//             {//Products ın içinden  Id si 1 olan seçilir ve ve orada ürün varsa güncellemesi yapılır ve kaydedilir
+//                 var p=db
+//                 .Products
+//                 //.AsNoTracking()//bunu eklersek p takibi bırakılır güncelleme olmaz
+//                 .Where(i=>i.Id==1)//PRODUCTS içinde İD Sİ 1 olan ı alır
+//                 .FirstOrDefault(); //TEK BİR KAYIT GELİCEK ONDAN BUNU KULLANDIK
+//                 if(p!=null)//p değeri boş değilse yani id si 1 olan ürün carsa diyoruz burda
+//                 {
+//                     p.Price =2000;
+//                     db.SaveChanges();
+//                     Console.WriteLine("güncelleme yapıldı.");
+  
+//                 }
+
+
+//             }
+
+//         }
+//          static void GetProductByName(string name) //name ye göre ürün almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var products=context
+//                 .Products
+//                 .Where(p=>p.Name.ToLower().Contains(name.ToLower()))//filtreleme yapar.girilen name ile eşlesen name yi bulur//burdaki p ler Products ın kısaltılması
+//                 .Select(p=>new { p.Name, p.Price})//sadece isim ve fiyat gelsin
+//                 .ToList();//birden çok sonuc ondan ToLİST OLUR FirstOrDefault YERİNE
+                
+//             foreach (var p in products)//birden cok sonuc olabilir ondan for each kullanırız
+//                 {
+//                     Console.WriteLine($"name:{p.Name} price: {p.Price}");
+//                 }
+              
+
+//             }
+//         }
+
+//          static void GetProductById(int id) //id ye göre ürün almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var result=context
+//                 .Products
+//                 .Where(p=>p.Id==id)//filtreleme yapar.girilen id ile eşlesen id yi bulur//burdaki p ler Products ın kısaltılması
+//                 .Select(p=>new { p.Name, p.Price})//sadece isim ve fiyat gelsin
+//                 .FirstOrDefault();//tek bir değer gelicek ondan bunu kullanıyoruz tolist yerine
+
+                
+//             //tek bir id geliceği için foreach e gerek yok.
+//              Console.WriteLine($"name:{result.Name} price: {result.Price}");
+              
+
+//             }
+//         }
+
+//         static void GetAllProducts()//ürünleri almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var products=context
+//                 .Products
+//                 .Select(p=>new { p.Name, p.Price})//.sadece name ve fiyat alanları bize gelir(yani kolon secimi yapmak için kullanırız bunu)
+//                 .ToList();//tolistte ctrl+nokta yap
+               
+//                 foreach (var p in products)
+//                 {
+//                     Console.WriteLine($"name:{p.Name} price: {p.Price}");
+//                 }
+
+//             }
+//         }
+
+//         static void AddProducts()//birden çok ürün eklemek için metot tanımladık.
+//         {
+//                  using(var db =new ShopContext())
+//             {
+//                 var products=new List<Product>//ctrl nokta yap
+//                 {
+//                     new Product {Name="Samsung S5",Price=2000},
+//                     new Product {Name="Samsung S6",Price=3000},
+//                     new Product {Name="Samsung S7",Price=4000},
+//                     new Product {Name="Samsung S8",Price=5000},
+//                     new Product {Name="Samsung S9",Price=6000}
+
+//                 };
+//                 // foreach (var p in products)//hepsini böylede ekleyebiliriz ama kısayolu var
+//                 // {
+//                 //      db.Products.Add(p);
+                    
+//                 // }
+//                 db.Products.AddRange(products);//kolay,kısa yolu
+
+//                 db.SaveChanges();
+//                 Console.WriteLine("veriler eklendi");
+
+                
+//             }
+            
+
+//         }
+
+//         //  static void AddProduct()//tek bir ürün eklemek için  metot tanımladık.ama iki metot birden acık olunca zaman asımına ugrama hatası veriyor
+//         // {
+//         //          using(var db =new ShopContext())
+//         //     {
+//         //         var p= new Product { Name="Samsung S10",Price=8000};
+            
+               
+//         //         db.Products.Add(p);//kolay,kısa yolu
+
+//         //         db.SaveChanges();
+//         //         Console.WriteLine("veriler eklendi");
+
+                 
+//         //     }
+            
+
+//         // }
+
+
+        
+//     }
+// }
+
+
+
+
+
+ //Bölüm 11 FARKLI PROVİDER KULLANIMI-MySQL 
+
+
+// using System;
+// using System.Collections.Generic;
+// using System.ComponentModel.DataAnnotations;
+// using System.Linq;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Logging;
+
+// namespace consoleapp3
+// {
+
+//     public class ShopContext: DbContext 
+//     {
+//         public DbSet<Product> Products {get;set;}//prop
+//         public DbSet<Category> Categories {get;set;}//prop
+       
+
+//         //oluşturdugumuz sql sorgusunun link karsılıgını görmek için bunu yaparız yapmasakta olur
+//         public static readonly ILoggerFactory MyLoggerFactory //ıloggerfactory den sonra ctrl nokta yap
+//             = LoggerFactory.Create(builder => { builder.AddConsole();});
+
+//          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//         {
+//             optionsBuilder
+//             .UseLoggerFactory(MyLoggerFactory)//bunuda buraya eklemeliyiz link sorgusu görmek için
+//             //.UseSqlite("Data source=shop.db");
+//             //.UseSqlServer(@"Data Source=DESKTOP-ANBQKEB\SQLEXPRESS01;Initial Catalog=ShopDb;Integrated Security=SSPI;");
+//             .UseMySql(@"server=localhost;port=3306;database=ShopDb;user=root;password=mysql123;");
+           
+//         }
+
+
+//     }
+//     public class Product
+//     {
+        
+//         public int Id { get; set; }
+
+//         [MaxLength(100)]
+//         [Required]//zorunlu
+//         public string Name { get; set; }
+//         public decimal Price { get; set; }
+   
+//     }
+
+//     public class Category
+//     {
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//     }
+
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             AddProducts();
+           
+//         }
+
+//         static void DeleteProduct(int id)
+//         {
+//             // //2. YOL select sorgusu olmadan silme yolu
+//             //  using (var db=new ShopContext())
+//             //  {
+//             //      var p=new Product(){Id=2};
+//             //      //db.Products.Remove(p);
+//             //      db.Entry(p).State=EntityState.Deleted;
+//             //      db.SaveChanges();
+//             //  }
+
+//                    //1. YOL select sorgusu ile silme
+//             using (var db=new ShopContext())
+//             {
+//                 var p=db
+//                 .Products
+//                 .Where(i=>i.Id==id)
+//                 .FirstOrDefault();
+//                 if(p!=null)
+//                 {
+//                   db.Products.Remove(p);
+//                   db.SaveChanges();
+//                   Console.WriteLine("veri silindi");
+
+//                 }
+//             }
+
+      
+
+//         }
+
+//         static void UpdateProduct()// veri güncellemek için metot 
+//         {
+             
+
+//             // //2. YOL SELECT SORGUSU OLMADAN UPDATE YAPMA YOLU
+//             //  using (var db=new ShopContext())//SELECT SORGUSU YAPMADAN update YAPMA YOLU
+//             //  {
+//             //      var entity =new Product(){Id=1};
+//             //      db.Products.Attach(entity);//attach metoduyla takip işlemi yapılıyo direk
+//             //      entity.Price=2000;
+//             //      db.SaveChanges();
+
+//             //  }
+//                          //1. YOL SELECT VE UPDATE SORGUSU BİR ARADA OLAN YOL
+//             using (var db=new ShopContext())
+//             {//Products ın içinden  Id si 1 olan seçilir ve ve orada ürün varsa güncellemesi yapılır ve kaydedilir
+//                 var p=db
+//                 .Products
+//                 //.AsNoTracking()//bunu eklersek p takibi bırakılır güncelleme olmaz
+//                 .Where(i=>i.Id==1)//PRODUCTS içinde İD Sİ 1 olan ı alır
+//                 .FirstOrDefault(); //TEK BİR KAYIT GELİCEK ONDAN BUNU KULLANDIK
+//                 if(p!=null)//p değeri boş değilse yani id si 1 olan ürün carsa diyoruz burda
+//                 {
+//                     p.Price =2000;
+//                     db.SaveChanges();
+//                     Console.WriteLine("güncelleme yapıldı.");
+  
+//                 }
+
+
+//             }
+
+//         }
+//          static void GetProductByName(string name) //name ye göre ürün almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var products=context
+//                 .Products
+//                 .Where(p=>p.Name.ToLower().Contains(name.ToLower()))//filtreleme yapar.girilen name ile eşlesen name yi bulur//burdaki p ler Products ın kısaltılması
+//                 .Select(p=>new { p.Name, p.Price})//sadece isim ve fiyat gelsin
+//                 .ToList();//birden çok sonuc ondan ToLİST OLUR FirstOrDefault YERİNE
+                
+//             foreach (var p in products)//birden cok sonuc olabilir ondan for each kullanırız
+//                 {
+//                     Console.WriteLine($"name:{p.Name} price: {p.Price}");
+//                 }
+              
+
+//             }
+//         }
+
+//          static void GetProductById(int id) //id ye göre ürün almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var result=context
+//                 .Products
+//                 .Where(p=>p.Id==id)//filtreleme yapar.girilen id ile eşlesen id yi bulur//burdaki p ler Products ın kısaltılması
+//                 .Select(p=>new { p.Name, p.Price})//sadece isim ve fiyat gelsin
+//                 .FirstOrDefault();//tek bir değer gelicek ondan bunu kullanıyoruz tolist yerine
+
+                
+//             //tek bir id geliceği için foreach e gerek yok.
+//              Console.WriteLine($"name:{result.Name} price: {result.Price}");
+              
+
+//             }
+//         }
+
+//         static void GetAllProducts()//ürünleri almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var products=context
+//                 .Products
+//                 .Select(p=>new { p.Name, p.Price})//.sadece name ve fiyat alanları bize gelir(yani kolon secimi yapmak için kullanırız bunu)
+//                 .ToList();//tolistte ctrl+nokta yap
+               
+//                 foreach (var p in products)
+//                 {
+//                     Console.WriteLine($"name:{p.Name} price: {p.Price}");
+//                 }
+
+//             }
+//         }
+
+//         static void AddProducts()//birden çok ürün eklemek için metot tanımladık.
+//         {
+//                  using(var db =new ShopContext())
+//             {
+//                 var products=new List<Product>//ctrl nokta yap
+//                 {
+//                     new Product {Name="Samsung S5",Price=2000},
+//                     new Product {Name="Samsung S6",Price=3000},
+//                     new Product {Name="Samsung S7",Price=4000},
+//                     new Product {Name="Samsung S8",Price=5000},
+//                     new Product {Name="Samsung S9",Price=6000}
+
+//                 };
+//                 // foreach (var p in products)//hepsini böylede ekleyebiliriz ama kısayolu var
+//                 // {
+//                 //      db.Products.Add(p);
+                    
+//                 // }
+//                 db.Products.AddRange(products);//kolay,kısa yolu
+
+//                 db.SaveChanges();
+//                 Console.WriteLine("veriler eklendi");
+
+                
+//             }
+            
+
+//         }
+
+//         //  static void AddProduct()//tek bir ürün eklemek için  metot tanımladık.ama iki metot birden acık olunca zaman asımına ugrama hatası veriyor
+//         // {
+//         //          using(var db =new ShopContext())
+//         //     {
+//         //         var p= new Product { Name="Samsung S10",Price=8000};
+            
+               
+//         //         db.Products.Add(p);//kolay,kısa yolu
+
+//         //         db.SaveChanges();
+//         //         Console.WriteLine("veriler eklendi");
+
+                 
+//         //     }
+            
+
+//         // }
+
+        
+//     }
+// }
+
+
+
+//Bölüm 12 Şema güncellemesinin veri tabanına aktarımı-Migrations
+//MYSQLDEN ANLATMAYA BASLIYORUZ ARTIK
+
+// using System;
+// using System.Collections.Generic;
+// using System.ComponentModel.DataAnnotations;
+// using System.Linq;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Logging;
+
+// namespace consoleapp3
+// {
+
+//     public class ShopContext: DbContext 
+//     {
+//         public DbSet<Product> Products {get;set;}//prop
+//         public DbSet<Category> Categories {get;set;}//prop
+
+//        public DbSet<Order> Orders {get;set;}
+       
+
+//         //oluşturdugumuz sql sorgusunun link karsılıgını görmek için bunu yaparız yapmasakta olur
+//         public static readonly ILoggerFactory MyLoggerFactory //ıloggerfactory den sonra ctrl nokta yap
+//             = LoggerFactory.Create(builder => { builder.AddConsole();});
+
+//          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//         {
+//             optionsBuilder
+//             .UseLoggerFactory(MyLoggerFactory)//bunuda buraya eklemeliyiz link sorgusu görmek için
+//             //.UseSqlite("Data source=shop.db");
+//             //.UseSqlServer(@"Data Source=DESKTOP-ANBQKEB\SQLEXPRESS01;Initial Catalog=ShopDb;Integrated Security=SSPI;");
+//             .UseMySql(@"server=localhost;port=3306;database=ShopDb;user=root;password=mysql123;");
+           
+//         }
+
+
+//     }
+//     public class Product
+//     {
+        
+//         public int Id { get; set; }
+
+//         [MaxLength(100)]
+//         [Required]//zorunlu
+//         public string Name { get; set; }
+//         public decimal Price { get; set; }
+//         public int CategoryId { get; set; }//(entity tarafında ve context tarafında değişiklik varsa)veri tabanına yeni birşeyler eklemek istediğimiz zaman 
+//         //güncellemeyi istersek migrationu silip yeniden ekleyip de yapabiliriz ama 
+//         //bu şekilde verilerin kaybolma riski var o yüzden farklı yolla güncellemeyi yapıcaz
+//         //yani 2. bir migrations olusturup onu eklicez kodla 
+//       //yani aynı veritabanı üstünde devam ediyosak ve değişiklik yapıyosak mesala producta CategoryId eklicez
+//       //dotnet  ef migrations add addColmunProductCategoryId(column eklicez ,Product classına ,adıda CategoryId)bunu ekliyoruz
+//       //eski migrations dosyasının içine yeni eklentiler geliyor.sonra dotnet ef database update    bunu diyip güncellemeyi yapıyoruz mysql içine column geliyor
+//       //ayrıca mysql içindeki _efmigrationshistory kısmınada eklediğimiz yeni migration da geliyo (addcolumncategoryId)
+//       //burda hata aldım category coktan var diye çünkü migrationu silip yenide ekledim ama migrationu silmeye gerek yok direk kodla içine ekleyebiliriz
+//       //migrationu sadece mysqlden mssql e vs geçiş yaparken silip değiştirmek gerekiyo
+        
+    
+
+//     }
+
+//     public class Category
+//     {
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//     }
+
+//     public class Order//yeni order (tablosu)classı ekledik mesela ama context içinede eklemeyi unutma
+//     //sonra bunu veri tabanına eklemek için dotnet ef migrations add addTableOrder(adı order olan table ondan böyle isimlendirdik)
+//     //dotnet ef database update böyle diyip veri tabanına aktardık
+//      //ayrıca veritabanıdaki efmigrationhistory kısmına yeni migrations(addtableorder) da geldi
+//                   //silme işlemleri
+
+//     //bir önceki aşamaya (bir önceki migrationsa ) gelmek  istersek yani order ı veritabanından
+//     //silmek istersek  dotnet ef database update addColmunProductCategoryId yazıp çalıştırıyoruz
+//     //veri tabanındaki order tablosu ve efmig.history deki addTableOrder silinir
+//     //dotnet ef database update 0 dersek tüm tablolar silinir database den 
+//     //dotnet ef database drop --force (shopdb) schema  silinir
+//     //vs code daki migration içindende ordersın eklentilerini silmek için
+//     //yeniden dotnet ef migrations remove de onlarda gider
+//     {
+//         public int  Id { get; set; }
+//         public int ProductId { get; set; }
+//         public DateTime DateAdded { get; set; }
+//     }
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+          
+           
+//         }
+
+//         static void DeleteProduct(int id)
+//         {
+//             // //2. YOL select sorgusu olmadan silme yolu
+//             //  using (var db=new ShopContext())
+//             //  {
+//             //      var p=new Product(){Id=2};
+//             //      //db.Products.Remove(p);
+//             //      db.Entry(p).State=EntityState.Deleted;
+//             //      db.SaveChanges();
+//             //  }
+
+//                    //1. YOL select sorgusu ile silme
+//             using (var db=new ShopContext())
+//             {
+//                 var p=db
+//                 .Products
+//                 .Where(i=>i.Id==id)
+//                 .FirstOrDefault();
+//                 if(p!=null)
+//                 {
+//                   db.Products.Remove(p);
+//                   db.SaveChanges();
+//                   Console.WriteLine("veri silindi");
+
+//                 }
+//             }
+
+      
+
+//         }
+
+//         static void UpdateProduct()// veri güncellemek için metot 
+//         {
+             
+
+//             // //2. YOL SELECT SORGUSU OLMADAN UPDATE YAPMA YOLU
+//             //  using (var db=new ShopContext())//SELECT SORGUSU YAPMADAN update YAPMA YOLU
+//             //  {
+//             //      var entity =new Product(){Id=1};
+//             //      db.Products.Attach(entity);//attach metoduyla takip işlemi yapılıyo direk
+//             //      entity.Price=2000;
+//             //      db.SaveChanges();
+
+//             //  }
+//                          //1. YOL SELECT VE UPDATE SORGUSU BİR ARADA OLAN YOL
+//             using (var db=new ShopContext())
+//             {//Products ın içinden  Id si 1 olan seçilir ve ve orada ürün varsa güncellemesi yapılır ve kaydedilir
+//                 var p=db
+//                 .Products
+//                 //.AsNoTracking()//bunu eklersek p takibi bırakılır güncelleme olmaz
+//                 .Where(i=>i.Id==1)//PRODUCTS içinde İD Sİ 1 olan ı alır
+//                 .FirstOrDefault(); //TEK BİR KAYIT GELİCEK ONDAN BUNU KULLANDIK
+//                 if(p!=null)//p değeri boş değilse yani id si 1 olan ürün carsa diyoruz burda
+//                 {
+//                     p.Price =2000;
+//                     db.SaveChanges();
+//                     Console.WriteLine("güncelleme yapıldı.");
+  
+//                 }
+
+
+//             }
+
+//         }
+//          static void GetProductByName(string name) //name ye göre ürün almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var products=context
+//                 .Products
+//                 .Where(p=>p.Name.ToLower().Contains(name.ToLower()))//filtreleme yapar.girilen name ile eşlesen name yi bulur//burdaki p ler Products ın kısaltılması
+//                 .Select(p=>new { p.Name, p.Price})//sadece isim ve fiyat gelsin
+//                 .ToList();//birden çok sonuc ondan ToLİST OLUR FirstOrDefault YERİNE
+                
+//             foreach (var p in products)//birden cok sonuc olabilir ondan for each kullanırız
+//                 {
+//                     Console.WriteLine($"name:{p.Name} price: {p.Price}");
+//                 }
+              
+
+//             }
+//         }
+
+//          static void GetProductById(int id) //id ye göre ürün almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var result=context
+//                 .Products
+//                 .Where(p=>p.Id==id)//filtreleme yapar.girilen id ile eşlesen id yi bulur//burdaki p ler Products ın kısaltılması
+//                 .Select(p=>new { p.Name, p.Price})//sadece isim ve fiyat gelsin
+//                 .FirstOrDefault();//tek bir değer gelicek ondan bunu kullanıyoruz tolist yerine
+
+                
+//             //tek bir id geliceği için foreach e gerek yok.
+//              Console.WriteLine($"name:{result.Name} price: {result.Price}");
+              
+
+//             }
+//         }
+
+//         static void GetAllProducts()//ürünleri almak için yazılan metot
+//         {
+//             using (var context=new ShopContext())
+//             {
+//                 var products=context
+//                 .Products
+//                 .Select(p=>new { p.Name, p.Price})//.sadece name ve fiyat alanları bize gelir(yani kolon secimi yapmak için kullanırız bunu)
+//                 .ToList();//tolistte ctrl+nokta yap
+               
+//                 foreach (var p in products)
+//                 {
+//                     Console.WriteLine($"name:{p.Name} price: {p.Price}");
+//                 }
+
+//             }
+//         }
+
+//         static void AddProducts()//birden çok ürün eklemek için metot tanımladık.
+//         {
+//                  using(var db =new ShopContext())
+//             {
+//                 var products=new List<Product>//ctrl nokta yap
+//                 {
+//                     new Product {Name="Samsung S5",Price=2000},
+//                     new Product {Name="Samsung S6",Price=3000},
+//                     new Product {Name="Samsung S7",Price=4000},
+//                     new Product {Name="Samsung S8",Price=5000},
+//                     new Product {Name="Samsung S9",Price=6000}
+
+//                 };
+//                 // foreach (var p in products)//hepsini böylede ekleyebiliriz ama kısayolu var
+//                 // {
+//                 //      db.Products.Add(p);
+                    
+//                 // }
+//                 db.Products.AddRange(products);//kolay,kısa yolu
+
+//                 db.SaveChanges();
+//                 Console.WriteLine("veriler eklendi");
+
+                
+//             }
+            
+
+//         }
+
+//         //  static void AddProduct()//tek bir ürün eklemek için  metot tanımladık.ama iki metot birden acık olunca zaman asımına ugrama hatası veriyor
+//         // {
+//         //          using(var db =new ShopContext())
+//         //     {
+//         //         var p= new Product { Name="Samsung S10",Price=8000};
+            
+               
+//         //         db.Products.Add(p);//kolay,kısa yolu
+
+//         //         db.SaveChanges();
+//         //         Console.WriteLine("veriler eklendi");
+
+                 
+//         //     }
+            
+
+//         // }
+
+        
+//     }
+// }
+
+
+
+
+//Bölüm 13 One to many ilişkisini kurma
+
+
+
+
+// using System;
+// using System.Collections.Generic;
+// using System.ComponentModel.DataAnnotations;
+// using System.Linq;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Logging;
+
+// namespace consoleapp3
+// {
+
+//     public class ShopContext: DbContext 
+//     {
+//         public DbSet<Product> Products {get;set;}//prop
+//         public DbSet<Category> Categories {get;set;}//prop
+//         public DbSet<User> Users {get;set;}
+//         public DbSet<Address> Addresses {get;set;}
+
+     
+       
+
+//         //oluşturdugumuz sql sorgusunun link karsılıgını görmek için bunu yaparız yapmasakta olur
+//         public static readonly ILoggerFactory MyLoggerFactory //ıloggerfactory den sonra ctrl nokta yap
+//             = LoggerFactory.Create(builder => { builder.AddConsole();});
+
+//          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//         {
+//             optionsBuilder
+//             .UseLoggerFactory(MyLoggerFactory)//bunuda buraya eklemeliyiz link sorgusu görmek için
+//             //.UseSqlite("Data source=shop.db");
+//             //.UseSqlServer(@"Data Source=DESKTOP-ANBQKEB\SQLEXPRESS01;Initial Catalog=ShopDb;Integrated Security=SSPI;");
+//             .UseMySql(@"server=localhost;port=3306;database=ShopDb;user=root;password=mysql123;");
+           
+//         }
+
+
+//     }
+
+//     public  class  User//user classı (tablosu) olusturduk contexte ekledik
+//     //bir kullanıcının birden fazla adresi olabilir bire-cok ilişki
+//     {
+//         public int Id { get; set; }
+//         public string UserName { get; set; }
+//         public string Email { get; set; }
+//         public List<Address> Addresses { get; set; }//birden fazla addres olacağı için liste ve coğul(bire çoktaki çok)
+        
+//     }
+//     public class Address //address clası(tablosu) olusturduk.contexte ekledik
+//     {
+//         public int Id { get; set; }
+//         public string FullName { get; set; }
+//         public string Title { get; set; }
+//         public string Body { get; set; }
+//         public User User { get; set; }//tek user olacağı için tekil(bire çoktaki bir)
+//         public int UserId { get; set; }//ilk önce user olur sonra address 
+//         //bu yüzden adres userdan bilgi alır userıd adrsin içine yazılır
+        
+//     }
+
+
+
+
+//     public class Product
+//     {
+        
+//         public int Id { get; set; }
+
+//         [MaxLength(100)]
+//         [Required]//zorunlu
+//         public string Name { get; set; }
+//         public decimal Price { get; set; }
+//         public int CategoryId { get; set; }
+
+//     }
+
+//     public class Category
+//     {
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//     }
+
+   
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//          using (var db=new ShopContext()) //navigation property leri kullanaarak bilgi ekleme işlemi
+//          {
+//              var user=db
+//              .Users
+//              .Where(i=>i.UserName=="cinarturan")
+//              .FirstOrDefault();
+//              if (user!=null)
+//              {
+//                  user.Address=new List<Address>();
+//                  user.Address.AddRange(
+//                      new List<Address>(){
+//                      new Address(){FullName="Çınar Turan",Title="iş adresi 1",Body="Kocaeli"},
+//                      new Address(){FullName="Çınar Turan",Title="İş adresi 2",Body="Kocaeli"},
+//                      new Address(){FullName="Çınar Turan",Title="İş adresi 3",Body="Kocaeli"}
+//                      }
+//                      );
+//                      db.SaveChanges();
+                 
+//              }
+             
+//          }
+          
+           
+//         }
+
+
+//         static void InsertAddresses()
+//         {
+//             var addresses=new List<Address>()
+//             {
+//                 new Address(){FullName="Sadik Turan",Title="Ev adresi",Body="Kocaeli",UserId=1},
+//                 new Address(){FullName="Sadik Turan",Title="İş adresi",Body="Kocaeli",UserId=1},
+//                 new Address(){FullName="Yigit Bilgi",Title="Ev adresi",Body="Kocaeli",UserId=3},
+//                 new Address(){FullName="Yigit Bilgi",Title="iş adresi",Body="Kocaeli",UserId=3},
+//                 new Address(){FullName="Çınar Turan",Title="Ev adresi",Body="Kocaeli",UserId=2},
+//                 new Address(){FullName="Ada Bilgi",Title="iş adresi",Body="Kocaeli",UserId=4}
+
+//             };
+//             using (var db=new ShopContext())
+//             {
+//                 db.Addresses.AddRange(addresses);
+//                 db.SaveChanges();
+//             }
+         
+
+
+//         }
+//         static void InsertUsers()
+//         {
+//             var users=new List<User>()
+//             {
+//                 new User(){UserName="sadikturan",Email="Info@sadikturan.com"},
+//                 new User(){UserName="cinarturan",Email="Info@cinarturan.com"},
+//                 new User(){UserName="yigitbilgi",Email="Info@yigitbilgi.com"},
+//                 new User(){UserName="adabilgi",Email="Info@adabilgi.com"}
+
+//             };
+//             using (var db=new ShopContext())
+//             {
+//                 db.Users.AddRange(users);
+//                 db.SaveChanges();
+//             }
+         
+
+
+//         }
+
+
+
+        
+//     }
+// }
+
+
+
+
+
+//Bölüm 14 One to One ilişkisini kurma
+
+
+
+
+// using System;
+// using System.Collections.Generic;
+// using System.ComponentModel.DataAnnotations;
+// using System.Linq;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Logging;
+
+// namespace consoleapp3
+// {
+
+//     public class ShopContext: DbContext 
+//     {
+//         public DbSet<Product> Products {get;set;}//prop
+//         public DbSet<Category> Categories {get;set;}//prop
+//         public DbSet<User> Users {get;set;}
+//        public DbSet<Customer> Customers {get;set;}
+//         public DbSet<Address> Addresses {get;set;}
+
+     
+       
+
+//         //oluşturdugumuz sql sorgusunun link karsılıgını görmek için bunu yaparız yapmasakta olur
+//         public static readonly ILoggerFactory MyLoggerFactory //ıloggerfactory den sonra ctrl nokta yap
+//             = LoggerFactory.Create(builder => { builder.AddConsole();});
+
+//          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//         {
+//             optionsBuilder
+//             .UseLoggerFactory(MyLoggerFactory)//bunuda buraya eklemeliyiz link sorgusu görmek için
+//             //.UseSqlite("Data source=shop.db");
+//             //.UseSqlServer(@"Data Source=DESKTOP-ANBQKEB\SQLEXPRESS01;Initial Catalog=ShopDb;Integrated Security=SSPI;");
+//             .UseMySql(@"server=localhost;port=3306;database=ShopDb;user=root;password=mysql123;");
+           
+//         }
+
+
+//     }
+
+
+// public class Customer//user-customer :1-1 
+// {
+//     public int Id { get; set; }
+//     public string IdentityNumber { get; set; }
+//     public string FirstName { get; set; }
+//     public string LastName { get; set; }
+//     public User User { get; set; }//tekil birebir çünkü userla
+//     public int UserId { get; set; }//önce user olur sonra customer olusur ondan customer bilgileri useran almalı
+
+// }
+
+//     public  class  User//user classı (tablosu) olusturduk contexte ekledik
+   
+//     {
+//         public int Id { get; set; }
+//         public string UserName { get; set; }
+//         public string Email { get; set; }
+//         public List<Address> Address { get; set; }//birden fazla addres olacağı için liste ve coğul(bire çoktaki çok)
+//         public Customer Customer { get; set; }//tekil birebir çünkü
+
+//     }
+//     public class Address //address clası(tablosu) olusturduk.contexte ekledik
+//     {
+//         public int Id { get; set; }
+//         public string FullName { get; set; }
+//         public string Title { get; set; }
+//         public string Body { get; set; }
+//         public User User { get; set; }//tek user olacağı için tekil(bire çoktaki bir)
+//         public int UserId { get; set; }//ilk önce user olur sonra address 
+//         //bu yüzden adres userdan bilgi alır userıd adrsin içine yazılır
+        
+//     }
+
+
+//     public class Product
+//     {
+        
+//         public int Id { get; set; }
+
+//         [MaxLength(100)]
+//         [Required]//zorunlu
+//         public string Name { get; set; }
+//         public decimal Price { get; set; }
+//         public int CategoryId { get; set; }
+
+//     }
+
+//     public class Category
+//     {
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//     }
+
+   
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+            
+//          using (var db=new ShopContext()) //navigation property leri kullanaarak bilgi ekleme işlemi
+//          {
+//              //burayı asağıda InsertCustomer metodu  ekleyip  çağırarakta yapabiliriz
+//              //olan bir user kaydı üzerinde customer bilgisi eklemek için
+//             //  var customer=new Customer(){
+//             //      IdentityNumber="123456",
+//             //      FirstName="sadık",
+//             //      LastName="turan",            
+//             //      User=db           //userId=3 diyipte yapılır
+//             //      .Users
+//             //      .Where(i=>i.Id==3)
+//             //      .FirstOrDefault()
+//             //  }; 
+//             //  db.Customers.Add(customer);
+//             //  db.SaveChanges();
+
+//             //olmayan bir userın kaydını eklemek ve bunun üzerinden  customer bilgisi eklemek için
+//             var user=new User()
+//               {
+//                   UserName="deneme",
+//                   Email="deneme@gmail.com",
+//                   Customer= new Customer()
+//                   {
+//                       FirstName="deneme",
+//                       LastName="deneme2",
+//                       IdentityNumber="123458"
+//                   }
+//               };
+//               db.Users.Add(user);
+//               db.SaveChanges();
+          
+           
+//          }
+
+//     }
+//         static void InsertAddresses()
+//         {
+//             var addresses=new List<Address>()
+//             {
+//                 new Address(){FullName="Sadik Turan",Title="Ev adresi",Body="Kocaeli",UserId=1},
+//                 new Address(){FullName="Sadik Turan",Title="İş adresi",Body="Kocaeli",UserId=1},
+//                 new Address(){FullName="Yigit Bilgi",Title="Ev adresi",Body="Kocaeli",UserId=3},
+//                 new Address(){FullName="Yigit Bilgi",Title="iş adresi",Body="Kocaeli",UserId=3},
+//                 new Address(){FullName="Çınar Turan",Title="Ev adresi",Body="Kocaeli",UserId=2},
+//                 new Address(){FullName="Ada Bilgi",Title="iş adresi",Body="Kocaeli",UserId=4}
+
+//             };
+//             using (var db=new ShopContext())
+//             {
+//                 db.Addresses.AddRange(addresses);
+//                 db.SaveChanges();
+//             }
+         
+
+
+//         }
+//         static void InsertUsers()
+//         {
+//             var users=new List<User>()
+//             {
+//                 new User(){UserName="sadikturan",Email="Info@sadikturan.com"},
+//                 new User(){UserName="cinarturan",Email="Info@cinarturan.com"},
+//                 new User(){UserName="yigitbilgi",Email="Info@yigitbilgi.com"},
+//                 new User(){UserName="adabilgi",Email="Info@adabilgi.com"}
+
+//             };
+//             using (var db=new ShopContext())
+//             {
+//                 db.Users.AddRange(users);
+//                 db.SaveChanges();
+//             }
+         
+
+
+//         }
+
+
+
+        
+//     }
+// }
+
+
+
+
+
+//Bölüm 15 Many To Many İlişkisi Kurma
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+
+namespace consoleapp3
+{
+
+    public class ShopContext: DbContext 
+    {
+        public DbSet<Product> Products {get;set;}//prop
+        public DbSet<Category> Categories {get;set;}//prop
+        public DbSet<User> Users {get;set;}
+        public DbSet<Customer> Customers {get;set;}
+        public DbSet<Address> Addresses {get;set;}
+
+     
+       
+
+        //oluşturdugumuz sql sorgusunun link karsılıgını görmek için bunu yaparız yapmasakta olur
+        public static readonly ILoggerFactory MyLoggerFactory //ıloggerfactory den sonra ctrl nokta yap
+            = LoggerFactory.Create(builder => { builder.AddConsole();});
+
+         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder
+            .UseLoggerFactory(MyLoggerFactory)//bunuda buraya eklemeliyiz link sorgusu görmek için
+            //.UseSqlite("Data source=shop.db");
+            //.UseSqlServer(@"Data Source=DESKTOP-ANBQKEB\SQLEXPRESS01;Initial Catalog=ShopDb;Integrated Security=SSPI;");
+            .UseMySql(@"server=localhost;port=3306;database=ShopDb;user=root;password=mysql123;");
+           
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProductCategory>()//productcategory entity(tablo) sine konumlanıyoruz
+                .HasKey(pc => new {pc.ProductId,pc.CategoryId});//.1.cil anahtarları tanımladık
+            
+            modelBuilder.Entity<ProductCategory>()//productcategory tablosuna gittik
+            .HasOne(pc=>pc.Product)//pc = productcategory.pRODUCTCATEGORYİNİN  product I bizim için bir tane olucak demek
+            .WithMany(p=>p.ProductCategories)//p=Product.PRODUCT İÇİNDEKİ PRODUCTCATEGORİES ÇoĞUL OLdugunu söylüyoruz
+            .HasForeignKey(pc=>pc.ProductId);//productcategory tablosunun producyıd si yabancı aanahtar oluyo
+            
+
+            modelBuilder.Entity<ProductCategory>()//productcategory tablosuna gittik
+            .HasOne(pc=>pc.Category) //pc = productcategory. pRODUCTCATEGORYİNİN Category Sİ bizim için bir tane olucak demek
+            .WithMany(c=>c.ProductCategories) //c=Category. category İÇİNDEKİ PRODUCTCATEGORİES ÇoĞUL OLdugunu söylüyoruz
+            .HasForeignKey(pc=>pc.CategoryId); //productcategory tablosunun CategoryId si yabancı aanahtar oluyo
+       
+       
+        }
+
+
+    }
+
+
+public class Customer//user-customer :1-1 
+{
+    public int Id { get; set; }
+    public string IdentityNumber { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public User User { get; set; }//tekil birebir çünkü userla
+    public int UserId { get; set; }//önce user olur sonra customer olusur ondan customer bilgileri useran almalı
+
+}
+
+    public  class  User//user classı (tablosu) olusturduk contexte ekledik
+   
+    {
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        public string Email { get; set; }
+        public List<Address> Address { get; set; }//birden fazla addres olacağı için liste ve coğul(bire çoktaki çok)
+        public Customer Customer { get; set; }//tekil birebir çünkü
+
+    }
+    public class Address //address clası(tablosu) olusturduk.contexte ekledik
+    {
+        public int Id { get; set; }
+        public string FullName { get; set; }
+        public string Title { get; set; }
+        public string Body { get; set; }
+        public User User { get; set; }//tek user olacağı için tekil(bire çoktaki bir)
+        public int UserId { get; set; }//ilk önce user olur sonra address 
+        //bu yüzden adres userdan bilgi alır userıd adrsin içine yazılır
+        
+    }
+
+
+    public class Product
+    {
+        
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public List<ProductCategory> ProductCategories { get; set; }//çoka çok için çoğul ekledik
+       
+
+    }
+
+    public class Category
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public List<ProductCategory> ProductCategories { get; set; }//çok a çok için çoğul ekledik
+    }
+
+    public class  ProductCategory //ortak clas olusturmamız lazım ama bunu contexte eklmeicez
+    {
+        public int ProductId { get; set; }//ProductId ve CategoryId 1.cil alan yapmalıyız bunu override ekleyip yapıcaz
+        public Product Product { get; set; }
+
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
+    }
+
+   
+
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+         using (var db=new ShopContext()) 
+         {
+             var products=new List<Product>()
+             {
+                 new Product(){Name="Samsung S5",Price=2000},
+                 new Product(){Name="Samsung S6",Price=3000},
+                 new Product(){Name="Samsung S7",Price=4000},
+                 new Product(){Name="Samsung S8",Price=5000}
+             };
+             db.Products.AddRange(products);//bidaha çalışmasın diye ilk dotnet rundan sonra yorum satırı yaptık
+
+              var categories=new List<Category>()
+             {
+                 new Category(){Name="Telefon"},
+                 new Category(){Name="Elektronik"},
+                new Category(){Name="Bilgisayar"}
+               
+             };
+             db.Categories.AddRange(categories);//bidaha çalışmasın diye ilk dotnet rundan sonra yorum satırı yaptık
+           
+             
+             int[] c=new int[2]{1,2};
+             var p =db.Products.Find(1);
+             p.ProductCategories=c.Select(cid=>new ProductCategory(){
+                 CategoryId=cid,
+                 ProductId=p.Id
+             }).ToList();
+
+            db.SaveChanges();
+           
+         }
+
+    }
+        static void InsertAddresses()
+        {
+            var addresses=new List<Address>()
+            {
+                new Address(){FullName="Sadik Turan",Title="Ev adresi",Body="Kocaeli",UserId=1},
+                new Address(){FullName="Sadik Turan",Title="İş adresi",Body="Kocaeli",UserId=1},
+                new Address(){FullName="Yigit Bilgi",Title="Ev adresi",Body="Kocaeli",UserId=3},
+                new Address(){FullName="Yigit Bilgi",Title="iş adresi",Body="Kocaeli",UserId=3},
+                new Address(){FullName="Çınar Turan",Title="Ev adresi",Body="Kocaeli",UserId=2},
+                new Address(){FullName="Ada Bilgi",Title="iş adresi",Body="Kocaeli",UserId=4}
+
+            };
+            using (var db=new ShopContext())
+            {
+                db.Addresses.AddRange(addresses);
+                db.SaveChanges();
+            }
+         
+
+
+        }
+        static void InsertUsers()
+        {
+            var users=new List<User>()
+            {
+                new User(){UserName="sadikturan",Email="Info@sadikturan.com"},
+                new User(){UserName="cinarturan",Email="Info@cinarturan.com"},
+                new User(){UserName="yigitbilgi",Email="Info@yigitbilgi.com"},
+                new User(){UserName="adabilgi",Email="Info@adabilgi.com"}
+
+            };
+            using (var db=new ShopContext())
+            {
+                db.Users.AddRange(users);
+                db.SaveChanges();
+            }
+         
+
+
+        }
+
+
+
+        
+    }
+}
+
+
+
+
+
+
+//Bölüm 16 Veri tabanı ayarları-Data Annotations ve Fluent Api
+
+
+
+
+
+// using System;
+// using System.Collections.Generic;
+// using System.ComponentModel.DataAnnotations;
+// using System.ComponentModel.DataAnnotations.Schema;
+// using System.Linq;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Logging;
+
+// namespace consoleapp3
+// {
+
+//     public class ShopContext: DbContext 
+//     {
+//         public DbSet<Product> Products {get;set;}//prop
+//         public DbSet<Category> Categories {get;set;}//prop
+//         public DbSet<User> Users {get;set;}
+//         public DbSet<Customer> Customers {get;set;}
+//         public DbSet<Address> Addresses {get;set;}
+
+     
+       
+
+//         //oluşturdugumuz sql sorgusunun link karsılıgını görmek için bunu yaparız yapmasakta olur
+//         public static readonly ILoggerFactory MyLoggerFactory //ıloggerfactory den sonra ctrl nokta yap
+//             = LoggerFactory.Create(builder => { builder.AddConsole();});
+
+//          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//         {
+//             optionsBuilder
+//             .UseLoggerFactory(MyLoggerFactory)//bunuda buraya eklemeliyiz link sorgusu görmek için
+//             //.UseSqlite("Data source=shop.db");
+//             //.UseSqlServer(@"Data Source=DESKTOP-ANBQKEB\SQLEXPRESS01;Initial Catalog=ShopDb;Integrated Security=SSPI;");
+//             .UseMySql(@"server=localhost;port=3306;database=ShopDb;user=root;password=mysql123;");
+           
+//         }
+//         protected override void OnModelCreating(ModelBuilder modelBuilder)
+//         {
+//             modelBuilder.Entity<User>()//USERNAME ALANINA İNDEX BIRAKIR
+//             .HasIndex(u=>u.UserName)
+//             .IsUnique();
+
+
+//             modelBuilder.Entity<Product>()//product tablosunun ismini veri tabanında urunler yaptık
+//             .ToTable("Urunler");//hazır tablo ile calısırken işimize yarar
+            
+//             modelBuilder.Entity<Customer>()//customer ın ıdentitynumber kolonunu zorunlu değil yaptık          
+//             .Property(p=>p.IdentityNumber)//aşağıda dataannotations halide var aynısının
+//             .HasMaxLength(11)//maxuzunlugu 11 yaptık
+//             .IsRequired();
+
+
+//             modelBuilder.Entity<ProductCategory>()//productcategory entity(tablo) sine konumlanıyoruz
+//                 .HasKey(pc => new {pc.ProductId,pc.CategoryId});//.1.cil anahtarları tanımladık
+            
+//             modelBuilder.Entity<ProductCategory>()//productcategory tablosuna gittik
+//             .HasOne(pc=>pc.Product)//pc = productcategory.pRODUCTCATEGORYİNİN  product I bizim için bir tane olucak demek
+//             .WithMany(p=>p.ProductCategories)//p=Product.PRODUCT İÇİNDEKİ PRODUCTCATEGORİES ÇoĞUL OLdugunu söylüyoruz
+//             .HasForeignKey(pc=>pc.ProductId);//productcategory tablosunun producyıd si yabancı aanahtar oluyo
+            
+
+//             modelBuilder.Entity<ProductCategory>()//productcategory tablosuna gittik
+//             .HasOne(pc=>pc.Category) //pc = productcategory. pRODUCTCATEGORYİNİN Category Sİ bizim için bir tane olucak demek
+//             .WithMany(c=>c.ProductCategories) //c=Category. category İÇİNDEKİ PRODUCTCATEGORİES ÇoĞUL OLdugunu söylüyoruz
+//             .HasForeignKey(pc=>pc.CategoryId); //productcategory tablosunun CategoryId si yabancı aanahtar oluyo
+       
+       
+//         }
+
+
+//     }
+
+
+// public class Customer//user-customer :1-1 
+// {
+//     [Column("customer_id")]//ıd kolonunun ismini veritabanında customer_id yaptık
+//     public int Id { get; set; }
+//     [Required]//zorunlu alan değil
+//     public string IdentityNumber { get; set; }
+//     [Required]//zorunlu alan değil
+//     public string FirstName { get; set; }
+//     [Required]//zorunlu alan değil
+//     public string LastName { get; set; }
+//     [NotMapped]//database de fullname kolonu görmeyiz sadece uygulamada görürüz
+//     public string FullName { get; set; }
+//     public User User { get; set; }//tekil birebir çünkü userla
+//     public int UserId { get; set; }//önce user olur sonra customer olusur ondan customer bilgileri useran almalı
+
+// }
+
+//     public  class  User//user classı (tablosu) olusturduk contexte ekledik
+   
+//     {
+//         public int Id { get; set; }
+//         [Required]
+//         [MaxLength(15)]
+//         [MinLength(8)]
+//         public string UserName { get; set; }
+//         [Column(TypeName="varchar(20)")]
+//         public string Email { get; set; }
+//         public List<Address> Address { get; set; }//birden fazla addres olacağı için liste ve coğul(bire çoktaki çok)
+//         public Customer Customer { get; set; }//tekil birebir çünkü
+
+//     }
+//     public class Address //address clası(tablosu) olusturduk.contexte ekledik
+//     {
+//         public int Id { get; set; }
+//         public string FullName { get; set; }
+//         public string Title { get; set; }
+//         public string Body { get; set; }
+//         public User User { get; set; }//tek user olacağı için tekil(bire çoktaki bir)
+//         public int UserId { get; set; }//ilk önce user olur sonra address 
+//         //bu yüzden adres userdan bilgi alır userıd adrsin içine yazılır
+        
+//     }
+
+
+//     public class Product
+//     {
+//         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//         public decimal Price { get; set; }
+
+//         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+//         public DateTime InsertedDate { get; set; }=DateTime.Now;//kayıt eklediğimizde ikisinede o anki tarih gelicek ama update yapınca ınsertdate değişmez lastupdatedate  değişicek
+
+//         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+//          public DateTime LastUpdateDate { get; set; }=DateTime.Now;
+//         public List<ProductCategory> ProductCategories { get; set; }//çoka çok için çoğul ekledik
+       
+
+//     }
+
+//     public class Category
+//     {
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//         public List<ProductCategory> ProductCategories { get; set; }//çok a çok için çoğul ekledik
+//     }
+
+//    // [NotMapped]//productcategory tablosu sadece  uygulamada olur database aktarılmaz
+//     [Table("UrunKategorileri")]//productcategory ismi database de UrunKategorileri olarak görünür 
+//     public class  ProductCategory //ortak clas olusturmamız lazım ama bunu contexte eklmeicez
+//     {
+//         public int ProductId { get; set; }//ProductId ve CategoryId 1.cil alan yapmalıyız bunu override ekleyip yapıcaz
+//         public Product Product { get; set; }
+
+//         public int CategoryId { get; set; }
+//         public Category Category { get; set; }
+//     }
+
+   
+
+
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+            
+//          using (var db=new ShopContext()) 
+//          {
+//             //  var p=new Product()//ürün ekledik tarik lere bak
+//             //  {
+//             //  Name="Samsun S6",
+//             //  Price=2000
+//             //  };
+           
+//            var p=db.Products.FirstOrDefault();//güncelleme yaptık ilk tarik(insertdate) aynı kalır last tarih(lastupdatedate) güncellenir
+//              p.Name="Samsung S10";
+//             db.SaveChanges();
+           
+//          }
+
+    
+        
+//     }
+//     }
+// }
+
+
+
+
+
+//BöLÜM 17 TEST VERİLERİNİN OTOMATİK EKLENMESİ-Data Seeding
+
+
+
+// using System;
+// using System.Collections.Generic;
+// using System.ComponentModel.DataAnnotations;
+// using System.ComponentModel.DataAnnotations.Schema;
+// using System.Linq;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Logging;
+
+// namespace consoleapp3
+// {
+
+//     public class ShopContext: DbContext 
+//     {
+//         public DbSet<Product> Products {get;set;}//prop
+//         public DbSet<Category> Categories {get;set;}//prop
+//         public DbSet<User> Users {get;set;}
+//         public DbSet<Customer> Customers {get;set;}
+//         public DbSet<Address> Addresses {get;set;}
+
+     
+       
+
+//         //oluşturdugumuz sql sorgusunun link karsılıgını görmek için bunu yaparız yapmasakta olur
+//         public static readonly ILoggerFactory MyLoggerFactory //ıloggerfactory den sonra ctrl nokta yap
+//             = LoggerFactory.Create(builder => { builder.AddConsole();});
+
+//          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//         {
+//             optionsBuilder
+//             .UseLoggerFactory(MyLoggerFactory)//bunuda buraya eklemeliyiz link sorgusu görmek için
+//             //.UseSqlite("Data source=shop.db");
+//             //.UseSqlServer(@"Data Source=DESKTOP-ANBQKEB\SQLEXPRESS01;Initial Catalog=ShopDb;Integrated Security=SSPI;");
+//             .UseMySql(@"server=localhost;port=3306;database=ShopDb;user=root;password=mysql123;");
+           
+//         }
+//         protected override void OnModelCreating(ModelBuilder modelBuilder)
+//         {
+//             modelBuilder.Entity<User>()//USERNAME ALANINA İNDEX BIRAKIR
+//             .HasIndex(u=>u.UserName)
+//             .IsUnique();
+
+
+//             modelBuilder.Entity<Product>()//product tablosunun ismini veri tabanında urunler yaptık
+//             .ToTable("Urunler");//hazır tablo ile calısırken işimize yarar
+            
+//             modelBuilder.Entity<Customer>()//customer ın ıdentitynumber kolonunu zorunlu değil yaptık          
+//             .Property(p=>p.IdentityNumber)//aşağıda dataannotations halide var aynısının
+//             .HasMaxLength(11)//maxuzunlugu 11 yaptık
+//             .IsRequired();
+
+
+//             modelBuilder.Entity<ProductCategory>()//productcategory entity(tablo) sine konumlanıyoruz
+//                 .HasKey(pc => new {pc.ProductId,pc.CategoryId});//.1.cil anahtarları tanımladık
+            
+//             modelBuilder.Entity<ProductCategory>()//productcategory tablosuna gittik
+//             .HasOne(pc=>pc.Product)//pc = productcategory.pRODUCTCATEGORYİNİN  product I bizim için bir tane olucak demek
+//             .WithMany(p=>p.ProductCategories)//p=Product.PRODUCT İÇİNDEKİ PRODUCTCATEGORİES ÇoĞUL OLdugunu söylüyoruz
+//             .HasForeignKey(pc=>pc.ProductId);//productcategory tablosunun producyıd si yabancı aanahtar oluyo
+            
+
+//             modelBuilder.Entity<ProductCategory>()//productcategory tablosuna gittik
+//             .HasOne(pc=>pc.Category) //pc = productcategory. pRODUCTCATEGORYİNİN Category Sİ bizim için bir tane olucak demek
+//             .WithMany(c=>c.ProductCategories) //c=Category. category İÇİNDEKİ PRODUCTCATEGORİES ÇoĞUL OLdugunu söylüyoruz
+//             .HasForeignKey(pc=>pc.CategoryId); //productcategory tablosunun CategoryId si yabancı aanahtar oluyo
+       
+       
+//         }
+
+
+//     }
+
+// public static class DataSeeding
+// {
+//     public static void Seed(DbContext context)
+//     {
+//          //database in şemasıyla alakalı olan tüm yapılar databse e aktarılsın ve sonra test verilerini database e ekleyelim
+//         if (context.Database.GetPendingMigrations().Count()==0)//bütün mig. database e aktarılmısssa
+       
+//         { 
+//             if(context is ShopContext)//bana gönderilen context bilgisi shopcontext mi
+//             {
+//                 ShopContext _context=context as ShopContext;
+//                 if(_context.Products.Count()==0)//products tablosuna kayıt gitmediyse daha önceden
+//                 {
+//                   _context.Products.AddRange(Products);  //product ekle
+//                 }
+//                 if(_context.Categories.Count()==0)//category tablosuna kayıt gitmediyse daha önceden
+//                 {
+//                     _context.Categories.AddRange(Categories); //category ekle
+//                 }
+
+//             }
+//           context.SaveChanges();
+//         }
+//     }
+   
+//     private static Product[] Products=  //tarih alanını doldurmaya gerek yok onlar gelir
+//     {
+//         new Product(){Name="Samsung S6",Price=2000},
+//         new Product(){Name="Samsung S7",Price=3000},
+//         new Product(){Name="Samsung S8",Price=4000},
+//         new Product(){Name="Samsung S9",Price=5000}
+
+//     };
+
+//        private static Category[] Categories=
+//        {
+//         new Category(){Name="Telefon"},
+//         new Category(){Name="Elektronik"},
+//         new Category(){Name="Bilgisayar"}
+        
+//     };
+
+
+// }
+
+// public class Customer//user-customer :1-1 
+// {
+//     [Column("customer_id")]//ıd kolonunun ismini veritabanında customer_id yaptık
+//     public int Id { get; set; }
+//     [Required]//zorunlu alan değil
+//     public string IdentityNumber { get; set; }
+//     [Required]//zorunlu alan değil
+//     public string FirstName { get; set; }
+//     [Required]//zorunlu alan değil
+//     public string LastName { get; set; }
+//     [NotMapped]//database de fullname kolonu görmeyiz sadece uygulamada görürüz
+//     public string FullName { get; set; }
+//     public User User { get; set; }//tekil birebir çünkü userla
+//     public int UserId { get; set; }//önce user olur sonra customer olusur ondan customer bilgileri useran almalı
+
+// }
+
+//     public  class  User//user classı (tablosu) olusturduk contexte ekledik
+   
+//     {
+//         public int Id { get; set; }
+//         [Required]
+//         [MaxLength(15)]
+//         [MinLength(8)]
+//         public string UserName { get; set; }
+//         [Column(TypeName="varchar(20)")]
+//         public string Email { get; set; }
+//         public List<Address> Address { get; set; }//birden fazla addres olacağı için liste ve coğul(bire çoktaki çok)
+//         public Customer Customer { get; set; }//tekil birebir çünkü
+
+//     }
+//     public class Address //address clası(tablosu) olusturduk.contexte ekledik
+//     {
+//         public int Id { get; set; }
+//         public string FullName { get; set; }
+//         public string Title { get; set; }
+//         public string Body { get; set; }
+//         public User User { get; set; }//tek user olacağı için tekil(bire çoktaki bir)
+//         public int UserId { get; set; }//ilk önce user olur sonra address 
+//         //bu yüzden adres userdan bilgi alır userıd adrsin içine yazılır
+        
+//     }
+
+
+//     public class Product
+//     {
+//         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//         public decimal Price { get; set; }
+
+//         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+//         public DateTime InsertedDate { get; set; }=DateTime.Now;//kayıt eklediğimizde ikisinede o anki tarih gelicek ama update yapınca ınsertdate değişmez lastupdatedate  değişicek
+
+//         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+//          public DateTime LastUpdateDate { get; set; }=DateTime.Now;
+//         public List<ProductCategory> ProductCategories { get; set; }//çoka çok için çoğul ekledik
+       
+
+//     }
+
+//     public class Category
+//     {
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//         public List<ProductCategory> ProductCategories { get; set; }//çok a çok için çoğul ekledik
+//     }
+
+//    // [NotMapped]//productcategory tablosu sadece  uygulamada olur database aktarılmaz
+//     [Table("UrunKategorileri")]//productcategory ismi database de UrunKategorileri olarak görünür 
+//     public class  ProductCategory //ortak clas olusturmamız lazım ama bunu contexte eklmeicez
+//     {
+//         public int ProductId { get; set; }//ProductId ve CategoryId 1.cil alan yapmalıyız bunu override ekleyip yapıcaz
+//         public Product Product { get; set; }
+
+//         public int CategoryId { get; set; }
+//         public Category Category { get; set; }
+//     }
+
+   
+
+
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             DataSeeding.Seed(new ShopContext());
+
+//         }
+//     }
+// }
+
+
+
+//Bölüm 18 Hazır veri tabanı ile çalışma-Scaffolding Database-Database First
+
+//normalde uygulama tarafında entity ler ve context aracılığı ile database leri olusturduk ve değişiklikler yaptık buna code first dedik
+//ama şimdi elimizde var olan bir database var ve ef kullanmak istiyoruz bu durumda var olan database in şemasını
+//uygulama tarafına aktarabiliyoruz buna database first deniyor
+
+
+// using System;
+// using System.Collections.Generic;
+// using System.ComponentModel.DataAnnotations;
+// using System.ComponentModel.DataAnnotations.Schema;
+// using System.Linq;
+// using consoleapp3.Data.EFCore;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Logging;
+
+// namespace consoleapp3
+// {
+
+//     public class ShopContext: DbContext 
+//     {
+//         public DbSet<Product> Products {get;set;}//prop
+//         public DbSet<Category> Categories {get;set;}//propb
+//         public DbSet<User> Users {get;set;}
+//         public DbSet<Customer> Customers {get;set;}
+//         public DbSet<Address> Addresses {get;set;}
+
+     
+       
+
+//         //oluşturdugumuz sql sorgusunun link karsılıgını görmek için bunu yaparız yapmasakta olur
+//         public static readonly ILoggerFactory MyLoggerFactory //ıloggerfactory den sonra ctrl nokta yap
+//             = LoggerFactory.Create(builder => { builder.AddConsole();});
+
+//          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//         {
+//             optionsBuilder
+//             .UseLoggerFactory(MyLoggerFactory)//bunuda buraya eklemeliyiz link sorgusu görmek için
+//             //.UseSqlite("Data source=shop.db");
+//             //.UseSqlServer(@"Data Source=DESKTOP-ANBQKEB\SQLEXPRESS01;Initial Catalog=ShopDb;Integrated Security=SSPI;");
+//             .UseMySql(@"server=localhost;port=3306;database=ShopDb;user=root;password=mysql123;");
+           
+//         }
+//         protected override void OnModelCreating(ModelBuilder modelBuilder)
+//         {
+//             modelBuilder.Entity<User>()//USERNAME ALANINA İNDEX BIRAKIR
+//             .HasIndex(u=>u.UserName)
+//             .IsUnique();
+
+
+//             modelBuilder.Entity<Product>()//product tablosunun ismini veri tabanında urunler yaptık
+//             .ToTable("Urunler");//hazır tablo ile calısırken işimize yarar
+            
+//             modelBuilder.Entity<Customer>()//customer ın ıdentitynumber kolonunu zorunlu değil yaptık          
+//             .Property(p=>p.IdentityNumber)//aşağıda dataannotations halide var aynısının
+//             .HasMaxLength(11)//maxuzunlugu 11 yaptık
+//             .IsRequired();
+
+
+//             modelBuilder.Entity<ProductCategory>()//productcategory entity(tablo) sine konumlanıyoruz
+//                 .HasKey(pc => new {pc.ProductId,pc.CategoryId});//.1.cil anahtarları tanımladık
+            
+//             modelBuilder.Entity<ProductCategory>()//productcategory tablosuna gittik
+//             .HasOne(pc=>pc.Product)//pc = productcategory.pRODUCTCATEGORYİNİN  product I bizim için bir tane olucak demek
+//             .WithMany(p=>p.ProductCategories)//p=Product.PRODUCT İÇİNDEKİ PRODUCTCATEGORİES ÇoĞUL OLdugunu söylüyoruz
+//             .HasForeignKey(pc=>pc.ProductId);//productcategory tablosunun producyıd si yabancı aanahtar oluyo
+            
+
+//             modelBuilder.Entity<ProductCategory>()//productcategory tablosuna gittik
+//             .HasOne(pc=>pc.Category) //pc = productcategory. pRODUCTCATEGORYİNİN Category Sİ bizim için bir tane olucak demek
+//             .WithMany(c=>c.ProductCategories) //c=Category. category İÇİNDEKİ PRODUCTCATEGORİES ÇoĞUL OLdugunu söylüyoruz
+//             .HasForeignKey(pc=>pc.CategoryId); //productcategory tablosunun CategoryId si yabancı aanahtar oluyo
+       
+       
+//         }
+
+
+//     }
+
+// public static class DataSeeding
+// {
+//     public static void Seed(DbContext context)
+//     {
+//          //database in şemasıyla alakalı olan tüm yapılar databse e aktarılsın ve sonra test verilerini database e ekleyelim
+//         if (context.Database.GetPendingMigrations().Count()==0)//bütün mig. database e aktarılmısssa
+       
+//         { 
+//             if(context is ShopContext)//bana gönderilen context bilgisi shopcontext mi
+//             {
+//                 ShopContext _context=context as ShopContext;
+//                 if(_context.Products.Count()==0)//products tablosuna kayıt gitmediyse daha önceden
+//                 {
+//                   _context.Products.AddRange(Products);  //product ekle
+//                 }
+//                 if(_context.Categories.Count()==0)//category tablosuna kayıt gitmediyse daha önceden
+//                 {
+//                     _context.Categories.AddRange(Categories); //category ekle
+//                 }
+
+//             }
+//           context.SaveChanges();
+//         }
+//     }
+   
+//     private static Product[] Products=  //tarih alanını doldurmaya gerek yok onlar gelir
+//     {
+//         new Product(){Name="Samsung S6",Price=2000},
+//         new Product(){Name="Samsung S7",Price=3000},
+//         new Product(){Name="Samsung S8",Price=4000},
+//         new Product(){Name="Samsung S9",Price=5000}
+
+//     };
+
+//        private static Category[] Categories=
+//        {
+//         new Category(){Name="Telefon"},
+//         new Category(){Name="Elektronik"},
+//         new Category(){Name="Bilgisayar"}
+        
+//     };
+
+
+// }
+
+// public class Customer//user-customer :1-1 
+// {
+//     [Column("customer_id")]//ıd kolonunun ismini veritabanında customer_id yaptık
+//     public int Id { get; set; }
+//     [Required]//zorunlu alan değil
+//     public string IdentityNumber { get; set; }
+//     [Required]//zorunlu alan değil
+//     public string FirstName { get; set; }
+//     [Required]//zorunlu alan değil
+//     public string LastName { get; set; }
+//     [NotMapped]//database de fullname kolonu görmeyiz sadece uygulamada görürüz
+//     public string FullName { get; set; }
+//     public User User { get; set; }//tekil birebir çünkü userla
+//     public int UserId { get; set; }//önce user olur sonra customer olusur ondan customer bilgileri useran almalı
+
+// }
+
+//     public  class  User//user classı (tablosu) olusturduk contexte ekledik
+   
+//     {
+//         public int Id { get; set; }
+//         [Required]
+//         [MaxLength(15)]
+//         [MinLength(8)]
+//         public string UserName { get; set; }
+//         [Column(TypeName="varchar(20)")]
+//         public string Email { get; set; }
+//         public List<Address> Address { get; set; }//birden fazla addres olacağı için liste ve coğul(bire çoktaki çok)
+//         public Customer Customer { get; set; }//tekil birebir çünkü
+
+//     }
+//     public class Address //address clası(tablosu) olusturduk.contexte ekledik
+//     {
+//         public int Id { get; set; }
+//         public string FullName { get; set; }
+//         public string Title { get; set; }
+//         public string Body { get; set; }
+//         public User User { get; set; }//tek user olacağı için tekil(bire çoktaki bir)
+//         public int UserId { get; set; }//ilk önce user olur sonra address 
+//         //bu yüzden adres userdan bilgi alır userıd adrsin içine yazılır
+        
+//     }
+
+
+//     public class Product
+//     {
+//         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//         public decimal Price { get; set; }
+
+//         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+//         public DateTime InsertedDate { get; set; }=DateTime.Now;//kayıt eklediğimizde ikisinede o anki tarih gelicek ama update yapınca ınsertdate değişmez lastupdatedate  değişicek
+
+//         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+//          public DateTime LastUpdateDate { get; set; }=DateTime.Now;
+//         public List<ProductCategory> ProductCategories { get; set; }//çoka çok için çoğul ekledik
+       
+
+//     }
+
+//     public class Category
+//     {
+//         public int Id { get; set; }
+//         public string Name { get; set; }
+//         public List<ProductCategory> ProductCategories { get; set; }//çok a çok için çoğul ekledik
+//     }
+
+//    // [NotMapped]//productcategory tablosu sadece  uygulamada olur database aktarılmaz
+//     [Table("UrunKategorileri")]//productcategory ismi database de UrunKategorileri olarak görünür 
+//     public class  ProductCategory //ortak clas olusturmamız lazım ama bunu contexte eklmeicez
+//     {
+//         public int ProductId { get; set; }//ProductId ve CategoryId 1.cil alan yapmalıyız bunu override ekleyip yapıcaz
+//         public Product Product { get; set; }
+
+//         public int CategoryId { get; set; }
+//         public Category Category { get; set; }
+//     }
+
+   
+
+
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//            // DataSeeding.Seed(new ShopContext());
+//          using (var db=new NothwindContext())
+//          {
+//              var products=db.Products.ToList();
+//              foreach (var item in products)
+//              {
+//                  Console.WriteLine(item.ProductName);
+                 
+//              }
+             
+//          }
+
+
+//         }
+//     }
+// }
+
+
+
+
+
+//Bölüm 19 LINQ sorgu uygulamaları-Tek tablo ile çalışma (NothwindCotext i kullanıyoruz burda)
+
+
+
+// using System;
+// using System.Collections.Generic;
+// using System.ComponentModel.DataAnnotations;
+// using System.ComponentModel.DataAnnotations.Schema;
+// using System.Linq;
+// using consoleapp3.Data.EFCore;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Logging;
+
+// namespace consoleapp3
+// {
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//                    // 1-Tüm müşteri kayıtlarını getiriniz
+//         //  using (var db=new NothwindContext())
+//         //  {
+
+//         //      var customers=db
+//         //      .Customers
+//         //      .ToList();
+//         //      foreach (var item in customers)
+//         //      {
+//         //          //Console.WriteLine(item.FirstName +" "+ item.LastName);
+//         //          Console.WriteLine($"{item.FirstName} {item.LastName}");
+//         //      }
+             
+//         //  }
+
+//                   //2-tüm müşteri kayıtlarının sadece first_name ve last_name bilgilerini getiriniz
+//         //   using (var db=new NothwindContext())
+//         //  {
+
+//         //      var customers=db
+//         //      .Customers
+//         //      .Select(c=>new{c.FirstName,c.LastName})
+//         //      .ToList();
+//         //      foreach (var item in customers)
+//         //      {
+//         //          //Console.WriteLine(item.FirstName +" "+ item.LastName);
+//         //          Console.WriteLine($"{item.FirstName} {item.LastName}");
+//         //      }
+             
+//         //  }
+//           //3-New York ta yaşayan müşterileri isim sırasına göre getiriniz
+//         //    using (var db=new NothwindContext())
+//         //  {
+
+//         //      var customers=db
+//         //      .Customers
+//         //      .Where(c=>c.City=="New York")
+//         //      .Select(c=>new{c.FirstName,c.LastName})
+//         //      .ToList();
+//         //      foreach (var item in customers)
+//         //      {
+//         //          //Console.WriteLine(item.FirstName +" "+ item.LastName);
+//         //          Console.WriteLine($"{item.FirstName} {item.LastName}");
+//         //      }
+             
+//         //  }
+//          //4-"Beverages" kategorisine ait ürünlerin isimlerini getiriniz
+//         //    using (var db=new NothwindContext())
+//         //  {
+
+//         //      var products=db
+//         //      .Products//mysql de products olmus buda
+//         //      .Where(p=>p.Category=="Beverages")//Category normalde mysql de category olarak ama aslı büyük harfle  fluent api ile ismini değiştirmişiler
+//         //      .Select(p=>new{p.ProductName})//normalde ProductName ama mysql de product_name yapmıslar
+//         //      .ToList();
+//         //      foreach (var item in products)
+//         //      {
+//         //          //Console.WriteLine(item.FirstName +" "+ item.LastName);
+//         //          Console.WriteLine($"{item.ProductName}");
+//         //      }
+             
+//         //  }
+         
+//          //5-En son eklenen 5 ürün bilgisini alınız
+//         //   using (var db=new NothwindContext())
+//         //  {
+
+//         //      var products=db
+//         //      .Products
+//         //      .OrderByDescending(i=>i.Id)//bu şekilde tabloyu  id ye göre azalan sıralama yaparsakyani ters çevirirsek 
+//         //      .Take(5)//product tablosunun en üstteki 5 tanesi gelir.üsttekini ekleyip çalıstırırsak en son 5 li gelir
+//         //      .ToList();
+//         //      foreach (var item in products)
+//         //      {
+//         //          //Console.WriteLine(item.FirstName +" "+ item.LastName);
+//         //          Console.WriteLine($"{item.ProductName}");
+//         //      }
+             
+//          //}
+//          //6-Fİyatı 10 ile 30 arasında olan ürünlerin isim ve fiyat bilgilerini alınız
+//         //     using (var db=new NothwindContext())
+//         //  {
+
+//         //      var products=db
+//         //      .Products
+//         //      .Where(p=>p.ListPrice>=10 && p.ListPrice<=30)
+//         //      .Select(p=>new{p.ProductName,p.ListPrice})
+//         //      .ToList();
+//         //      foreach (var item in products)
+//         //      {
+//         //          //Console.WriteLine(item.FirstName +" "+ item.LastName);
+//         //          Console.WriteLine($"name:{item.ProductName} price:{item.ListPrice}");
+//         //      }
+             
+//         //  }
+//          //7-"Beverages" kategorisindeki ürünlerin ortalama fiyatı nedir
+//         //      using (var db=new NothwindContext())
+//         //  {
+
+//         //      var ortalama=db
+//         //      .Products     
+//         //      .Where(p=>p.Category=="Baverages")
+//         //      .Average(p=>p.ListPrice);
+
+          
+//         //      Console.WriteLine("ortalama:{0}",ortalama);
+            
+             
+//          //}
+         
+//          //8-"Beverages"  kategorisinde kaç ürün vardır
+//         //  using (var db=new NothwindContext())
+//         //  {
+//         //  var adet=db.Products
+//         //  .Count(i=>i.Category=="Beverages");
+         
+//         //  Console.WriteLine($"adet:{adet}");
+//         //  }
+
+
+
+//          //9-"Beverages" veya "Condiments" kategorilerindeki ürünlerin toplam fiyatı
+//         //  using (var db=new NothwindContext())
+//         //  {
+//         // var toplam=db
+//         // .Products
+//         // .Where(i=>i.Category=="Beverages" || i.Category=="Condiments")
+//         // .Sum(i=>i.ListPrice);
+//         // Console.WriteLine($"toplam:{toplam}");
+//         //  }
+//          //10-Tea kelimesini içeren ürünleri getiriniz
+//         //      using (var db=new NothwindContext())
+//         //  {
+
+//         //      var products=db
+//         //      .Products
+//         //      .Where(p=>p.ProductName.Contains("Tea") || p.Description.Contains("Tea)"))
+//         //      .ToList();
+//         //      foreach (var item in products)
+//         //      {
+                 
+//         //          Console.WriteLine($"name:{item.ProductName}");
+//         //      }
+//         //  }
+//          //11-En pahalı ürün ve en ucuz ürün hangisidir
+//         //     using (var db=new NothwindContext())
+//         //  {
+//         //  var minPrice=db
+//         //  .Products
+//         //  .Min(i=>i.ListPrice);
+
+//         //  var maxPrice=db
+//         //  .Products
+//         //  .Max(i=>i.ListPrice);
+
+//         //  Console.WriteLine($"min:{minPrice} max:{maxPrice}");
+
+//         //  var minproduct=db//en ucuz ürün bulma
+//         //  .Products
+//         //  .Where(i=>i.ListPrice==(db.Products.Min(a=>a.ListPrice)))
+//         //  .FirstOrDefault();
+//         //  Console.WriteLine($"name:{minproduct.ProductName} price:{minproduct.ListPrice}");
+         
+
+//         //   var maxproduct=db//en pahalı ürün bulma
+//         //  .Products
+//         //  .Where(i=>i.ListPrice==(db.Products.Max(a=>a.ListPrice)))
+//         //  .FirstOrDefault();
+//         //  Console.WriteLine($"name:{maxproduct.ProductName} price:{maxproduct.ListPrice}");
+//         //  }
+//         // }
+//     }
+// }
+
+
+
+//Bölüm 20 LINQ Sorgu Uygulamaları-Çoklu tablo ile çalışma
+
+
+
+// using System;
+// using System.Collections.Generic;
+// using System.ComponentModel.DataAnnotations;
+// using System.ComponentModel.DataAnnotations.Schema;
+// using System.Linq;
+// using consoleapp3.Data.EFCore;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Logging;
+
+// namespace consoleapp3
+// {
+//     public class CustomerDemo
+//     {
+//         public int CustomerId { get; set; }
+//         public string Name { get; set; }
+//         public int OrderCount { get; set; }
+//     }
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             using (var db=new NothwindContext())
+//             {
+//                 var customers=db
+//                 .Customers
+//                 .Where(i=>i.Orders.Count()>0)//customers ile orders tablosu bağlantılı yani customer üzerinden orders a ulaşılabilir
+//                 .Select(i=>new{i.FirstName})//müşteriler den sipariş verenleri getirir 
+//                 .ToList();
+//                 foreach (var item in customers)
+//                 {
+//                    Console.WriteLine(item.FirstName);
+//                 }
+//             }
+
+
+
+
+//         }
+
+//     }
+// }
+
+// Bölüm 21  Klasik SQL sorgularının Entity FrameWork ile Kullanılması
+
+// using System;
+// using System.Collections.Generic;
+// using System.ComponentModel.DataAnnotations;
+// using System.ComponentModel.DataAnnotations.Schema;
+// using System.Linq;
+// using consoleapp3.Data.EFCore;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.Extensions.Logging;
+
+// namespace consoleapp3
+// {
+//     public class CustomerDemo
+//     {
+//         public int CustomerId { get; set; }
+//         public string Name { get; set; }
+//         public int OrderCount { get; set; }
+//     }
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             // using (var db=new NothwindContext())
+//             // {
+//             //    var customers=db
+//             //    .Customers//ayrıca mesela select den sonra firt_name diyip filtrelemeyiz database de o isimde olmasına rağmen kural bu eşleşmiyo uygulamayla çünkü 
+//             //    .FromSqlRaw("Select * from customers where city='Miami'")//klasik sql sorgusu yapabiliriz böyle ama ozaman mysql deki isimlere göre çağır
+//             //    .ToList();                                               //normalde uygulamadaki ismi(Customers) kullanıyoruz LINQ sorgularında,klasik sql sorgusu yapıcaksak veri tabanındaki ismi(customers) kullanmalıyız
+//             //    foreach (var item in customers)
+//             //    {
+//             //        Console.WriteLine(item.FirstName);
+//             //    }
+//             // }  
+
+//           using (var db=new CustomNorthwindContext())
+//           {
+//               var customers=db
+//               .CustomerOrders//CustomNorthwindContext ile first_name i falan map(eşledik) ettik artık altta yazıp ona göre secebiliriz(mesela CustomerId ile c.id yi,FirstName ile c.first_name imap ettik sıraya göre eşleşiyo)
+//               .FromSqlRaw("select c.id as CustomerId,c.first_name as FirstName,count(*) as OrderCount from customers c inner join orders o on c.id=o.customer_id group by c.id")
+//               .ToList();
+//               foreach (var item in customers)
+//               {
+//                   System.Console.WriteLine("customer id:{0} firstname:{1} order count:{2}",item.CustomerId,item.FirstName,item.OrderCount);
+//               }
+//           }
+
+
+//         }
+
+//     }
+// }
+
+
+
+//bölüm 21 in CustomNorthwindContext i burda
+
+using Microsoft.EntityFrameworkCore;
+
+namespace consoleapp3.Data.EFCore
+{
+    public class CustomerOrder
+    {
+        public int CustomerId { get; set; }
+        public string FirstName { get; set; }
+        public int OrderCount { get; set; }
+    }
+    public class CustomNorthwindContext:NothwindContext
+    {
+        public DbSet<CustomerOrder> CustomerOrders{get;set;}
+        public CustomNorthwindContext()
+        {
+            
+        }
+
+        public CustomNorthwindContext(DbContextOptions<NothwindContext> options):base(options)
+        {
+            
+        }
+
+              protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<CustomerOrder>(entity=>
+            {
+                entity.HasNoKey();//key bilgisi yok demek
+            });
+        }
+    }
+}

@@ -1,0 +1,4649 @@
+// using System;
+
+// namespace consoleapp
+// {
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+
+
+
+
+//bölüm1
+//     Console.Write("1. sayı:");
+//     int sayi1=int.Parse( Console.ReadLine());
+
+//    Console.Write("2. sayı:");
+//    int sayi2=int.Parse( Console.ReadLine());
+
+// int toplam =sayi1+sayi2;
+// Console.WriteLine($"girilen toplam değer:{toplam}");
+
+
+//bölüm 2
+//kısa ve uzun kenarı girilen dikdörtgenin alan ve cevresi?
+
+// Console.Write("kısa kenar:");
+// int kisa =int.Parse(Console.ReadLine());
+
+// Console.Write("uzun kenar:");
+// int uzun =int.Parse(Console.ReadLine());
+
+// int cevre=(kisa+uzun)*2;
+// int alan=kisa*uzun;
+
+//Console.WriteLine("alan: "+ alan + " çevre: "+ cevre);
+
+// Console.WriteLine($"alan:{alan} çevre:{cevre}");
+
+//bölüm3
+// string name="Sadık";
+// string surname="Turan";
+// int age=36;
+
+//string str="My Name is "+ name+ " "+ surname+ " and I'am "+age+ " years old.";
+//string str=string.Format("My name is {0} {1} and I'am {2} years old.",name,surname,age);
+// string str=$"My Name is {name} {surname} and I'am {age} years old.";
+// Console.WriteLine(str);
+
+
+//bölüm 4 string metodları
+
+//string msg="Hello There.My name is Sadık Turan.";
+
+//Console.WriteLine(msg.Length); KARAKTER SAYISINI BULUR
+//Console.WriteLine(msg.ToLower());CÜMLEYİ KÜÇÜK HARFE ÇEVİRİR
+//Console.WriteLine(msg.ToUpper());BÜYÜK HARFLERE CEVİRİR
+//Console.WriteLine(msg.Trim());cümlenin sağ ve soldaki tüm boşlukları siler
+//Console.WriteLine(msg.TrimStart());cümle basındaki boşlukları siler
+//Console.WriteLine(msg.TrimEnd());cümle sonundaki boslukları siler
+//Console.WriteLine(msg.Split()[0]);0.indexi getirir yani hello
+//Console.WriteLine(msg[3]);3.deki karakteri getirir
+//Console.WriteLine(msg.StartsWith("H"));H İLE Mİ BASLIYO.TRUE VEYA FALSE
+//Console.WriteLine(msg.EndsWith("Turan."));turan ile mi bitiyo.true veya false
+//Console.WriteLine(msg.Contains("There"));there bu ifadede varmı onu bulur tru veya false der
+//Console.WriteLine(msg.IndexOf("name"));name kaçıncı karakterle(index no) baslar mesela 15
+//Console.WriteLine(msg.Substring(3));3.karakterden sonraki bilgilri getirir
+//Console.WriteLine(msg.Substring(3,6));3.karakterden sonraki 6 karaketeri getir
+//Console.WriteLine(msg.Replace(" ","-"));bosluk karakterlerini - ile değiştirir
+//Console.WriteLine(msg.Insert(0,"..."));0.karakterden sonra ... ekler
+//Console.WriteLine(msg.Insert(msg.Length,"..."));cümle sonuna ... ekler.
+//Console.WriteLine(msg.Remove(4));4.karakterden sonrasını sil
+//Console.WriteLine(msg.Remove(4,6));4.karakter den sonra 6 karaketer sil
+
+
+//BÖLÜM 5 
+
+
+// string msg="Hello There.My name is Sadık Turan.";
+// Console.WriteLine(msg[0]);
+// Console.WriteLine(msg[1]);
+// Console.WriteLine(msg[2]);
+// Console.WriteLine(msg[3]);
+// Console.WriteLine(msg[4]);
+
+// var result=msg.Split();
+// Console.WriteLine(result[0]);
+// Console.WriteLine(result[1]);
+// Console.WriteLine(result[2]);
+// Console.WriteLine(result[3]);
+// Console.WriteLine(result[4]);
+// Console.WriteLine(result[5]);
+// Console.WriteLine(result[6]);
+
+//bölüm 5 diziler
+//string[] isimler= new string[5];
+//string[] isimler={"Ahmet","Çınar","Ada","Yiğit","Sena"};
+
+// isimler[0]="Ahmet";
+// isimler[1]="Çınar";
+// isimler[2]="Ada";
+// isimler[3]="Yiğit";
+// isimler[4]="Sena";
+
+//Console.WriteLine(isimler[2]);
+
+//int[] numaralar= new int[5];
+//int[] numaralar={101,102,103,104,105};
+// numaralar[0]=101;
+// numaralar[1]=102;
+// numaralar[2]=103;
+// numaralar[3]=104;
+// numaralar[4]=105;
+
+// Console.WriteLine($"öğrenci adı:{isimler[0]} ve numara:{numaralar[0]}");
+// Console.WriteLine($"öğrenci adı:{isimler[1]} ve numara:{numaralar[1]}");
+// Console.WriteLine($"öğrenci adı:{isimler[2]} ve numara:{numaralar[2]}");
+// Console.WriteLine($"öğrenci adı:{isimler[3]} ve numara:{numaralar[3]}");
+// Console.WriteLine($"öğrenci adı:{isimler[4]} ve numara:{numaralar[4]}");
+
+//bölüm6 dizi metodları
+
+//string[] isimler= {"Ahmet","Çınar","Ada","Yiğit","Sena"};
+
+//isimler[0]="Ali";
+//isimler.SetValue("Ali",0);
+
+//Console.WriteLine(isimler[0]);
+//Console.WriteLine(isimler.GetValue(0));
+
+
+//Console.WriteLine(Array.IndexOf(isimler,"Çınar"));
+
+//Console.WriteLine(isimler.Length);
+
+//Array.Sort(isimler);
+//Console.WriteLine(isimler[0]);
+
+
+// var result =isimler[1..3];
+// var result=isimler[1..];
+// foreach (var isim in result)
+// {
+//     Console.WriteLine(isim);
+// }
+
+//bölüm 7 datatime
+
+// string[] aylar={"ocak","şubat","mart","nisan","mayıs","haziran","temmuz","ağustos","eylül","ekin","kasım","aralık"};
+
+// DateTime simdi=DateTime.Now;
+
+// Console.WriteLine(simdi);
+
+// Console.WriteLine(simdi.Year);
+// Console.WriteLine(aylar[simdi.Month-1]);
+// Console.WriteLine(simdi.Day);
+// Console.WriteLine(simdi.DayOfWeek);
+
+//bölüm 8 aritmetik opertörler
+
+// int a=10;
+// int b=20;
+// float val;
+//   val=a+b;
+//   val=a-b;
+//   val=a*b;
+//  val=(float)a/(float)b;
+
+// val=b%a;
+// val=a++;
+// val=++a;
+// val=--a;
+// val=a--;
+// Console.WriteLine("Value:"+val);
+//veya console.writeline($"value:{val}");
+
+//bölüm 9 atama operatörleri
+
+// int  x=5,y=10,z=20;
+// double val;
+// x+=5;//x=x+5;
+// x-=5;//x=x-5;
+// x*=5;//x=x*5;
+// x/=5;//x=x/5;
+// x%=5;//x=x%5;
+// val=Math.Pow(2,5);
+// val=Math.Sqrt(25);
+// val=Math.Abs(-10); 
+
+// Console.WriteLine($"x:{x} y:{y} z:{z}");
+// Console.WriteLine("val:"+val);
+
+//Console.WriteLine("x:"+x +"y:"+y +"z:"+z);
+
+//bölüm 10 uygulama
+
+//kullanıcıdan alınan 2 sayının çarpımı ile x,y,z nin toplamının farkı nedir
+// int x=2,y=5,z=10;
+// Console.Write("Sayi1 girin:");
+// int sayi1=int.Parse(Console.ReadLine());
+// Console.Write("Sayi2 girin:");
+// int sayi2=int.Parse(Console.ReadLine());
+
+// int sonuc=(sayi1*sayi2)-(x+y+z);
+// Console.WriteLine("Sonuç:" +sonuc);
+
+//kullanıcıdan alınan bir sayının tek çift kontrolünü yapın
+
+// Console.Write("Bir sayı girin:");
+// int sayi=int.Parse(Console.ReadLine());
+// string sonuc=(sayi%2)==0?"true" : "false" ;
+
+// Console.WriteLine("girilen sayı çift mi:"+sonuc);
+
+
+//x,y,z nin toplamının mod 3 ü kaçtır
+
+//int x=2,y=5,z=10;
+// int toplam=x+y+z;
+// int mod=toplam%3;
+// Console.WriteLine($"mod {mod}");
+
+//y nin x. kuvvetini hesapla
+
+// var sonuc=Math.Pow(y,x);
+// Console.WriteLine("sonuc:"+sonuc);
+
+//bölüm 11 karşılastırma operatörleri
+
+
+// int a=5,b=5,c=10,d=4;
+
+// var result =(a==b);
+//  result=(a==c);
+
+// Console.WriteLine("result:"+result);
+
+
+//bölüm 12 mantıksal operatörler
+
+// int x=5;
+
+// var result=(x>5);
+// result =(x<10);
+// result =(x>5)&&(x<10); 
+
+// bölüm 13 İF ELSE
+
+// string username="sadıkturan";
+// string password="12345";
+// var isLoggedin =(username=="sadıkturann")&&(password=="12345");
+
+// if(username=="sadıkturan")
+// {
+//     if(password=="123456"){
+//     Console.WriteLine("bilgileriniz doğru");
+// Console.WriteLine("Hoşgeldiniz");
+// }
+// else
+// {
+//     Console.WriteLine("parola yanlış");
+// }
+// }
+// else
+// {
+// Console.WriteLine("username yanlış");
+// }
+
+//bölüm 14 if elseif
+
+
+// int x=20;
+// int y=20;
+
+
+// if (x>y)
+// {
+//     Console.WriteLine("x y den büyük");
+// }
+// else if(x==y){
+// Console.WriteLine("x ve y eşit");
+// }
+// else
+// {
+//     Console.WriteLine("y x den büyük");
+// }
+
+
+
+//bölüm 15 switch
+
+// int ay=13;
+
+// switch (ay)
+// {
+//     case 12:
+//  Console.WriteLine("kış mevsimi");
+// break;
+//    case 1:
+//  Console.WriteLine("kış mevsimi");
+// break;
+//    case 2:
+//  Console.WriteLine("kış mevsimi");
+// break;
+//    case 3:
+//  Console.WriteLine("ilkbahar mevsimi");
+// break;
+
+//    case 4:
+//  Console.WriteLine("ilkbahar mevsimi");
+// break;
+
+//    case 5:
+//  Console.WriteLine("ilkbahar mevsimi");
+// break;
+
+//    case 6:
+//  Console.WriteLine("yaz mevsimi");
+// break;
+
+//    case 7:
+//  Console.WriteLine("yaz mevsimi");
+// break;
+
+//    case 8:
+//  Console.WriteLine("yaz mevsimi");
+// break;
+
+//    case 9:
+//  Console.WriteLine("sonbahar mevsimi");
+// break;
+
+//    case 10:
+//  Console.WriteLine("sonbahar mevsimi");
+// break;
+
+//    case 11:
+//  Console.WriteLine("sonbahar mevsimi");
+// break;
+
+//     default:
+
+// Console.WriteLine("yanlış bilgi");
+// break;
+
+
+// }
+
+
+//bölüm 16 uygulama
+
+//1-kullanıcıdan isim yaş ve eğitim bilgileri isteyip ehliyet alabilme
+//durumunu kontrol ediniz.Ehliyet alma durumu en 18 yaş eğitim ise lise veya üniversite olmalıdır.
+
+// Console.Write("isim giriniz:");
+// string isim=Console.ReadLine();
+
+// Console.Write("yaş giriniz:");
+// int yas=int.Parse(Console.ReadLine());
+
+// Console.Write("eğitim durumu giriniz:");
+// string egitim=Console.ReadLine();
+
+
+// if (yas>=18)
+// {
+//     if (egitim=="lise" || egitim=="universite")
+//     {
+//          Console.WriteLine("ehliyet alabilirsiniz" +" " +isim +" " +"Bey");
+//     }
+//    else
+//    {
+
+//     Console.WriteLine("ehliyet alamazsınız"+" " +isim +" " +"Bey");
+//    }
+// }
+// else
+// {
+//     Console.WriteLine("ehliyet alamazsınız"+" " +isim +" " +"Bey");
+// }
+
+
+//2-girilen 3 sayıdan büyük olanı bul.
+
+// Console.Write("sayı1 girin:");
+// int sayi1=int.Parse(Console.ReadLine());
+
+// Console.Write("sayı2 girin:");
+// int sayi2=int.Parse(Console.ReadLine());
+
+// Console.Write("sayı3 girin:");
+// int sayi3=int.Parse(Console.ReadLine());
+
+// if (sayi1>sayi2 && sayi1>sayi3)
+// {
+//    Console.WriteLine("sayi1 en büyüktür");
+// }
+// else if (sayi2>sayi1 && sayi2>sayi3)
+// {
+//      Console.WriteLine("sayi2 en büyüktür");
+// }
+// else if (sayi3>sayi1 && sayi3>sayi2)
+// {
+//      Console.WriteLine("sayi3 en büyüktür");
+// }
+// else
+// {
+//     Console.WriteLine("yanlış bilgi");
+// }
+
+
+//3-bir öğreninin 2 yazılı bir sözlü notunu alıp ortalama hesapla
+//not aralığı verilerine göre ortalamanın neye karşılık geldiğii yazdır
+//0-24=0 25-44=1 45-54=2 55-69=3 70-84=4 85-100=5
+// Console.Write("yazılı1 notu girin:");
+//  int yazili1=int.Parse(Console.ReadLine());
+
+// Console.Write("yazılı2 notu girin:");
+//  int yazili2=int.Parse(Console.ReadLine());
+
+// Console.Write("sözlü notu girin:");
+//  int sözlü=int.Parse(Console.ReadLine());
+
+//  int ort = (yazili1+yazili2+sözlü)/3;
+
+// if (ort>=0 && ort<25)
+// {
+//     Console.WriteLine("0 aldınız");
+// }
+// else if (ort>=25 && ort<45)
+// {
+//      Console.WriteLine("1 aldınız");
+// }
+// else if (ort>=45 && ort<55)
+// {
+//      Console.WriteLine("2 aldınız");
+// }
+// else if (ort>=55 && ort<70)
+// {
+//      Console.WriteLine("3 aldınız");
+// }
+// else if (ort>=70 && ort<85)
+// {
+//      Console.WriteLine("4 aldınız");
+// }
+// else if (ort>=85 && ort<=100)
+// {
+//      Console.WriteLine("5 aldınız");
+// }
+// else
+// {
+//     Console.WriteLine("yanlış bilgi");
+// }
+
+//bölüm 17 for döngüsü
+
+// for (int i = 0; i < 5; i++)
+// {
+//     Console.WriteLine(i);
+// }
+
+//bölüm18  uygulama
+
+//1-Kullanıcıdan baslangıs ,bitiş ve artıs miktarı alınarak aralıktaki
+//tüm sayıları ekrana yazdırı
+
+
+// Console.Write("baslangıc:");
+// int baslangic=int.Parse(Console.ReadLine());
+
+// Console.Write("bitis:");
+// int bitis=int.Parse(Console.ReadLine());
+
+// Console.Write("artis:");
+// int artis=int.Parse(Console.ReadLine());
+
+// int toplam=0;
+
+// for (int i = baslangic; i <= bitis; i=i+artis)
+// {
+
+// toplam+=i;
+//     Console.WriteLine(i);
+// }
+// Console.WriteLine("toplam:"+toplam);
+
+
+//2-sayılar dizisindeki hangi sayılar 3 ün katıdır?
+
+// int[] sayilar={1,3,5,6,7,23,67,90,120,150,200};
+
+// for (int i = 0; i < sayilar.Length; i++)
+// {
+//    if (sayilar[i]%3==0)
+//    {
+//         Console.WriteLine(sayilar[i]);
+//    }
+// }
+
+
+//3-sayilar dizisindeki sayıların toplamı kaçtır?
+
+// int[] sayilar={1,3,5,6,7,23,67,90,120,150,200};
+// int toplam=0;
+// int carpim=1;
+// for (int i = 0; i < sayilar.Length; i++)
+// {
+//     toplam+=sayilar[i];
+//      carpim*=sayilar[i];
+//     Console.WriteLine(sayilar[i]);
+// }
+
+// Console.WriteLine("toplam:" +toplam);
+// Console.WriteLine("carpim:" +carpim);
+
+//4-sayılar dizisindeki tek sayıların karesini ekrana yazdır
+
+// int[] sayilar={1,2,3,4,5};
+// double val;
+
+// for (int i = 0; i < sayilar.Length; i++)
+// {
+// if (sayilar[i]%2==1)
+// {
+//      val=Math.Pow(sayilar[i],2);
+//     Console.WriteLine("tek sayıların kareleri:"+val);
+// }
+
+// }
+
+
+//5-arabalar dizisindeki en az 5 karakteli araç isimlerini yazdır
+
+// string[] arabalar={"opel","mazda","toyota","bmw","mercedes"};
+
+// for (int i = 0; i < arabalar.Length; i++)
+// {
+//     if (arabalar[i].Length>=5)
+//     {
+//         Console.WriteLine(arabalar[i]);
+//     }
+
+
+
+// }
+
+
+
+//bölüm 19 while döngüsü
+
+// int i=0;
+// while (i<10)
+// {
+//     Console.WriteLine(i);
+//     i++;
+// }
+
+// string name="";
+// while (string.IsNullOrEmpty(name))
+// {
+//     Console.Write("isiminiz:");
+//     name=Console.ReadLine();
+// }
+
+// Console.WriteLine("merhaba"+name);
+
+
+//do while döngüsü
+// int i=0;
+// do
+// {
+//     Console.WriteLine(i);
+//     i++;
+// } while (i<10);
+
+
+//foreach döngüsü
+// int[] sayilar={1,2,3,4,5};
+
+// foreach (var sayi in sayilar)
+// {
+//     Console.WriteLine(sayi);
+// }
+
+//uygulama
+
+//1-sınırsız sayıda bir ürünü bir dizi içinde saklayın
+//ürün adetini kullanıcılar belirlesin
+//eklenen ürünler listelensin
+
+// Console.Write("Adet:");
+// int adet=int.Parse(Console.ReadLine());
+
+// string[] urunler=new string[adet];
+
+// int i=0;
+
+// do
+// {
+//     Console.Write("ürün adı:");
+//     urunler[i]=Console.ReadLine();
+//     i++;
+// } while (adet!=i);
+
+// Console.WriteLine("ürünler listeleniyor...");
+
+// for (int a = 0; a < urunler.Length; a++)
+// {
+//     Console.WriteLine("ürün adı: {0}",urunler[a]);
+// }
+
+//bölüm 20 dögüler:break &continue
+
+
+// string name="sadık turan";
+
+
+// for (int i = 0; i < name.Length; i++)
+// {
+//     if (name[i]== 'd')
+//     {
+//         continue;
+//     }
+//     Console.WriteLine(name[i]);
+// }
+
+// Console.WriteLine("döngü  dışı");
+
+//uygulama 
+
+//1- girilen bir sayının asal olup olmadıını kontrol eden program yaz
+//bir sayı sadece 1' e ve kendisine tam bölünebiliyorsa asaldır
+
+// bool asalmi=true;
+
+// Console.Write("bir sayı giriniz:");
+// int sayi=int.Parse(Console.ReadLine());
+
+// if (sayi==1)
+// {
+//     asalmi=false;
+// }
+
+// for (int i = 2; i < sayi; i++)
+// {
+//     if (sayi%i==0)
+//     {
+//         asalmi=false;
+//         break;
+//     }
+
+// }
+// if (asalmi==true)
+// {
+//     Console.WriteLine("sayi asaldır.");
+// }
+// else
+// {
+//     Console.WriteLine("sayi asal değildir.");
+// }
+
+//2-)sayi tahmin uygulaması
+//1-100 arası tutulan bir sayiyi buldurmaya çalısın
+//puanlama yapınız
+
+
+// int tutulan=(new Random()).Next(1,10);
+
+// int hak=5;
+// int sayi;
+
+// while (hak>0)
+// {
+//     Console.Write("sayi:");
+//     sayi=int.Parse(Console.ReadLine());
+
+
+// if (sayi==tutulan)
+// {
+//     Console.WriteLine("tebrikler bildiniz.");
+//     break;
+// }
+
+// else
+// {
+//     if (tutulan>sayi)
+//     {
+//         Console.WriteLine("yukarı");
+//     }
+//     else
+//     {
+//         Console.WriteLine("aşağı");
+//     }
+//     hak--;
+// }
+//    }     
+// Console.WriteLine("oyun bitti.");
+
+
+//3-)bankamatik
+//bakiye
+//para yatırma
+//para çekme
+//çıkış
+
+
+// string secim="";
+// double bakiye=0;
+
+// do
+// {
+
+// Console.WriteLine("1-bakiye görüntüle\n2-para yatırma\n3-para çekme\n4-çıkış\nseçiminiz:");
+// secim=Console.ReadLine(); 
+// switch (secim)
+// {
+//     case "1":
+//     Console.WriteLine("bakiyeniz {0} tl",bakiye);
+
+//     break;
+
+//      case "2":
+//     Console.WriteLine("yatırmak istediğiniz miktar");
+//     double yatirilan=double.Parse(Console.ReadLine());
+//     bakiye+=yatirilan;
+//     break;
+
+//      case "3":
+//     Console.WriteLine("çekmek istediğiniz miktar");
+//     double cekilecekmiktar=double.Parse(Console.ReadLine());
+//     if (cekilecekmiktar>bakiye)
+//     {
+//         Console.WriteLine("bakiyeniz yetersiz");
+//     }
+//     else
+//     {
+//          bakiye-=cekilecekmiktar;
+//     }
+
+//     break;
+
+//      case "4":
+//     Console.WriteLine("çıkış");
+//     break;
+
+//     default:
+//     Console.WriteLine("hatalı seçim");
+//     break;
+// }
+// } while (secim!="4");
+// Console.WriteLine("uygulamadan çıkıldı");
+
+
+
+
+
+//        }
+//     }
+// }
+//üst tarafta birşey çalıştırmak istiyorsan yazılan kod dışında 
+//en üst ve en alttaki  satırları açmayı unutma
+
+//***********************************************************
+//bölüm 21 Class
+
+
+// using System;
+
+// namespace consoleapp
+
+// {
+
+//     class Ogrenci
+//     {
+//         public int OgrNo { get; set; }
+//         public string Ad { get; set; }
+
+//         public string Sube { get; set; }
+
+//     }
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+
+
+
+
+// int[] ogrno={100,200,300};
+// string[] ad={"çınar","ada","yiğit"};
+// string[] sube={"10A","10B","11A"};
+
+// Console.WriteLine($"no:{ogrno[0]} ad:{ad[0]} sube:{sube[0]}");
+// Console.WriteLine($"no: {ogrno[1]} ad:{ad[1]} sube:{sube[1]}");
+// Console.WriteLine($"no: {ogrno[2]} ad:{ad[2]} sube:{sube[2]}");
+
+
+// Ogrenci ogr1=new Ogrenci();
+// ogr1.OgrNo = 100;
+// ogr1.Ad = "Çınar";
+// ogr1.Sube ="10A";
+
+// Console.WriteLine($"no:{ogr1.OgrNo} ad:{ogr1.Ad} sube:{ogr1.Sube}");
+
+// Ogrenci ogr2=new Ogrenci()
+// {
+//     OgrNo=200,
+//     Ad="Ada",
+//     Sube="10B"
+// };
+// Console.WriteLine($"no:{ogr2.OgrNo} ad:{ogr2.Ad} sube:{ogr2.Sube}");
+
+// Ogrenci ogr3=new Ogrenci()
+// {
+//     OgrNo=300,
+//     Ad="Yiğit",
+//     Sube="11A"
+// };
+// Console.WriteLine($"no:{ogr3.OgrNo} ad:{ogr3.Ad} sube:{ogr3.Sube}");
+
+// Console.WriteLine("***************************************************");
+
+//  Ogrenci[] ogrenciler=new Ogrenci[3];
+// ogrenciler[0]=ogr1;
+// ogrenciler[1]=ogr2;
+// ogrenciler[2]=ogr3;
+// for (int i = 0; i < ogrenciler.Length; i++)
+// {
+//     Console.WriteLine($"no:{ogrenciler[i].OgrNo} ad:{ogrenciler[i].Ad} sube:{ogrenciler[i].Sube}");
+// }
+
+
+
+//         }
+//     }
+// }
+//**************************************************************************
+//bölüm 22 Uygulama
+
+//Product class=>name,price description
+//sınırsız sayıda ürün bilgisini alıp bir dizi içinde saklayınız  
+//ürün adetini kullanıcı belirtsin
+//eklenen ürünler listelensin
+
+
+// using System;
+
+// namespace consoleapp
+
+// {
+//    class Product
+//    {
+//        public string Name { get; set; }
+//       public double Price { get; set; }
+//       public string Description { get; set; }
+//    }
+
+//   class Program
+//     {
+//         static void Main(string[] args)
+//         {
+
+//       Console.Write("Adet:");
+//      int adet=int.Parse(Console.ReadLine());
+//      Product[] products=new Product[adet];
+
+// int i=0;
+// Product prd=new Product();
+// do
+// {
+
+//     Console.Write("ürün adı:");
+//     prd.Name=Console.ReadLine();    
+
+
+//      Console.Write("ürün fiyat:");
+//      prd.Price=double.Parse(Console.ReadLine());
+
+//      Console.Write("açıklama:");
+//      prd.Description=Console.ReadLine();
+
+// products[i]=prd;
+// i++;
+
+// } while (adet>i);
+
+//          Console.WriteLine("**********************************************");
+
+// for (int a = 0; a < products.Length; a++)
+// {
+//     Console.WriteLine($"ürün adı:{products[a].Name} ürün fiyatı:{products[a].Price} açılama:{products[a].Description}");
+// }  
+//2. yol
+// foreach (var urun in products)
+// {
+//     Console.WriteLine($"ürün adı:{urun.Name} ürün fiyatı:{urun.Price} açılama:{urun.Description}");
+// }
+
+
+//         }
+//     }
+// }
+
+//Bölüm 23 Metotlar
+
+// using System;
+
+// namespace consoleapp
+
+// {
+//     class Person
+//     {
+//         public string Name { get; set; }
+//         public int Year { get; set; }
+//         public string Intro()
+//         {
+//               return $"name:{this.Name} yaş:{this.CalculateAge()}";
+//         }
+
+//           public int CalculateAge()
+//           {
+//               return DateTime.Now.Year-this.Year;
+//           }
+
+
+//     }
+
+//   class Program
+//     {
+//         static void Main(string[] args)
+//         {
+
+//         Person p1=new Person()
+//         {
+//           Name="Ada",Year=2012
+//         };
+//          Person p2=new Person()
+//          {
+//               Name="Yiğit",Year=2010
+//          };
+//           Person p3=new Person()
+//          {
+//               Name="Sena",Year=1999
+//          };
+
+// var str1 = p1.Intro();
+// var str2 = p2.Intro();
+// var str3 = p3.Intro();
+
+// Console.WriteLine(str1);
+// Console.WriteLine(str2);
+// Console.WriteLine(str3);
+
+//  Console.WriteLine(p1.Intro());
+//  Console.WriteLine(p2.Intro());
+//  Console.WriteLine(p3.Intro());
+
+
+
+
+// Console.WriteLine($"name:{p1.Name} yıl:{p1.Year}");
+// Console.WriteLine($"name:{p2.Name} yıl:{p2.Year}");
+// Console.WriteLine($"name:{p3.Name} yıl:{p3.Year}");
+
+//         }
+//     }
+// }
+
+
+//Bölüm 24 Uygulama
+
+
+// using System;
+
+// namespace consoleapp
+
+// {
+//     class Araba
+//     {
+//         public string Marka { get; set; }
+//         public string Model { get; set; }
+//         public string Renk { get; set; }
+//         public bool Otomatik { get; set; }
+
+//         public void Start()
+//         {
+//             Console.WriteLine($"{this.Marka} {this.Model} çalıştırıldı.");
+//         }
+
+//         public void Stop()
+//         {
+//             Console.WriteLine($"{this.Marka} {this.Model} stop edildi.");
+//         }
+
+//         public void Yavasla()
+//         {
+//             Console.WriteLine($"{this.Marka} {this.Model} yavaslıyor.");
+//         }
+
+//         public void Hizlan()
+//         {
+//             Console.WriteLine($"{this.Marka} {this.Model} hızlanıyor.");
+//         }
+
+//         public void Menu()
+//         {
+//             string komut = "";
+
+//             do
+//             {
+
+//                 Console.WriteLine("seçiminiz:1-Start 2-Hızlan 3-Yavasla 4-STOP Cıkıs:Ç");
+//                 Console.Write("seçiminiz:");
+//                 komut = Console.ReadLine();
+//                 switch (komut)
+//                 {
+//                     case "1":
+//                         this.Start();
+//                         break;
+//                     case "2":
+//                         this.Hizlan();
+//                         break;
+//                     case "3":
+//                         this.Yavasla();
+//                         break;
+//                     case "4":
+//                         this.Stop();
+//                         break;
+//                     default:
+//                         Console.WriteLine("uygulamadan cıkıldı");
+//                         break;
+//                 }
+
+
+//             } while (komut != "Ç");
+//         }
+//     }
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+
+//             Araba opel = new Araba();
+//             opel.Marka = "Opel";
+//             opel.Model = "Astra";
+//             opel.Renk = "Beyaz";
+//             opel.Otomatik = true;
+
+
+// opel.Start();
+// opel.Hizlan();
+// opel.Yavasla();
+// opel.Stop();
+
+//             opel.Menu();
+
+
+// }
+// }
+// }
+
+
+
+//Bölüm 25 Metot Parametreleri
+
+
+// using System;
+
+// namespace consoleapp
+//     {
+
+//    class Islem
+//    {
+
+//        public int Toplama(int x,int y,int z)
+//        {
+//            Console.WriteLine("x:"+x);
+//              Console.WriteLine("y:"+y);
+//                Console.WriteLine("z:"+z);
+//        return x+y+z;
+//        }
+//    }
+
+//         class Program
+//         {
+//             static void Main(string[] args)
+//             {
+
+// var islem =new Islem();
+
+//Console.WriteLine(islem.Toplama(10,20,30));
+
+// Console.WriteLine(islem.Toplama(x:10,y:20,z:30));
+
+//             }
+//         }
+//     }
+
+
+
+
+//Bölüm 26 Aşırı Yüklenmiş Metotlar
+
+// using System;
+
+// namespace consoleapp
+//     {
+
+//    class Islem
+//    {
+
+//        public int Toplama(int a,int b)
+//        {
+
+//        return a+b;
+//        }
+
+//        public int Toplama(int a,int b,int c)
+//        {
+
+//        return a+b+c;
+//        }
+
+//        public int Toplama(int a,int b,int c,int d)
+//        {
+
+//        return a+b+c+d;
+//        }
+
+
+//    }
+
+//         class Program
+//         {
+//             static void Main(string[] args)
+//             {
+
+// var islem =new Islem();
+
+// Console.WriteLine(islem.Toplama(10,20));
+// Console.WriteLine(islem.Toplama(10,20,30));
+// Console.WriteLine(islem.Toplama(10,20,30,40));
+//             }
+//         }
+//     }
+
+
+
+//Bölüm 37 Yapıcı Metotlar
+
+
+// using System;
+
+// namespace consoleapp
+
+// {
+//     class Araba
+//     {
+
+//         public Araba()
+//         {
+//             this.MaxHiz = 180;
+//             Console.WriteLine("yapıcı metot çalıstı");
+//         }
+//         public Araba(int maxhiz,string Marka,string Model)
+//         {
+//             this.MaxHiz = maxhiz;
+//             this.Marka=Marka;
+//             this.Model=Model;
+//         }
+//         public string Marka { get; set; }
+//         public string Model { get; set; }
+//         public string Renk { get; set; }
+//         public bool Otomatik { get; set; }
+//         public int MaxHiz { get; set; }
+
+//     }
+
+//         class Program
+//         {
+//             static void Main(string[] args)
+//             {
+
+//                 Araba opel = new Araba(250,"Opel","Astra");
+
+//                 Console.WriteLine(opel.MaxHiz);
+//                  Console.WriteLine(opel.Marka);
+//                   Console.WriteLine(opel.Model);
+
+
+
+//             }
+//         }
+
+//     }
+
+
+// Bölüm 27 yapıcı metotlar uygulama
+
+
+// using System;
+
+// namespace consoleapp
+
+// {
+//     class Product
+//     {
+
+//         public Product()
+//         {
+//             var rnd =new Random();
+//             this.ProductId=rnd.Next(11111,99999);
+//         }
+//         public Product(int productId)
+//         {
+//             this.ProductId=productId;
+//         }
+
+//         public Product(int productId,string name,double price,bool isApproved)
+//         {
+//              this.ProductId=productId;
+//             this.Name=name;
+//             this.Price=price;
+//             this.IsApproved=isApproved;
+//         }
+//         public int ProductId { get; set; }
+//         public string Name { get; set; }
+//         public double Price { get; set; }
+//         public bool IsApproved { get; set; }
+        
+//     }
+//      class Program
+//         {
+//             static void Main(string[] args)
+//             {
+//             var p1 = new Product();
+
+//             Console.WriteLine(p1.ProductId);
+//             Console.WriteLine(p1.Name);
+//             Console.WriteLine(p1.Price);
+//             Console.WriteLine(p1.IsApproved);
+
+//             Console.WriteLine("********************************");
+
+//             var p2 = new Product(12345);
+
+//             Console.WriteLine(p2.ProductId);
+//             Console.WriteLine(p2.Name);
+//             Console.WriteLine(p2.Price);
+//             Console.WriteLine(p2.IsApproved);
+
+//             Console.WriteLine("********************************");
+
+//             var p3 = new Product(123, "samsung s7", 3000, true);
+
+//             Console.WriteLine(p3.ProductId);
+//             Console.WriteLine(p3.Name);
+//             Console.WriteLine(p3.Price);
+//             Console.WriteLine(p3.IsApproved);
+
+
+
+
+//             }
+//         }
+
+//     }
+
+
+
+// using System;
+
+// namespace consoleapp
+
+// {
+//     class Product
+//     {
+//       private string _name;
+
+//        public string Name
+//        {
+//            get
+//            {
+//              return _name;
+//            }
+//            set
+//            {
+//              if (!string.IsNullOrEmpty(value))
+//              {
+//                  _name=value;
+//              }
+//              else
+//              {
+//                  Console.WriteLine("bos geçilemez");
+//              }
+//            }
+//        }
+        
+//      private double _price;
+
+//       public double Price
+//         {
+//             get
+//             {
+//                 return _price;
+//             }
+//             set
+//             {
+//               if (value<0)
+//               {
+//                   _price=0;
+//               }
+//               else
+//               {
+//                   _price=value;
+//               }
+//             }
+//         }
+
+    // }
+
+    //  class Program
+    //     {
+    //         static void Main(string[] args)
+    //         {
+           
+    //         var p =new Product();
+    //         p.Name="";
+    //        p.Price=2000;
+    //        Console.WriteLine(p.Price);
+    //         }
+    //     }
+
+    // }
+
+
+//Bölüm 28 uygulama-quiz uygulaması-question sınıfı
+
+
+// using System;
+
+// namespace consoleapp
+
+// {
+
+//     class Question
+//     {
+//         public Question(string text,string[] choices,string answer)//ctor
+//         {
+//             this.Text=text;
+//             this.Choices=choices;
+//             this.Answer=answer;
+//         }
+//         public string Text { get; set; }
+//         public string[] Choices { get; set; }
+//         public string Answer { get; set; }
+
+//       public bool checkAnswer(string answer) //metot parametleri
+//       {
+//         return  this.Answer==answer;
+//       }
+
+//     }
+
+//   class Program
+//     {
+//         static void Main(string[] args)
+//         {
+
+//       var q1=new Question("En iyi programlama dili hangisidir?",new string[]{"C#","Python","java","C++"},"C#");
+//        var q2=new Question("En popüler programlama dili hangisidir?",new string[]{"C#","Python","java","C++"},"C#");
+//         var q3=new Question("En çok kazandıran programlama dili hangisidir?",new string[]{"C#","Python","java","C++"},"C#");
+
+//   var questions=new Question[]{q1,q2,q3};
+
+//   int index=1;
+//   foreach (var q in questions)
+//   {
+//       Console.WriteLine($" soru {index}: {q.Text}");
+//       index++;
+
+//       foreach (var c in q.Choices)
+//       {
+//           Console.WriteLine($"-{c}");
+//       }
+//       Console.WriteLine("cevap:");
+//       var cevap=Console.ReadLine();
+//       Console.WriteLine(q.checkAnswer("cevap"));
+
+//   }
+
+
+// Console.WriteLine(q1.checkAnswer("C#"));//bunları teker teker de sorurabilirdik ama metotla(metot parametreleri) yaptık
+// Console.WriteLine(q2.checkAnswer("Java"));//böyle Console.WriteLine(q1.Text); Console.WriteLine(q1.Choices);
+// Console.WriteLine(q3.checkAnswer("C++"));
+
+
+//         }
+//     }
+// }
+ 
+
+
+//Bölüm 29 uygulama-quiz uygulaması-quiz sınıfı
+
+
+// using System;
+
+// namespace consoleapp
+
+// {
+
+//     class Question
+//     {
+//         public Question(string text,string[] choices,string answer)//ctor
+//         {
+//             this.Text=text;
+//             this.Choices=choices;
+//             this.Answer=answer;
+//         }
+//         public string Text { get; set; }
+//         public string[] Choices { get; set; }
+//         public string Answer { get; set; }
+
+//       public bool checkAnswer(string answer) //metot parametleri
+//       {
+//         return  this.Answer==answer;
+//       }
+
+//     }
+//     class Quiz
+//      {
+//        public Quiz(Question[] questions)
+//        {
+//            this.Questions=questions;
+//            this.QuestionIndex=0;
+//        }
+//        private Question[] Questions { get; set; }  //question dizisi tanımladık//public oluncada çalışıyo
+//        public int QuestionIndex { get; set; }
+
+//       public Question GetQuestion()
+//       {
+//           return this.Questions[this.QuestionIndex];
+//       }
+//         public void DisplayQuestion()//metot
+//         {
+//             var question = this.GetQuestion();
+//             Console.WriteLine($" soru {this.QuestionIndex + 1}: {question.Text}");
+//             foreach (var c in question.Choices)
+//             {
+//                 Console.WriteLine($"-{c}");
+//             }
+//                 Console.WriteLine("cevap:");
+//                 var cevap=Console.ReadLine();
+//                 this.Guess(cevap);
+//         }
+//         public void Guess(string answer)
+//         {
+//            var question = this.GetQuestion();
+//            Console.WriteLine(question.checkAnswer(answer));
+//            this.QuestionIndex++;
+
+//           if(this.Questions.Length==this.QuestionIndex)//soruyu sınırlamak için
+//           {
+//             return;
+
+//           }
+//           else
+//           {
+//              this.DisplayQuestion();
+
+//           }       
+//         }
+//     }
+
+//   class Program
+//     {
+//         static void Main(string[] args)
+//         {
+
+//           var q1=new Question("En iyi programlama dili hangisidir?",new string[]{"C#","Python","java","C++"},"C#");
+//           var q2=new Question("En popüler programlama dili hangisidir?",new string[]{"C#","Python","java","C++"},"C#");
+//           var q3=new Question("En çok kazandıran programlama dili hangisidir?",new string[]{"C#","Python","java","C++"},"C#");
+
+//            var questions=new Question[]{q1,q2,q3};
+//            var quiz=new Quiz(questions);
+//            quiz.DisplayQuestion();
+//         }
+//     }
+// }
+
+
+
+//Bölüm 29 uygulama-quiz uygulaması-skor bilgisinin hazırlanması
+
+
+// using System;
+
+// namespace consoleapp
+
+// {
+
+//     class Question
+//     {
+//         public Question(string text,string[] choices,string answer)//ctor
+//         {
+//             this.Text=text;
+//             this.Choices=choices;
+//             this.Answer=answer;
+//         }
+//         public string Text { get; set; }
+//         public string[] Choices { get; set; }
+//         public string Answer { get; set; }
+
+//       public bool checkAnswer(string answer) //metot parametleri
+//       {
+//         return  this.Answer==answer;
+//       }
+
+//     }
+//     class Quiz
+//      {
+//        public Quiz(Question[] questions)
+//        {
+//            this.Questions=questions;
+//            this.QuestionIndex=0;
+//            this.Score=0;
+//        }
+//        private Question[] Questions { get; set; }  //question dizisi tanımladık//public oluncada çalışıyo
+//        private int QuestionIndex { get; set; }//public oluncada çalışıyo
+//        private int Score { get; set; }//public oluncada çalışıyo
+//       public Question GetQuestion()//public olanlar class dışındada çağırdığımız için public    //ama private olanlar sadece ait oldukları class içinde kullandık bu yüzden private.
+//   
+//       {
+//           return this.Questions[this.QuestionIndex];
+//       }
+//         public void DisplayQuestion()//metot
+//         {
+//             var question = this.GetQuestion();
+//              this.DisplayProgress();//kullanıcı hangi aşamada göremesi için
+//             Console.WriteLine($" soru {this.QuestionIndex + 1}: {question.Text}");
+            
+//             foreach (var c in question.Choices)
+//             {
+//                 Console.WriteLine($"-{c}");
+//             }
+//                 Console.WriteLine("cevap:");
+//                 var cevap=Console.ReadLine();
+//                 this.Guess(cevap);
+//         }
+//         private void Guess(string answer)//public oluncada çalışıyo
+//         {
+//            var question = this.GetQuestion();
+//           if(question.checkAnswer(answer))
+//           {
+//           this.Score++;
+//           }
+//            this.QuestionIndex++;
+
+//           if(this.Questions.Length==this.QuestionIndex)//soruyu sınırlamak için
+//           {
+//             this.DisplayScore();
+
+//           }
+//           else
+//           {
+           
+//              this.DisplayQuestion();
+
+//           }       
+//         }
+//         private void DisplayScore()//public oluncada çalışıyo
+//         {
+//           Console.WriteLine($"Score: {this.Score}");
+//         }
+//         private void DisplayProgress()//public oluncada çalışıyo//kullanıcı hangi aşamada göremesi için
+//         {
+//           int totalQuestion=this.Questions.Length;
+//           int questionNumber=this.QuestionIndex+1;
+//           if (totalQuestion>=questionNumber)
+//           {
+//               Console.WriteLine($"Question {questionNumber} of {totalQuestion} ");
+//           }
+
+//         }
+//     }
+
+//   class Program
+//     {
+//         static void Main(string[] args)
+//         {
+
+//           var q1=new Question("En iyi programlama dili hangisidir?",new string[]{"C#","Python","java","C++"},"C#");
+//           var q2=new Question("En popüler programlama dili hangisidir?",new string[]{"C#","Python","java","C++"},"C#");
+//           var q3=new Question("En çok kazandıran programlama dili hangisidir?",new string[]{"C#","Python","java","C++"},"C#");
+
+//            var questions=new Question[]{q1,q2,q3};
+//            var quiz=new Quiz(questions);
+
+//            quiz.DisplayQuestion();
+//         }
+//     }
+// }
+
+//Bölüm 30 Static Members
+
+
+
+// using System;
+
+// namespace consoleapp
+
+// {
+// class Student//instance sınıfdır bu içerisinde statik üyeler var ama bu sefer
+// {
+//     public string Name { get; set; }
+//     public int StudentNumber { get; set; }
+//     public static string School = "my school";//prop yapıyoz ama static ekleyip get ve set yerine değer atıyoruz.
+//      public static string Address = "my school address";
+
+// public Student(string name,int studentnumber)
+// {
+//     this.Name=name;
+//     this.StudentNumber=studentnumber;
+// }
+
+// public void DisplayStudentDetails()
+// {
+//     Console.WriteLine($"name:{this.Name} number:{this.StudentNumber}");
+// }
+
+// public static void DisplaySchoolDetails()
+// {
+//     Console.WriteLine($"school name:{School}  address:{Address}");
+// }
+
+// }
+
+//   static class HelperMethods//direk static class bu
+//  {
+//      public static string KarakterDuzelt(string str)
+//      {
+//          return str
+//                   .Replace("ö","o")
+//                  .Replace("ü","u")
+//                .Replace("ğ","g");
+//      }
+//  }
+//   class Program
+//     {
+//         static void Main(string[] args)
+//         {
+        
+
+//         var s1=new Student("Çınar",100);
+//         var s2=new Student("Sena",101);
+//         var s3=new Student("Yiğit",102);
+       
+// Student.DisplaySchoolDetails();
+
+// s1.DisplayStudentDetails();
+// s2.DisplayStudentDetails();
+// s3.DisplayStudentDetails();
+
+// string str="ölçme ve değerlendirme";
+ // var result=HelperMethods.KarakterDuzelt(str);
+// Console.WriteLine(result);
+//         }
+//     }
+// }
+
+      
+        // Bölüm 31 Uygulama-Static Members
+
+
+
+//       using System;
+
+// namespace consoleapp
+
+// {
+//     class Product
+//     {
+//         public int ProductId { get; set; }
+//         public string ProductName { get; set; }
+//         public double Price { get; set; }
+//         public bool IsApproved { get; set; }
+//     }
+
+// static class ProductManager
+// {
+//     static Product[] Products;
+
+//     static ProductManager()//ctor ekleriz ama  public yerine static yazcaz.ve parametre(değer) atamıyoruz
+//     {
+//         Products=new Product[5];
+//         Products[0]=new Product{ProductId=1,ProductName="ıphone 5",Price=2000,IsApproved=false};
+//         Products[1]=new Product{ProductId=2,ProductName="ıphone 6",Price=3000,IsApproved=false};
+//         Products[2]=new Product{ProductId=3,ProductName="ıphone 7",Price=4000,IsApproved=true};
+//         Products[3]=new Product{ProductId=4,ProductName="ıphone 8",Price=5000,IsApproved=true};
+//         Products[4]=new Product{ProductId=5,ProductName="ıphone x",Price=6000,IsApproved=true};
+
+//     }
+
+//     public static Product[] GetProducts()
+//     {
+//         return Products;
+//     }
+
+// }
+
+
+
+//   class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//          var products= ProductManager.GetProducts();
+//          foreach (var p in products)
+//          {
+//              Console.WriteLine($"name:{p.ProductName} price:{p.Price}");
+//          }
+       
+
+
+
+//         }
+//     }
+// }
+    
+    
+      
+      
+        //Bölüm 32 Inheritance(Kalıtım)
+
+
+//       using System;
+
+// namespace consoleapp
+
+// {
+//     class Person
+//     {
+//         public string Name { get; set; }
+//         public string SurName { get; set; }
+
+//         public Person(string name,string surname)
+//         {
+//             this.Name=name;
+//             this.SurName=surname;
+
+//             Console.WriteLine("Person nesnesi olusturuldu.");
+//         }
+//         public virtual void Intro()
+//         {
+            
+//            Console.WriteLine($"name:{this.Name} surname:{this.SurName}");
+           
+
+//         }
+    
+//      }
+     
+//     class Student:Person
+//     {
+//         public string StudentNumber { get; set; }
+
+//          public Student(string name,string surname,string studentnumber): base(name,surname)
+//         {
+//            this.StudentNumber=studentnumber;
+//             Console.WriteLine("Student nesnesi olusturuldu.");
+//         }
+
+//         public override void Intro()
+//         {
+          
+//            Console.WriteLine($"name:{this.Name} surname:{this.SurName} number:{this.StudentNumber}");
+    
+//         }
+
+
+//     }
+
+//     class Teacher:Person
+//     {
+//         public string Branch { get; set; }
+
+//         public Teacher(string name,string surname,string branch): base(name,surname)
+//         {
+//             this.Branch=branch;
+//         }
+
+//         public void Teach()
+//         {
+//             Console.WriteLine("I'am Teaching...");
+//         }
+
+//         public override void Intro()
+//         {
+          
+//            Console.WriteLine($"name:{this.Name} surname:{this.SurName} branch:{this.Branch}");
+    
+//         }
+//     }
+        
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             var p=new Person("Ali","Yılmaz");
+//             var s=new Student("Çınar","Turan","120");
+//             var t=new Teacher("Sadık","Turan","Bilişim");
+
+//             t.Intro();
+//             t.Teach();
+            
+//             p.Intro();
+//             s.Intro();
+
+//         }
+//     }
+// }
+
+
+                //Bölüm 33 Abstract Class
+
+
+
+//       using System;
+
+// namespace consoleapp
+
+// {
+//    abstract class Person
+//     {
+//         public string Name { get; set; }
+//         public string SurName { get; set; }
+
+//         public Person(string name,string surname)
+//         {
+//             this.Name=name;
+//             this.SurName=surname;
+
+//             Console.WriteLine("Person nesnesi olusturuldu.");
+//         }
+//         public void Greeting()
+//         {
+//             Console.WriteLine(" Iam a person");
+//         }
+
+
+//         public abstract void Intro();//bunu kullanmak istiyosak virtual yapıcaz istemiyosak abstract(classıda yapmayı unutma) yapıcaz
+        
+    
+//      }
+     
+//     class Student:Person
+//     {
+//         public string StudentNumber { get; set; }
+
+//          public Student(string name,string surname,string studentnumber): base(name,surname)
+//         {
+//            this.StudentNumber=studentnumber;
+//             Console.WriteLine("Student nesnesi olusturuldu.");
+//         }
+
+//         public override void Intro()
+//         {
+          
+//            Console.WriteLine($"name:{this.Name} surname:{this.SurName} number:{this.StudentNumber}");
+    
+//         }
+
+
+//     }
+
+//     class Teacher:Person
+//     {
+//         public string Branch { get; set; }
+
+//         public Teacher(string name,string surname,string branch): base(name,surname)
+//         {
+//             this.Branch=branch;
+//         }
+
+//         public void Teach()
+//         {
+//             Console.WriteLine("I'am Teaching...");
+//         }
+
+//         public override void Intro()
+//         {
+          
+//            Console.WriteLine($"name:{this.Name} surname:{this.SurName} branch:{this.Branch}");
+    
+//         }
+//     }
+//     abstract class Shape
+//     {
+//         public int Width { get; set; }
+//         public int Height { get; set; }
+//         public abstract void Draw();//bunu kullanmak istiyosak virtual yapıcaz istemiyosak abstract(classıda yapmayı unutma) yapıcaz
+        
+       
+//     }
+//     class Square:Shape
+//     {
+//        public override void Draw()
+//         {
+//             Console.WriteLine("Draw a square");
+//         }
+//     }
+
+//     class Rectangle:Shape
+//     {
+//         public override void Draw()
+//         {
+//             Console.WriteLine("Draw a rectangle");
+//         }
+
+//     }
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+
+            // var s=new Student("Çınar","Turan","120");
+            // var t=new Teacher("Sadık","Turan","Bilişim");
+
+            // t.Intro();
+            // t.Teach();
+
+            // s.Intro();
+            // t.Greeting();
+            // s.Greeting();
+
+//             var shapes = new Shape[3];
+//             shapes[0] = new Rectangle();//shape abstrack yaparsak çağıramayız 
+//             shapes[1] = new Square();
+//             shapes[2] = new Rectangle();
+//             foreach (var shape in shapes)
+//             {
+//                 shape.Draw();
+//             }
+
+
+//         }
+//     }
+// }
+
+    
+    //Bölüm 34 Interface
+
+
+
+//       using System;
+
+// namespace consoleapp
+
+// {
+
+//     class Program
+//     {
+//         interface IPersonel
+//         {
+//             string adSoyad {get;set;} //prop ama public diyemiyoruz bunda
+//             string adres {get;set;}
+//             string departman { get; set; }
+            
+//             void bilgi();//buda metot ama bundada public diyemiyoruz içinide dolduramıyoruz
+           
+//         }
+
+
+//         class Yonetici : IPersonel//çıkan baloncuga tıkla arabirimi uygula de aşağıdakiler gelir
+//         {
+//             public Yonetici(string _adsoyad,string _adres,string _departman)//ctor ekledik sonradan
+//             {
+//                 this.adSoyad=_adsoyad;
+//                 this.adres=_adres;
+//                 this.departman=_departman;
+                
+//             }
+//             public string adSoyad { get;set;}//burda get set dısındaki şeyleri sil gelen
+//             public string adres { get;set;}
+//             public string departman { get;set;}
+
+//             public void bilgi()
+//             {
+//                 Console.WriteLine($"{this.adSoyad} isimli personel {this.departman} bölümünde yöneticidir.");
+//             }
+//         }
+
+//         class Isci:IPersonel//yukardakinin içeriğini buraya da kopyala aynı mantık
+//         {
+            
+//             public Isci(string _adsoyad,string _adres,string _departman)//ctor ekledik sonradan
+//             {
+//                 this.adSoyad=_adsoyad;
+//                 this.adres=_adres;
+//                 this.departman=_departman;
+                
+//             }
+//              public string adSoyad { get;set;}
+//             public string adres { get;set;}
+//             public string departman { get;set;}
+
+//             public void bilgi()
+//             {
+//                 Console.WriteLine($"{this.adSoyad} isimli personel {this.departman} bölümünde işçidir.");
+//             }
+
+//         }
+//         static void Main(string[] args)
+//         {
+            // IPersonel y = new Yonetici;//Ipersoneli  Yonetici yerine kullandık
+            // IPersonel i = new Isci();//IPersoneli Isci yerine kullandık
+
+//             var personeller = new IPersonel[3];
+
+//             personeller[0] = new Yonetici("ali yılmaz","istanbul","finans");
+//             personeller[1] = new Isci("ahmet cengiz","kocaeli","üretim");
+//             personeller[2] = new Yonetici("defne bilgi","istanbul","muhasebe");
+
+//             foreach (var personel in personeller)
+//             {
+//                 personel.bilgi();
+                
+//             }
+
+
+
+//         }
+//     }
+// }
+
+
+
+//Bölüm 35 uygulama-interface-repository pattern(data access,abstract,concrete ,entity,içindeki sayfalarda bu konuya dahil onlarla birlikte çalsıyor )
+
+
+
+
+//       using System;
+
+// namespace consoleapp
+
+// {
+
+//     class Program
+//     {
+        
+//         static void Main(string[] args)
+//         {
+//             var productDal=new EfProductDal();
+//             productDal.Create(new Product());
+         
+
+//         }
+//     }
+// }
+
+
+
+
+//Bölüm 36 Arraylist (kullanılan metotlar ve kullanım sekilleri c# arraylist diye aratınca cıkıyor)
+
+//       using System;
+// using System.Collections;
+
+// namespace consoleapp
+
+// {
+
+//     class Program
+//     {
+        
+//         static void Main(string[] args)
+//         {
+            //arraylist
+//             ArrayList myList=new ArrayList();//(ilk ArrayListten sonra ctrl nokta bas  using system.collections eklensin yukarı)
+//             myList.Add(10);
+//             myList.Add("10");
+//             myList.Add("abc");
+//             myList.Add(10.5);
+
+//             ArrayList myList2=new ArrayList(){10,"10","abc",10.5};
+
+            //Accessing Items
+//             Console.WriteLine(myList[0]);
+           
+//               int sayi=(int)myList[0];
+//             myList.Insert(1,20);//1.elemanı 20 yap ekleveya)
+//             myList.InsertRange(3,myList2);//mylistin 3. elemanından sonra mylist2 yi ekle)
+
+             //remove ıtems
+//             myList.Remove(10);
+//             myList.RemoveAt(2);
+//             myList.RemoveRange(0,2);
+
+
+//             foreach (var item in myList)
+//             {
+//                 Console.WriteLine(item);
+//             }
+
+//            Console.WriteLine(myList.Contains(10));//mylist içinde 10 varmı onu söyler true veya false olarak)
+           
+           
+//            ArrayList sayilar=new ArrayList(){10,5,4,60};
+//             foreach (var s in sayilar)//karısık yazdır
+//             {
+//                 Console.WriteLine(s);
+//             }
+//             sayilar.Sort();//sırala
+//             foreach (var s in sayilar)//sıralanmıs hali yazdır
+//             {
+//                 Console.WriteLine(s);
+//             }
+
+    
+
+//         }
+//     }
+// }
+
+
+
+//Bölüm 37 GenericList<T>
+
+
+
+//       using System;
+// using System.Collections.Generic;
+
+// namespace consoleapp
+
+// {
+//     class Product1
+//     {
+//         public string Name { get; set; }
+//     }
+
+//     class Program
+//     {
+
+//         static void Main(string[] args)
+//         {
+//             List<int> sayilar = new List<int>();
+//             sayilar.Add(10);
+//             sayilar.Add(20);
+//             sayilar.Add(30);
+
+//             List<string> isimler = new List<string>();
+//             isimler.Add("Ali");//add son elemana ekleme yapar insertte nereye ekleniceğini belirtiriz
+//             isimler.Add("Ahmet");
+//             isimler.Add("Yağmur");
+//             isimler.Add(null);
+
+
+//             List<Product1> urunler1 = new List<Product1>()
+//                  {
+
+                     
+//                      new Product1(){Name="Samsung S6"},
+//                        new Product1(){Name="Samsung S7"},
+//                          new Product1(){Name="Samsung S8"},
+//                           new Product1(){Name="Samsung S9"}
+//                  };
+
+
+
+//                   List<Product1> urunler2= new List<Product1>()
+//                  {
+//                      new Product1(){Name="Iphone6"},
+//                        new Product1(){Name="Iphone7"},
+//                          new Product1(){Name="Iphone8"},
+//                           new Product1(){Name="Iphone10"}
+//                  };
+//                  urunler1.AddRange(urunler2);
+//                  foreach (var sayi in sayilar)
+//                  {
+//                      Console.WriteLine(sayi);
+//                  }
+
+
+//                    foreach (var product in urunler1)
+//                  {
+//                      Console.WriteLine(product.Name);
+//                  }
+//                  int count=urunler1.Count;//ürünler1 in eleman sayısını verir
+//                  Console.WriteLine(count);//birleştirdik urunler 2 ile outputta 8 yazar ondan
+
+//                  Console.WriteLine(urunler2[0].Name);//URUNLER2 NİN 0 İNDEKSİNİN NAME İ YAZDIR
+
+//                  //İNSERT İTEMS
+//                  sayilar.Insert(1,100);//1.  indexten itibaren  100 elemanını ekle
+//                   foreach (var sayi in sayilar)//yazdırma işlemi
+//                  {
+//                      Console.WriteLine(sayi);
+//                  }
+
+//                  urunler1.InsertRange(1,urunler2);//1.indexten itibaren urunler 2 ekle
+//                    foreach (var product in urunler1)
+//                  {
+//                      Console.WriteLine(product.Name);
+//                  }
+
+
+//                  sayilar.Remove(10);//10 elemanını sil
+//                  sayilar.RemoveAt(1);//1. indexteki elemanı siler
+
+
+//                    foreach (var sayi in sayilar)
+//                  {
+//                      Console.WriteLine(sayi);
+//                  }
+
+
+
+
+//         }
+//     }
+// }
+
+
+
+
+//Bölüm 38 Dictionary<TKey,Value>
+
+
+
+// using System;
+// using System.Collections.Generic;
+
+// namespace consoleapp
+// {
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//         Dictionary<int,string> plakalar=new Dictionary<int,string>();//ctrl nokta ile dictionary den sonra yukaru system .collection.generic ekle
+//         plakalar.Add(34,"İstanbul");
+//         plakalar.Add(35,"İzmir");
+//         plakalar.Add(36,"Kars");
+
+
+//          Dictionary<int,string> sayilar=new Dictionary<int,string>()
+//          {
+//             {1,"Bir"},
+//             {2,"İki"},
+//             {3,"Üç"}
+//          };
+//       Console.WriteLine(sayilar[1]);//index no yazmıyoruz burda yukarı veriler no lardan yazıyoruz
+
+//       foreach (var plaka in plakalar)
+//       {
+//           Console.WriteLine($"{plaka.Key} {plaka.Value}");
+          
+//       }
+
+//       Console.WriteLine(plakalar.ContainsKey(41));//plakaların keys bölümü 41 içeiryomu true veya false döner
+
+//       plakalar.Remove(34);//34 olanı siler
+   
+
+//          }
+//     }
+// }
+
+
+
+//Bölüm 39 hata ve hata yönetimi
+
+
+
+
+// using System;
+
+
+// namespace consoleapp
+// {
+//     class Product2
+//     {
+//         public string Name { get; set; }
+//     }
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             //Unhandled exception. System.FormatException
+//         Console.WriteLine("sayi:");
+//         int sayi=int.Parse(Console.ReadLine());
+
+
+//          Console.WriteLine("sayi1:");
+//         int sayi1=int.Parse(Console.ReadLine());
+//         //Unhandled exception. System.DivideByZeroException: sayi1 0 alınırsa
+//         var sonuc=sayi/sayi1;
+
+
+
+//        int[]sayilar=new int[2];
+//       // sayilar[2]=10;
+
+// //Unhandled exception. System.NullReferenceException
+//        Product2 product=null;
+//        Console.WriteLine(product.Name);
+
+   
+
+//          }
+//     }
+// }
+
+
+//Bölü 39 Hata Yönetimi
+
+
+// using System;
+
+
+// namespace consoleapp
+// {
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             try
+//             {
+//                  Console.Write("a:");
+//             int a=int.Parse(Console.ReadLine());
+
+//             Console.Write("b:");
+//             int b=int.Parse(Console.ReadLine());
+
+//             var sonuc=a/b;
+//            // Console.WriteLine($"{0}/{1}={2}",a,b,sonuc);
+//            Console.WriteLine(sonuc);
+//             }
+//             catch (DivideByZeroException ex)
+//             {
+//                 Console.WriteLine("b sıfır olamaz");
+//                 Console.WriteLine(ex.Message);//verilen hatanın acıklamasını yazdırır
+                
+//             }
+           
+//            catch (FormatException ex)//buraya ex diyip aşşağıda ex. diyerek message cağırılır,
+//             {
+//                 Console.WriteLine("sayısal değer girmelisinz");
+//                  Console.WriteLine(ex.Message);
+                
+//             }
+//             catch(Exception ex)
+//             {
+//                 Console.WriteLine("bir hata oluştu");
+//                   Console.WriteLine(ex.Message);
+//             }
+
+//             finally
+//             {
+//                 Console.WriteLine("finally bloğu çalıstı");
+
+//             }
+           
+
+
+//          }
+//     }
+// }
+
+
+
+
+
+
+//Bölüm 40 Hata Fırlatma(throw keyword)
+
+
+
+// using System;
+// using System.Linq;
+
+// namespace consoleapp
+// {
+//     class Program
+//     {
+//         static void check_password(string password)
+//         {
+//             if(password.Length<8 || password.Length>15)
+//             {
+//                 throw new Exception("parola 8 ile 15 karakter arasında olmalıdır");
+//             }
+//             if(!password.Any(char.IsDigit)) //any den sonra ctrl nokta de system.linq ekle
+//             //ve en az bir sayısal değer olmasını istemek için bunu kullanırız
+//             //any metodu password içindeki tüm karakterleri kontrol eder sayı varmı diye
+//             {
+//                 throw new Exception("parola en az bir rakam içermelidir");
+//             }
+
+//             if(!password.Any(char.IsLetter))
+//              {
+//                 throw new Exception("parola en az bir harf içermelidir");
+//             }
+
+//         }
+//         static void Main(string[] args)
+//         {
+//             // int sayi=10;
+//             // if (sayi>5)
+//             // {
+//             //     throw new Exception("sayi 5 den büyük olamaz");
+
+//             // }
+//             string parola="23164541dsa";
+//             try
+//             {
+//                 check_password(parola);
+//                 Console.WriteLine("parola geçerli");
+//             }
+//             catch (Exception ex)
+//             {
+                
+//                 Console.WriteLine(ex.Message);
+//             }
+
+//         }
+//     }
+// }
+
+
+
+
+//Bölüm 41 Hata Yönetimi Uygulama
+
+
+// using System;
+// using System.Collections.Generic;
+
+// namespace consoleapp
+// {
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+            //"1","2","5a","10b","abc","10","50"
+            //1-Liste içerisindeki sayısal değerleribulunuz
+            // var liste=new List<string>()//generic liste ekledik(ctrl nokta unutma)
+            // {
+            //     "1","2","5a","10b","abc","10","50"
+            // };
+            // foreach (var item in liste)
+            // {
+            //     try
+            //     {
+            //         int a=int.Parse(item);//itemi int a ceviricez
+            //         Console.WriteLine(a);
+            //     }
+            //     catch (Exception)
+            //     {
+            //        continue;
+            //     }
+                
+            // }
+  
+
+//         }
+//     }
+// }
+
+
+
+//Bölüm 41 Kendi hata sınıfımızı yazalım
+
+
+// using System;
+
+
+// namespace consoleapp
+// {
+
+
+//     class LoginException:Exception
+//     {
+//         public LoginException(string message):base(message)//ctor 
+//         {
+            
+//         }
+
+//     }
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             try
+//             {
+//                 Login("sadikturan","12345678");
+//                 Console.WriteLine("login başarılı");
+//             }
+//             catch (LoginException ex)
+//             {
+//                Console.WriteLine(ex.Message) ;
+             
+//             }
+            
+  
+
+//         }
+
+//         static void Login(string username,string password)
+//         {
+//             if (username.Contains(" "))
+//             {
+//                 throw new LoginException("username boşluk içeremez");
+
+//             }
+//             if (password.Length<8)
+//             {
+//                 throw new LoginException("parola min. 8 karakter içermelidir");
+//             }
+//         }
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                              //67-).Net Core -Veri Tabanı ile Çalışma-SQL SERVER & MYSQL SERVER
+
+
+
+//BÖLÜM 1 Veritabanı Bağlantısının Kurulması-SQL SERVER
+
+
+
+
+
+// using System;
+// using System.Data.SqlClient;
+
+
+// namespace consoleapp
+// {
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//            GetSqlConnection();
+
+//         }
+
+//          static void GetSqlConnection()
+//          {
+//              string connectionString= @"Data Source=DESKTOP-ANBQKEB\SQLEXPRESS01;Initial Catalog=Northwind;Integrated Security=SSPI;";
+
+//           //DRİVER,PROVİDER
+//           using(var connection=new SqlConnection(connectionString))
+//           {
+//               try
+//               {
+//                 connection.Open();
+//                 Console.WriteLine("BAĞLANTI SAĞLANDI.");
+                  
+//               }
+//               catch (Exception ex)
+//               {
+                  
+//                   Console.WriteLine(ex.Message);
+//               }
+//               finally
+//               {
+//                   connection.Close();
+//               }
+//           }
+
+
+
+//          }
+
+
+//     }
+// }
+
+
+//BÖLÜM 2 Veritabanı Bağlantısının Kurulması-MYSQL SERVER
+
+
+
+// using System;
+// using MySql.Data.MySqlClient;
+
+// namespace consoleapp
+// {
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             GetMySqlConnection();
+
+
+//         }
+//         static void GetMySqlConnection()
+//         {
+//               string connectionString= @"server=localhost;port=3306;database=northwind;user=root;password=mysql123;";
+
+//            //DRİVER,PROVİDER
+//             using(var connection=new MySqlConnection(connectionString))
+//           {
+//               try
+//               {
+//                 connection.Open();
+//                 Console.WriteLine("BAĞLANTI SAĞLANDI.");
+                  
+//               }
+//               catch (Exception ex)
+//               {
+                  
+//                   Console.WriteLine(ex.Message);
+//               }
+//               finally
+//               {
+//                   connection.Close();
+//               }
+//           }
+
+//         }
+
+
+//     }
+// }
+
+
+
+
+
+
+
+//Bölüm 3 veritabanından tüm ürün bilgilerinin alınması
+
+
+
+
+// using System;
+// using MySql.Data.MySqlClient;
+
+// namespace consoleapp
+// {
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             GetAllProducts();
+
+
+//         }
+
+//         static void GetAllProducts()//ürün bilgilerini getiren metot
+//         {
+//               using(var connection=GetMySqlConnection())
+//             {
+//               try
+//               {
+//                 connection.Open();
+
+//               string sql="select * from products";
+
+//               MySqlCommand command=new MySqlCommand(sql,connection);
+              
+//               MySqlDataReader reader=command.ExecuteReader();
+
+//               while (reader.Read())
+//               {
+//                   Console.WriteLine($"name:{reader[3]} price:{reader[6]}");
+
+//               }
+//               reader.Close();
+                  
+//               }
+
+
+//               catch (Exception ex)
+//               {
+                  
+//                   Console.WriteLine(ex.Message);
+//               }
+//               finally
+//               {
+//                   connection.Close();
+//               }
+//             }
+
+
+//         }
+//         static MySqlConnection GetMySqlConnection()//bağlantı kurulan metot
+//         {
+//            string connectionString= @"server=localhost;port=3306;database=northwind;user=root;password=mysql123;";
+
+//            return new MySqlConnection(connectionString);
+          
+//         }
+
+
+//     }
+// }
+
+
+
+
+
+//Bölüm 4 Verilerin nesne ile taşınması
+
+
+
+// using System;
+// using System.Collections.Generic;
+// using MySql.Data.MySqlClient;
+
+// namespace consoleapp
+// {
+//     class Product
+//     {
+//         public int ProductId { get; set; }
+//         public string Name { get; set; }
+//         public double Price { get; set; }
+//     }
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//            var urun= GetAllProducts();
+//            foreach (var pr in urun)
+//            {
+//                Console.WriteLine($"name:{pr.Name} price:{pr.Price}");
+//            }
+
+
+//         }
+
+//         static  List<Product> GetAllProducts()//ürün bilgilerini getiren metot
+//         {
+//             List<Product> products=null;
+//               using(var connection=GetMySqlConnection())
+//             {
+//               try
+//               {
+//                 connection.Open();
+
+//               string sql="select * from products";
+
+//               MySqlCommand command=new MySqlCommand(sql,connection);
+              
+//               MySqlDataReader reader=command.ExecuteReader();
+              
+//               products=new List<Product>();//ctrl nokta ile system.collection ekle üste
+
+//               while(reader.Read())
+//               {
+//                   products.Add(new Product{ProductId=int.Parse(reader["id"].ToString())});
+//                   products.Add(new Product{Name=reader["product_name"].ToString()});
+//                   products.Add(new Product{Price=double.Parse(reader["list_price"]?.ToString())});
+
+//               };
+//               reader.Close();
+                  
+//               }
+
+
+//               catch (Exception ex)
+//               {
+                  
+//                   Console.WriteLine(ex.Message);
+//               }
+//               finally
+//               {
+//                   connection.Close();
+//               }
+//             }
+
+//              return products;
+//         }
+//         static MySqlConnection GetMySqlConnection()//bağlantı kurulan metot
+//         {
+//            string connectionString= @"server=localhost;port=3306;database=northwind;user=root;password=mysql123;";
+
+//            return new MySqlConnection(connectionString);
+          
+//         }
+
+
+//     }
+// }
+
+
+
+
+
+
+
+//Bölüm 5 Veri erişim sınıfının hazırlanması
+
+
+
+
+
+// using System;
+// using System.Collections.Generic;
+// using MySql.Data.MySqlClient;
+
+// namespace consoleapp
+// {
+//       public class Product
+//     {
+        
+//         public int ProductId { get; set; }
+//         public string Name { get; set; }
+//         public double Price { get; set; }
+//     }
+//     public interface IProductDal
+//     {
+//         List<Product> GetAllProducts();
+//         Product GetProductById(int id);
+//         void Create(Product p);
+//         void Update(Product p);
+//         void Delete(int productId);
+
+//     }
+    
+  
+//     public class MySQLProductDal : IProductDal//ARABİRİM UYGULA DE IPRODUCTDAL DAN SONRA
+//     {
+        
+//         private MySqlConnection GetMySqlConnection()//bağlantı kurulan metot
+//         {
+//             string connectionString = @"server=localhost;port=3306;database=northwind;user=root;password=mysql123;";
+
+//             return new MySqlConnection(connectionString);
+
+//         }
+//         public void Create(Product p)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public void Delete(int productId)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public List<Product> GetAllProducts()
+//         {
+//              List<Product> products=null;
+//               using(var connection=GetMySqlConnection())
+//             {
+//               try
+//               {
+//                 connection.Open();
+
+//               string sql="select * from products";
+
+//               MySqlCommand command=new MySqlCommand(sql,connection);
+              
+//               MySqlDataReader reader=command.ExecuteReader();
+              
+//               products=new List<Product>();//ctrl nokta ile system.collection ekle üste
+
+//               while(reader.Read())
+//               {
+//                   products.Add(new Product{ProductId=int.Parse(reader["id"].ToString())});
+//                   products.Add(new Product{Name=reader["product_name"].ToString()});
+//                   products.Add(new Product{Price=double.Parse(reader["list_price"]?.ToString())});
+
+//               };
+//               reader.Close();
+                  
+//               }
+
+
+//               catch (Exception ex)
+//               {
+                  
+//                   Console.WriteLine(ex.Message);
+//               }
+//               finally
+//               {
+//                   connection.Close();
+//               }
+//             }
+
+//              return products;
+//         }
+
+//         public Product GetProductById(int id)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public void Update(Product p)
+//         {
+//             throw new NotImplementedException();
+//         }
+//     }
+
+//     public class ProductManager : IProductDal
+//     {
+//         IProductDal _productDal;
+//         public ProductManager(IProductDal productDal)//ctor
+//         {
+//             _productDal=productDal;
+//         }
+//         public void Create(Product p)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public void Delete(int productId)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public List<Product> GetAllProducts()
+//         {
+//             return _productDal.GetAllProducts();
+//         }
+
+//         public Product GetProductById(int id)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public void Update(Product p)
+//         {
+//             throw new NotImplementedException();
+//         }
+//     }
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//            var productDal=new ProductManager(new MySQLProductDal());//parantez içine oracle yazarsan oracle mssql yazarsan mssql den veri gelir ama yukarı,
+//            //public class MsSQLProductDal:IProductDal diye oluşturman lazım,
+
+//             var products=productDal.GetAllProducts();
+//             foreach (var item in products)
+//             {
+//                 Console.WriteLine($"{item.Name}");
+                
+//             }
+           
+
+
+//         }
+
+//     }
+// }
+
+
+
+
+
+//Bölüm 6 Kritere Göre Ürün Filtreleme
+
+
+
+// using System;
+// using System.Collections.Generic;
+// using MySql.Data.MySqlClient;
+
+// namespace consoleapp
+// {
+//       public class Product
+//     {
+        
+//         public int ProductId { get; set; }
+//         public string Name { get; set; }
+//         public double Price { get; set; }
+//     }
+//     public interface IProductDal
+//     {
+//         List<Product> GetAllProducts();
+//         Product GetProductById(int id);
+//          List<Product> Find(string productName);
+//         void Create(Product p);
+//         void Update(Product p);
+//         void Delete(int productId);
+
+//     }
+    
+  
+//     public class MySQLProductDal : IProductDal//ARABİRİM UYGULA DE IPRODUCTDAL DAN SONRA
+//     {
+        
+//         private MySqlConnection GetMySqlConnection()//bağlantı kurulan metot
+//         {
+//             string connectionString = @"server=localhost;port=3306;database=northwind;user=root;password=mysql123;";
+
+//             return new MySqlConnection(connectionString);
+
+//         }
+//         public void Create(Product p)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public void Delete(int productId)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public List<Product> GetAllProducts()
+//         {
+//              List<Product> products=null;
+//               using(var connection=GetMySqlConnection())
+//             {
+//               try
+//               {
+//                 connection.Open();
+
+//               string sql="select * from products";
+
+//               MySqlCommand command=new MySqlCommand(sql,connection);
+              
+//               MySqlDataReader reader=command.ExecuteReader();
+              
+//               products=new List<Product>();//ctrl nokta ile system.collection ekle üste
+
+//               while(reader.Read())
+//               {
+//                   products.Add(new Product{ProductId=int.Parse(reader["id"].ToString())});
+//                   products.Add(new Product{Name=reader["product_name"].ToString()});
+//                   products.Add(new Product{Price=double.Parse(reader["list_price"]?.ToString())});
+
+//               };
+//               reader.Close();
+                  
+//               }
+
+
+//               catch (Exception ex)
+//               {
+                  
+//                   Console.WriteLine(ex.Message);
+//               }
+//               finally
+//               {
+//                   connection.Close();
+//               }
+//             }
+
+//              return products;
+//         }
+
+//         public Product GetProductById(int id)
+//         {
+//             Product product = null;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+
+//                     string sql = "select * from products id=@productid";
+
+
+//                     MySqlCommand command = new MySqlCommand(sql, connection);
+//                     command.Parameters.Add("@productid",MySqlDbType.Int32).Value=id;
+
+//                     MySqlDataReader reader = command.ExecuteReader();
+//                    reader.Read();
+//                     if (reader.HasRows)
+//                     {
+//                         product = new Product() //ctrl nokta ile system.collection ekle üste
+//                         {
+//                             ProductId = int.Parse(reader["id"].ToString()),
+//                             Name = reader["product_name"].ToString(),
+//                             Price = double.Parse(reader["list_price"]?.ToString())
+//                         };
+
+//                     }
+
+    
+//                     reader.Close();
+
+//                 }
+
+
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+
+//             return product;
+//         }
+
+//         public void Update(Product p)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public List<Product> Find(string productName)
+//         {
+//              List<Product> products = null;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+
+//                     string sql = "select * from products where product_name LIKE @productName";
+
+
+//                     MySqlCommand command = new MySqlCommand(sql, connection);
+//                     command.Parameters.Add("@productName",MySqlDbType.String).Value= "%"+productName+"%";
+
+//                     MySqlDataReader reader = command.ExecuteReader();
+                
+
+//                     products = new List<Product>();//ctrl nokta ile system.collection ekle üste
+
+//                     while (reader.Read())
+//                     {
+//                         products.Add(new Product { ProductId = int.Parse(reader["id"].ToString()) });
+//                         products.Add(new Product { Name = reader["product_name"].ToString() });
+//                         products.Add(new Product { Price = double.Parse(reader["list_price"]?.ToString()) });
+
+//                     };
+
+    
+//                     reader.Close();
+
+//                 }
+
+
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+
+//             return products;
+//         }
+//     }
+
+//     public class ProductManager : IProductDal
+//     {
+//         IProductDal _productDal;
+//         public ProductManager(IProductDal productDal)//ctor
+//         {
+//             _productDal=productDal;
+//         }
+//         public void Create(Product p)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public void Delete(int productId)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public List<Product> Find(string productName)
+//         {
+//           return _productDal.Find(productName);
+//         }
+
+//         public List<Product> GetAllProducts()
+//         {
+//             return _productDal.GetAllProducts();
+//         }
+
+//         public Product GetProductById(int id)
+//         {
+//            return _productDal.GetProductById(id);
+//         }
+
+//         public void Update(Product p)
+//         {
+//             throw new NotImplementedException();
+//         }
+//     }
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             //BU KISIM GETPRODUCTBYID İLE İŞLEM YAPMAK İÇİN
+//         //    var productDal=new ProductManager(new MySQLProductDal()); //parantez içine oracle yazarsan oracle mssql yazarsan mssql den veri gelir ama yukarı,
+//         //    //public class MsSQLProductDal:IProductDal diye oluşturman lazım,
+
+//         //     var product=productDal.GetProductById(4);
+           
+//         //         Console.WriteLine($"{product.Name}");
+                
+
+//                   //BU KISIM FİND İLE İŞLEM YAPMAK İÇİN
+//                var productDal=new ProductManager(new MySQLProductDal());//parantez içine oracle yazarsan oracle mssql yazarsan mssql den veri gelir ama yukarı,
+//            //public class MsSQLProductDal:IProductDal diye oluşturman lazım,
+
+//             var products=productDal.Find("Northwind");
+//             foreach (var item in products)
+//             {
+//                 Console.WriteLine($"{item.ProductId}--{item.Name}");
+//             }
+           
+                
+                
+           
+
+
+//         }
+
+//     }
+// }
+
+
+
+
+
+//Bölüm 7 scaler veri ile çalışma
+
+
+
+
+// using System;
+// using System.Collections.Generic;
+// using MySql.Data.MySqlClient;
+
+// namespace consoleapp
+// {
+//       public class Product
+//     {
+        
+//         public int ProductId { get; set; }
+//         public string Name { get; set; }
+//         public double Price { get; set; }
+//     }
+//     public interface IProductDal
+//     {
+//         List<Product> GetAllProducts();
+//         Product GetProductById(int id);
+//          List<Product> Find(string productName);
+//          int Count();
+//         void Create(Product p);
+//         void Update(Product p);
+//         void Delete(int productId);
+
+//     }
+    
+  
+//     public class MySQLProductDal : IProductDal//ARABİRİM UYGULA DE IPRODUCTDAL DAN SONRA
+//     {
+        
+//         private MySqlConnection GetMySqlConnection()//bağlantı kurulan metot
+//         {
+//             string connectionString = @"server=localhost;port=3306;database=northwind;user=root;password=mysql123;";
+
+//             return new MySqlConnection(connectionString);
+
+//         }
+//         public void Create(Product p)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public void Delete(int productId)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public List<Product> GetAllProducts()
+//         {
+//              List<Product> products=null;
+//               using(var connection=GetMySqlConnection())
+//             {
+//               try
+//               {
+//                 connection.Open();
+
+//               string sql="select * from products";
+
+//               MySqlCommand command=new MySqlCommand(sql,connection);
+              
+//               MySqlDataReader reader=command.ExecuteReader();
+              
+//               products=new List<Product>();//ctrl nokta ile system.collection ekle üste
+
+//               while(reader.Read())
+//               {
+//                   products.Add(new Product{ProductId=int.Parse(reader["id"].ToString())});
+//                   products.Add(new Product{Name=reader["product_name"].ToString()});
+//                   products.Add(new Product{Price=double.Parse(reader["list_price"]?.ToString())});
+
+//               };
+//               reader.Close();
+                  
+//               }
+
+
+//               catch (Exception ex)
+//               {
+                  
+//                   Console.WriteLine(ex.Message);
+//               }
+//               finally
+//               {
+//                   connection.Close();
+//               }
+//             }
+
+//              return products;
+//         }
+
+//         public Product GetProductById(int id)
+//         {
+//             Product product = null;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+
+//                     string sql = "select * from products id=@productid";
+
+
+//                     MySqlCommand command = new MySqlCommand(sql, connection);
+//                     command.Parameters.Add("@productid",MySqlDbType.Int32).Value=id;
+
+//                     MySqlDataReader reader = command.ExecuteReader();
+//                    reader.Read();
+//                     if (reader.HasRows)
+//                     {
+//                         product = new Product() //ctrl nokta ile system.collection ekle üste
+//                         {
+//                             ProductId = int.Parse(reader["id"].ToString()),
+//                             Name = reader["product_name"].ToString(),
+//                             Price = double.Parse(reader["list_price"]?.ToString())
+//                         };
+
+//                     }
+
+    
+//                     reader.Close();
+
+//                 }
+
+
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+
+//             return product;
+//         }
+
+//         public void Update(Product p)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public List<Product> Find(string productName)
+//         {
+//              List<Product> products = null;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+
+//                     string sql = "select * from products where product_name LIKE @productName";
+
+
+//                     MySqlCommand command = new MySqlCommand(sql, connection);
+//                     command.Parameters.Add("@productName",MySqlDbType.String).Value= "%"+productName+"%";
+
+//                     MySqlDataReader reader = command.ExecuteReader();
+                
+
+//                     products = new List<Product>();//ctrl nokta ile system.collection ekle üste
+
+//                     while (reader.Read())
+//                     {
+//                         products.Add(new Product { ProductId = int.Parse(reader["id"].ToString()) });
+//                         products.Add(new Product { Name = reader["product_name"].ToString() });
+//                         products.Add(new Product { Price = double.Parse(reader["list_price"]?.ToString()) });
+
+//                     };
+
+    
+//                     reader.Close();
+
+//                 }
+
+
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+
+//             return products;
+//         }
+
+//         public int Count()
+//         {
+//            int count=0;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+
+//                     string sql = "select count(*) from products";
+
+
+//                     MySqlCommand command = new MySqlCommand(sql, connection);
+//                     object result=command.ExecuteScalar();
+//                     if (result!=null)
+//                     {
+//                     count=Convert.ToInt32(result);
+//                     }
+
+    
+
+//                 }
+
+
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+
+//             return count;
+           
+//         }
+//     }
+
+//     public class ProductManager : IProductDal
+//     {
+//         IProductDal _productDal;
+//         public ProductManager(IProductDal productDal)//ctor
+//         {
+//             _productDal=productDal;
+//         }
+
+//         public int Count()
+//         {
+//            return _productDal.Count();
+//         }
+
+//         public void Create(Product p)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public void Delete(int productId)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public List<Product> Find(string productName)
+//         {
+//           return _productDal.Find(productName);
+//         }
+
+//         public List<Product> GetAllProducts()
+//         {
+//             return _productDal.GetAllProducts();
+//         }
+
+//         public Product GetProductById(int id)
+//         {
+//            return _productDal.GetProductById(id);
+//         }
+
+//         public void Update(Product p)
+//         {
+//             throw new NotImplementedException();
+//         }
+//     }
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             var productDal=new ProductManager(new MySQLProductDal());//parantez içine oracle yazarsan oracle mssql yazarsan mssql den veri gelir ama yukarı,
+//            //public class MsSQLProductDal:IProductDal diye oluşturman lazım,
+
+//            int count=productDal.Count();
+
+//            Console.WriteLine($"total products: {count}");
+
+ 
+
+//         }
+
+//     }
+// }
+
+
+
+
+//Bölüm 8 ürün ekleme
+
+
+
+// using System;
+// using System.Collections.Generic;
+// using MySql.Data.MySqlClient;
+
+// namespace consoleapp
+// {
+//       public class Product
+//     {
+        
+//         public int ProductId { get; set; }
+//         public string Name { get; set; }
+//         public double Price { get; set; }
+//     }
+//     public interface IProductDal
+//     {
+//         List<Product> GetAllProducts();
+//         Product GetProductById(int id);
+//          List<Product> Find(string productName);
+//          int Count();
+//         int Create(Product p);
+//         void Update(Product p);
+//         void Delete(int productId);
+
+//     }
+    
+  
+//     public class MySQLProductDal : IProductDal//ARABİRİM UYGULA DE IPRODUCTDAL DAN SONRA
+//     {
+        
+//         private MySqlConnection GetMySqlConnection()//bağlantı kurulan metot
+//         {
+//             string connectionString = @"server=localhost;port=3306;database=northwind;user=root;password=mysql123;";
+
+//             return new MySqlConnection(connectionString);
+
+//         }
+//         public int Create(Product p)
+//         {
+//             int result=0;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+//                     string sql="insert into products(product_name,list_price,discontinued) VALUES (@productname,@listprice,@discontinued)";
+//                     MySqlCommand command=new MySqlCommand(sql,connection);
+//                     command.Parameters.AddWithValue("@productname",p.Name);
+//                     command.Parameters.AddWithValue("@listprice",p.Price);
+//                     command.Parameters.AddWithValue("@discontinued",1);
+                   
+//                      result=command.ExecuteNonQuery();
+
+//                     Console.WriteLine($"{result} adet kayıt eklendi");
+
+
+//                 }
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+//             return result;
+//         }
+
+//         public void Delete(int productId)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public List<Product> GetAllProducts()
+//         {
+//              List<Product> products=null;
+//               using(var connection=GetMySqlConnection())
+//             {
+//               try
+//               {
+//                 connection.Open();
+
+//               string sql="select * from products";
+
+//               MySqlCommand command=new MySqlCommand(sql,connection);
+              
+//               MySqlDataReader reader=command.ExecuteReader();
+              
+//               products=new List<Product>();//ctrl nokta ile system.collection ekle üste
+
+//               while(reader.Read())
+//               {
+//                   products.Add(new Product{ProductId=int.Parse(reader["id"].ToString())});
+//                   products.Add(new Product{Name=reader["product_name"].ToString()});
+//                   products.Add(new Product{Price=double.Parse(reader["list_price"]?.ToString())});
+
+//               };
+//               reader.Close();
+                  
+//               }
+
+
+//               catch (Exception ex)
+//               {
+                  
+//                   Console.WriteLine(ex.Message);
+//               }
+//               finally
+//               {
+//                   connection.Close();
+//               }
+//             }
+
+//              return products;
+//         }
+
+//         public Product GetProductById(int id)
+//         {
+//             Product product = null;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+
+//                     string sql = "select * from products id=@productid";
+
+
+//                     MySqlCommand command = new MySqlCommand(sql, connection);
+//                     command.Parameters.Add("@productid",MySqlDbType.Int32).Value=id;
+
+//                     MySqlDataReader reader = command.ExecuteReader();
+//                    reader.Read();
+//                     if (reader.HasRows)
+//                     {
+//                         product = new Product() //ctrl nokta ile system.collection ekle üste
+//                         {
+//                             ProductId = int.Parse(reader["id"].ToString()),
+//                             Name = reader["product_name"].ToString(),
+//                             Price = double.Parse(reader["list_price"]?.ToString())
+//                         };
+
+//                     }
+
+    
+//                     reader.Close();
+
+//                 }
+
+
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+
+//             return product;
+//         }
+
+//         public void Update(Product p)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public List<Product> Find(string productName)
+//         {
+//              List<Product> products = null;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+
+//                     string sql = "select * from products where product_name LIKE @productName";
+
+
+//                     MySqlCommand command = new MySqlCommand(sql, connection);
+//                     command.Parameters.Add("@productName",MySqlDbType.String).Value= "%"+productName+"%";
+
+//                     MySqlDataReader reader = command.ExecuteReader();
+                
+
+//                     products = new List<Product>();//ctrl nokta ile system.collection ekle üste
+
+//                     while (reader.Read())
+//                     {
+//                         products.Add(new Product { ProductId = int.Parse(reader["id"].ToString()) });
+//                         products.Add(new Product { Name = reader["product_name"].ToString() });
+//                         products.Add(new Product { Price = double.Parse(reader["list_price"]?.ToString()) });
+
+//                     };
+
+    
+//                     reader.Close();
+
+//                 }
+
+
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+
+//             return products;
+//         }
+
+//         public int Count()
+//         {
+//            int count=0;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+
+//                     string sql = "select count(*) from products";
+
+
+//                     MySqlCommand command = new MySqlCommand(sql, connection);
+//                     object result=command.ExecuteScalar();
+//                     if (result!=null)
+//                     {
+//                     count=Convert.ToInt32(result);
+//                     }
+
+    
+
+//                 }
+
+
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+
+//             return count;
+           
+//         }
+//     }
+
+//     public class ProductManager : IProductDal
+//     {
+//         IProductDal _productDal;
+//         public ProductManager(IProductDal productDal)//ctor
+//         {
+//             _productDal=productDal;
+//         }
+
+//         public int Count()
+//         {
+//            return _productDal.Count();
+//         }
+
+//         public int Create(Product p)
+//         {
+            
+//           return _productDal.Create(p);
+//         }
+
+//         public void Delete(int productId)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public List<Product> Find(string productName)
+//         {
+//           return _productDal.Find(productName);
+//         }
+
+//         public List<Product> GetAllProducts()
+//         {
+//             return _productDal.GetAllProducts();
+//         }
+
+//         public Product GetProductById(int id)
+//         {
+//            return _productDal.GetProductById(id);
+//         }
+
+//         public void Update(Product p)
+//         {
+//             throw new NotImplementedException();
+//         }
+//     }
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             var productDal=new ProductManager(new MySQLProductDal());//parantez içine oracle yazarsan oracle mssql yazarsan mssql den veri gelir ama yukarı,
+//            //public class MsSQLProductDal:IProductDal diye oluşturman lazım,
+
+//            var p=new Product()
+//            {
+//                Name="samsung s8",
+//                Price=5000,
+//            };
+
+//            int count=productDal.Create(p);
+
+//            Console.WriteLine($"total products: {count}");
+
+   
+        
+           
+                
+ 
+
+//         }
+
+//     }
+// }
+
+
+
+
+
+//Bölüm 9 ürün güncelleme (id ye göre yaptık)
+
+
+
+
+
+
+// using System;
+// using System.Collections.Generic;
+// using MySql.Data.MySqlClient;
+
+// namespace consoleapp
+// {
+//       public class Product
+//     {
+        
+//         public int ProductId { get; set; }
+//         public string Name { get; set; }
+//         public double Price { get; set; }
+//     }
+//     public interface IProductDal
+//     {
+//         List<Product> GetAllProducts();
+//         Product GetProductById(int id);
+//          List<Product> Find(string productName);
+//          int Count();
+//         int Create(Product p);
+//         int Update(Product p);
+//         int Delete(int productId);
+
+//     }
+    
+  
+//     public class MySQLProductDal : IProductDal//ARABİRİM UYGULA DE IPRODUCTDAL DAN SONRA
+//     {
+        
+//         private MySqlConnection GetMySqlConnection()//bağlantı kurulan metot
+//         {
+//             string connectionString = @"server=localhost;port=3306;database=northwind;user=root;password=mysql123;";
+
+//             return new MySqlConnection(connectionString);
+
+//         }
+//         public int Create(Product p)
+//         {
+//             int result=0;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+//                     string sql="insert into products(product_name,list_price,discontinued) VALUES (@productname,@listprice,@discontinued)";
+//                     MySqlCommand command=new MySqlCommand(sql,connection);
+//                     command.Parameters.AddWithValue("@productname",p.Name);
+//                     command.Parameters.AddWithValue("@listprice",p.Price);
+//                     command.Parameters.AddWithValue("@discontinued",1);
+                   
+//                      result=command.ExecuteNonQuery();
+
+//                     Console.WriteLine($"{result} adet kayıt eklendi");
+
+
+//                 }
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+//             return result;
+//         }
+
+//         public int Delete(int productId)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public List<Product> GetAllProducts()
+//         {
+//              List<Product> products=null;
+//               using(var connection=GetMySqlConnection())
+//             {
+//               try
+//               {
+//                 connection.Open();
+
+//               string sql="select * from products";
+
+//               MySqlCommand command=new MySqlCommand(sql,connection);
+              
+//               MySqlDataReader reader=command.ExecuteReader();
+              
+//               products=new List<Product>();//ctrl nokta ile system.collection ekle üste
+
+//               while(reader.Read())
+//               {
+//                   products.Add(new Product{ProductId=int.Parse(reader["id"].ToString())});
+//                   products.Add(new Product{Name=reader["product_name"].ToString()});
+//                   products.Add(new Product{Price=double.Parse(reader["list_price"]?.ToString())});
+
+//               };
+//               reader.Close();
+                  
+//               }
+
+
+//               catch (Exception ex)
+//               {
+                  
+//                   Console.WriteLine(ex.Message);
+//               }
+//               finally
+//               {
+//                   connection.Close();
+//               }
+//             }
+
+//              return products;
+//         }
+
+//         public Product GetProductById(int id)
+//         {
+//             Product product = null;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+
+//                     string sql = "select * from products id=@productid";
+
+
+//                     MySqlCommand command = new MySqlCommand(sql, connection);
+//                     command.Parameters.Add("@productid",MySqlDbType.Int32).Value=id;
+
+//                     MySqlDataReader reader = command.ExecuteReader();
+//                    reader.Read();
+//                     if (reader.HasRows)
+//                     {
+//                         product = new Product() //ctrl nokta ile system.collection ekle üste
+//                         {
+//                             ProductId = int.Parse(reader["id"].ToString()),
+//                             Name = reader["product_name"].ToString(),
+//                             Price = double.Parse(reader["list_price"]?.ToString())
+//                         };
+
+//                     }
+
+    
+//                     reader.Close();
+
+//                 }
+
+
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+
+//             return product;
+//         }
+
+//         public int Update(Product p)
+//         {
+           
+//             int result=0;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+//                     string sql="update products set product_name=@productname,list_price=@price where id=@id";
+//                     MySqlCommand command=new MySqlCommand(sql,connection);
+//                     command.Parameters.AddWithValue("@productname",p.Name);
+//                     command.Parameters.AddWithValue("@price",p.Price);
+//                     command.Parameters.AddWithValue("@id",p.ProductId);
+                   
+//                      result=command.ExecuteNonQuery();
+
+
+//                 }
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+//             return result;
+//         }
+
+//         public List<Product> Find(string productName)
+//         {
+//              List<Product> products = null;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+
+//                     string sql = "select * from products where product_name LIKE @productName";
+
+
+//                     MySqlCommand command = new MySqlCommand(sql, connection);
+//                     command.Parameters.Add("@productName",MySqlDbType.String).Value= "%"+productName+"%";
+
+//                     MySqlDataReader reader = command.ExecuteReader();
+                
+
+//                     products = new List<Product>();//ctrl nokta ile system.collection ekle üste
+
+//                     while (reader.Read())
+//                     {
+//                         products.Add(new Product { ProductId = int.Parse(reader["id"].ToString()) });
+//                         products.Add(new Product { Name = reader["product_name"].ToString() });
+//                         products.Add(new Product { Price = double.Parse(reader["list_price"]?.ToString()) });
+
+//                     };
+
+    
+//                     reader.Close();
+
+//                 }
+
+
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+
+//             return products;
+//         }
+
+//         public int Count()
+//         {
+//            int count=0;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+
+//                     string sql = "select count(*) from products";
+
+
+//                     MySqlCommand command = new MySqlCommand(sql, connection);
+//                     object result=command.ExecuteScalar();
+//                     if (result!=null)
+//                     {
+//                     count=Convert.ToInt32(result);
+//                     }
+
+    
+
+//                 }
+
+
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+
+//             return count;
+           
+//         }
+
+   
+       
+//     }
+
+//     public class ProductManager : IProductDal
+//     {
+//         IProductDal _productDal;
+//         public ProductManager(IProductDal productDal)//ctor
+//         {
+//             _productDal=productDal;
+//         }
+
+//         public int Count()
+//         {
+//            return _productDal.Count();
+//         }
+
+//         public int Create(Product p)
+//         {
+            
+//           return _productDal.Create(p);
+//         }
+
+//         public int Delete(int productId)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public List<Product> Find(string productName)
+//         {
+//           return _productDal.Find(productName);
+//         }
+
+//         public List<Product> GetAllProducts()
+//         {
+//             return _productDal.GetAllProducts();
+//         }
+
+//         public Product GetProductById(int id)
+//         {
+//            return _productDal.GetProductById(id);
+//         }
+
+//         public int Update(Product p)
+//         {
+//           return _productDal.Update(p);
+//         }
+       
+//     }
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             var productDal=new ProductManager(new MySQLProductDal());//parantez içine oracle yazarsan oracle mssql yazarsan mssql den veri gelir ama yukarı,
+//            //public class MsSQLProductDal:IProductDal diye oluşturman lazım,
+
+//            var p=new Product()
+//            {
+//                ProductId=100,
+//                Name="samsung s10",
+//                Price=7000,
+//            };
+
+//            int count=productDal.Update(p);
+
+//            Console.WriteLine($"güncellenen kayıt sayısı: {count}");
+
+
+//         }
+
+//     }
+// }
+
+
+
+
+
+
+//Bölüm10 ürü silme(id ye göre yaptık)
+
+
+
+
+
+// using System;
+// using System.Collections.Generic;
+// using MySql.Data.MySqlClient;
+
+// namespace consoleapp
+// {
+//       public class Product
+//     {
+        
+//         public int ProductId { get; set; }
+//         public string Name { get; set; }
+//         public double Price { get; set; }
+//     }
+//     public interface IProductDal
+//     {
+//         List<Product> GetAllProducts();
+//         Product GetProductById(int id);
+//          List<Product> Find(string productName);
+//          int Count();
+//         int Create(Product p);
+//         int Update(Product p);
+//         int Delete(int productId);
+
+//     }
+    
+  
+//     public class MySQLProductDal : IProductDal//ARABİRİM UYGULA DE IPRODUCTDAL DAN SONRA
+//     {
+        
+//         private MySqlConnection GetMySqlConnection()//bağlantı kurulan metot
+//         {
+//             string connectionString = @"server=localhost;port=3306;database=northwind;user=root;password=mysql123;";
+
+//             return new MySqlConnection(connectionString);
+
+//         }
+//         public int Create(Product p)
+//         {
+//             int result=0;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+//                     string sql="insert into products(product_name,list_price,discontinued) VALUES (@productname,@listprice,@discontinued)";
+//                     MySqlCommand command=new MySqlCommand(sql,connection);
+//                     command.Parameters.AddWithValue("@productname",p.Name);
+//                     command.Parameters.AddWithValue("@listprice",p.Price);
+//                     command.Parameters.AddWithValue("@discontinued",1);
+                   
+//                      result=command.ExecuteNonQuery();
+
+//                     Console.WriteLine($"{result} adet kayıt eklendi");
+
+
+//                 }
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+//             return result;
+//         }
+
+//         public int Delete(int productId)
+//         {
+//             int result=0;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+//                     string sql="delete from products where id=@id";
+//                     MySqlCommand command=new MySqlCommand(sql,connection);
+//                     command.Parameters.AddWithValue("@id",productId);
+                   
+//                      result=command.ExecuteNonQuery();
+
+
+//                 }
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+//             return result;
+//         }
+
+//         public List<Product> GetAllProducts()
+//         {
+//              List<Product> products=null;
+//               using(var connection=GetMySqlConnection())
+//             {
+//               try
+//               {
+//                 connection.Open();
+
+//               string sql="select * from products";
+
+//               MySqlCommand command=new MySqlCommand(sql,connection);
+              
+//               MySqlDataReader reader=command.ExecuteReader();
+              
+//               products=new List<Product>();//ctrl nokta ile system.collection ekle üste
+
+//               while(reader.Read())
+//               {
+//                   products.Add(new Product{ProductId=int.Parse(reader["id"].ToString())});
+//                   products.Add(new Product{Name=reader["product_name"].ToString()});
+//                   products.Add(new Product{Price=double.Parse(reader["list_price"]?.ToString())});
+
+//               };
+//               reader.Close();
+                  
+//               }
+
+
+//               catch (Exception ex)
+//               {
+                  
+//                   Console.WriteLine(ex.Message);
+//               }
+//               finally
+//               {
+//                   connection.Close();
+//               }
+//             }
+
+//              return products;
+//         }
+
+//         public Product GetProductById(int id)
+//         {
+//             Product product = null;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+
+//                     string sql = "select * from products id=@productid";
+
+
+//                     MySqlCommand command = new MySqlCommand(sql, connection);
+//                     command.Parameters.Add("@productid",MySqlDbType.Int32).Value=id;
+
+//                     MySqlDataReader reader = command.ExecuteReader();
+//                    reader.Read();
+//                     if (reader.HasRows)
+//                     {
+//                         product = new Product() //ctrl nokta ile system.collection ekle üste
+//                         {
+//                             ProductId = int.Parse(reader["id"].ToString()),
+//                             Name = reader["product_name"].ToString(),
+//                             Price = double.Parse(reader["list_price"]?.ToString())
+//                         };
+
+//                     }
+
+    
+//                     reader.Close();
+
+//                 }
+
+
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+
+//             return product;
+//         }
+
+//         public int Update(Product p)
+//         {
+           
+//             int result=0;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+//                     string sql="update products set product_name=@productname,list_price=@price where id=@id";
+//                     MySqlCommand command=new MySqlCommand(sql,connection);
+//                     command.Parameters.AddWithValue("@productname",p.Name);
+//                     command.Parameters.AddWithValue("@price",p.Price);
+//                     command.Parameters.AddWithValue("@id",p.ProductId);
+                   
+//                      result=command.ExecuteNonQuery();
+
+
+//                 }
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+//             return result;
+//         }
+
+//         public List<Product> Find(string productName)
+//         {
+//              List<Product> products = null;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+
+//                     string sql = "select * from products where product_name LIKE @productName";
+
+
+//                     MySqlCommand command = new MySqlCommand(sql, connection);
+//                     command.Parameters.Add("@productName",MySqlDbType.String).Value= "%"+productName+"%";
+
+//                     MySqlDataReader reader = command.ExecuteReader();
+                
+
+//                     products = new List<Product>();//ctrl nokta ile system.collection ekle üste
+
+//                     while (reader.Read())
+//                     {
+//                         products.Add(new Product { ProductId = int.Parse(reader["id"].ToString()) });
+//                         products.Add(new Product { Name = reader["product_name"].ToString() });
+//                         products.Add(new Product { Price = double.Parse(reader["list_price"]?.ToString()) });
+
+//                     };
+
+    
+//                     reader.Close();
+
+//                 }
+
+
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+
+//             return products;
+//         }
+
+//         public int Count()
+//         {
+//            int count=0;
+//             using (var connection = GetMySqlConnection())
+//             {
+//                 try
+//                 {
+//                     connection.Open();
+
+//                     string sql = "select count(*) from products";
+
+
+//                     MySqlCommand command = new MySqlCommand(sql, connection);
+//                     object result=command.ExecuteScalar();
+//                     if (result!=null)
+//                     {
+//                     count=Convert.ToInt32(result);
+//                     }
+
+    
+
+//                 }
+
+
+//                 catch (Exception ex)
+//                 {
+
+//                     Console.WriteLine(ex.Message);
+//                 }
+//                 finally
+//                 {
+//                     connection.Close();
+//                 }
+//             }
+
+//             return count;
+           
+//         }
+
+   
+       
+//     }
+
+//     public class ProductManager : IProductDal
+//     {
+//         IProductDal _productDal;
+//         public ProductManager(IProductDal productDal)//ctor
+//         {
+//             _productDal=productDal;
+//         }
+
+//         public int Count()
+//         {
+//            return _productDal.Count();
+//         }
+
+//         public int Create(Product p)
+//         {
+            
+//           return _productDal.Create(p);
+//         }
+
+//         public int Delete(int productId)
+//         {
+//             return _productDal.Delete(productId);
+//         }
+
+//         public List<Product> Find(string productName)
+//         {
+//           return _productDal.Find(productName);
+//         }
+
+//         public List<Product> GetAllProducts()
+//         {
+//             return _productDal.GetAllProducts();
+//         }
+
+//         public Product GetProductById(int id)
+//         {
+//            return _productDal.GetProductById(id);
+//         }
+
+//         public int Update(Product p)
+//         {
+//           return _productDal.Update(p);
+//         }
+       
+//     }
+
+//     class Program
+//     {
+//         static void Main(string[] args)
+//         {
+//             var productDal=new ProductManager(new MySQLProductDal());//parantez içine oracle yazarsan oracle mssql yazarsan mssql den veri gelir ama yukarı,
+//            //public class MsSQLProductDal:IProductDal diye oluşturman lazım,
+
+//            var result=productDal.Delete(100);
+           
+          
+//            Console.WriteLine($"{result} adet kayıt silindi");
+
+
+//         }
+
+//     }
+// }
+
+
+
+
